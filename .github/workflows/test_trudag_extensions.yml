@@ -2,13 +2,12 @@ name: Test Trudag extensions
 
 on:
   workflow_dispatch:
-  #push:
-   # branches: [ main ]
-  #pull_request:
       inputs:
         PARENT_SHA:
           description: "Parent Workflow SHA"
           required: true
+  push:
+    branches: [ main ]
 
 jobs:
   test:
