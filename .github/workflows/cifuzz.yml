@@ -6,7 +6,7 @@ on:
       PARENT_SHA:
         description: "Parent Workflow SHA"
         required: true
-#test
+
 permissions:
   contents: read
 
@@ -35,12 +35,13 @@ jobs:
           dry-run: false
           language: c++
 
-#      - name: Upload Crash
-#        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
-#        if: failure() && steps.build.outcome == 'success'
-#        with:
-#          name: artifacts
-#          path: ./out/artifacts
+      - name: Upload Crash
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: failure() && steps.build.outcome == 'success'
+        with:
+          name: artifacts
+          path: ./out/artifacts
+
 
       - name: Checkout specific commit from Parent Workflow
         uses: actions/checkout@v4
