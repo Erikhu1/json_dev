@@ -1,4 +1,4 @@
-name: "CIFuzz"
+name: CIFuzz
 
 on:
   workflow_dispatch:
