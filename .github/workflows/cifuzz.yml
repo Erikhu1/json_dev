@@ -19,6 +19,14 @@ jobs:
         with:
           egress-policy: audit
 
+      - name: Debug Workspace Path
+        run: ls -lah /github/workspace
+        
+      - name: Checkout specific commit from Parent Workflow
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.PARENT_SHA }}
+          path: actions/checkout@v4 
 
       - name: Build Fuzzers
         id: build
@@ -43,11 +51,6 @@ jobs:
           name: artifacts
           path: ./out/artifacts
 
-      - name: Checkout specific commit from Parent Workflow
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.inputs.PARENT_SHA }}
-          path: actions/checkout@v4 
 
       - name: Create Completion Flag
         run: echo "CIfuzz workflow completed." > CIFUZZ_flag_${{ github.event.inputs.PARENT_SHA }}.txt
