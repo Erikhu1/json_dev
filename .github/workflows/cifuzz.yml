@@ -19,9 +19,6 @@ jobs:
         with:
           egress-policy: audit
 
-      - name: Debug Workspace Path
-        run: ls -lah /github/workspace
-
       - name: Checkout specific commit from Parent Workflow
         uses: actions/checkout@v4
         with:
