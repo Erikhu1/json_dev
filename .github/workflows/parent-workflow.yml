@@ -49,19 +49,19 @@ jobs:
 
   dependency_review:
     name: Run dependency_review Workflow
+    if: ${{ github.event_name == 'pull_request' }} 
     uses: ./.github/workflows/dependency-review.yml
     with:
       artifact_id: "dependency_review-${{ github.sha }}"
 
-
-  collect-and-deploy:
-    name: "Collect Results & Deploy"
+  collect-and-deploy-pr:
+    name: "Collect Results & Deploy (PR)"
+    if: github.event_name == 'pull_request'
     needs: [labeler, check_amalgamation, test_trudag_extensions, codeql, dependency_review, ubuntu]
     runs-on: ubuntu-latest
-    if: always() # Run even if some jobs fail
     strategy:
       matrix:
-        target: [labeler, check_amalgamation, test_trudag_extensions, codeql, dependency_review, ubuntu] 
+        target: [labeler, check_amalgamation, test_trudag_extensions, codeql, dependency_review, ubuntu]
 
     steps:
       - name: Checkout code
@@ -80,7 +80,47 @@ jobs:
           echo "✅ Child workflows completed successfully!" 
         env:
           current_workflow: ${{ matrix.target }}
- 
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: "${{ matrix.target }}-${{ github.sha }}"
+          path: artifacts/
+
+      - name: Deployment simulation
+        run: |
+          echo "🚀 Simulating deployment..."
+          sleep 2
+          echo "✅ Deployment completed successfully!"
+
+
+  collect-and-deploy-non-pr:
+    name: "Collect Results & Deploy (Non-PR)"
+    if: github.event_name != 'pull_request'
+    needs: [labeler, check_amalgamation, test_trudag_extensions, codeql, ubuntu]  # no dependency_review if non PR
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target: [labeler, check_amalgamation, test_trudag_extensions, codeql, ubuntu]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check child workflow results 
+        run: |
+          echo "=== Checking Child Workflow Results ==="
+          result="${{ needs[matrix.target].result }}"
+          echo "${{ matrix.target }} workflow result: $result"
+
+          if [[ "$result" != "success" ]]; then
+            echo "❌ ${{ matrix.target }} workflow failed! Exiting..."
+            exit 1
+          fi
+          echo "✅ Child workflows completed successfully!" 
+        env:
+          current_workflow: ${{ matrix.target }}
+
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
