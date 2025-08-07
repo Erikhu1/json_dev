@@ -20,14 +20,14 @@ permissions:
   id-token: write
 
 on:
-  workflow_call:
-    inputs:
-      artifact_id:
-        description: 'Unique identifier for artifacts'
-        required: true
-        type: string
-
-
+  pull_request_target:
+    types: [opened, reopened, synchronize] # Allows forks to trigger the docs build
+  push:
+    branches:
+      - main
+  merge_group:
+    types: [checks_requested]
+    
 jobs:
   run-trudag:
     runs-on: ubuntu-latest
