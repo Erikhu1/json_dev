@@ -51,3 +51,39 @@ def check_workflow_results(artifact_id: str, workflows: dict[str, str]) -> Tuple
     print(f"\nFinal Score: {score}")
     print(f"Workflows with missing artifacts: {missing_workflows}")
     return score, missing_workflows
+
+
+def write_results_to_file(score: float, missing_workflows: list[str], output_file: str) -> None:
+    """
+    Write the validation results to a file.
+
+    Parameters:
+    - score: The calculated score.
+    - missing_workflows: List of workflows with missing artifacts.
+    - output_file: Path to the output file.
+    """
+    with open(output_file, "w") as f:
+        f.write(f"Final Score: {score}\n")
+        f.write(f"Workflows with missing artifacts: {missing_workflows}\n")
+
+
+def main():
+    """
+    Entry point for running the validator from the command line.
+    Expects environment variables or hardcoded values for demonstration.
+    """
+    # Example: Replace with actual logic to get these values
+    artifact_id = os.environ.get("ARTIFACT_ID", "default_id")
+    # Example workflow mapping: {"workflow_name": "artifact_dir"}
+    workflows = {
+        "workflow1": "artifacts",
+        "workflow2": "artifacts",
+        # Add more workflows as needed
+    }
+    score, missing = check_workflow_results(artifact_id, workflows)
+    output_file = os.environ.get("VALIDATOR_OUTPUT_FILE", "validator_results.txt")
+    write_results_to_file(score, missing, output_file)
+    print(f"Results written to {output_file}")
+
+if __name__ == "__main__":
+    main()
