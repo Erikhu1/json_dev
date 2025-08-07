@@ -25,6 +25,11 @@ permissions:
   
 
 jobs:
+  print-concurrency:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print group name
+        run: echo "Concurrency Group: ${{ github.workflow }}-${{ github.ref || github.run_id }}"
   CodeQL-Build:
 
     runs-on: ubuntu-latest
