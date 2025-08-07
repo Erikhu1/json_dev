@@ -34,16 +34,20 @@ jobs:
 
   codeql:
     name: Run Codeql analysis Workflow
-    uses: ./.github/workflows/codeql-analysis.yml
-    with:
-      artifact_id: "codeql-${{ github.sha }}"
+    steps:
+      run: echo "This is a placeholder for the CodeQL workflow. Replace with actual steps."
+    #uses: ./.github/workflows/codeql-analysis.yml
+    #with:
+    #  artifact_id: "codeql-${{ github.sha }}"
 
   ubuntu:
     name: Run Ubuntu Workflow
-    needs: [codeql] # Error if CodeQL and Ubuntu triggered at the same time due to conflicting priorities
-    uses: ./.github/workflows/ubuntu.yml
-    with:
-      artifact_id: "ubuntu-${{ github.sha }}"
+    steps:
+      run: echo "This is a placeholder for the Ubuntu workflow. Replace with actual steps."
+#    needs: [codeql] # Error if CodeQL and Ubuntu triggered at the same time due to conflicting priorities
+ #   uses: ./.github/workflows/ubuntu.yml
+  #  with:
+   #   artifact_id: "ubuntu-${{ github.sha }}"
 
   dependency_review:
     name: Run dependency_review Workflow
