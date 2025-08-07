@@ -2,6 +2,7 @@ name: Parent Workflow
 
 on: 
   pull_request:
+    types: [synchronize, open]
   push: 
     branches:
       - main
