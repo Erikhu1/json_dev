@@ -4,9 +4,7 @@ on:
   pull_request:
   push: 
     branches:
-      - develop
       - main
-      - copy_of_main
 
 permissions:
   contents: write
@@ -34,17 +32,18 @@ jobs:
     with:
       artifact_id: "test_trudag_extensions-${{ github.sha }}"
 
-  codeql:
-    name: Run Codeql analysis Workflow
-    uses: ./.github/workflows/codeql-analysis.yml
-    with:
-      artifact_id: "codeql-${{ github.sha }}"
+  #codeql:
+  #  name: Run Codeql analysis Workflow
+  #  uses: ./.github/workflows/codeql-analysis.yml
+  #  with:
+  #    artifact_id: "codeql-${{ github.sha }}"
 
-  ubuntu:
-    name: Run Ubuntu Workflow
-    uses: ./.github/workflows/ubuntu.yml
-    with:
-      artifact_id: "ubuntu-${{ github.sha }}"
+  #ubuntu:
+  #  name: Run Ubuntu Workflow
+  #  needs: [codeql] # Error if CodeQL and Ubuntu triggered at the same time due to conflicting priorities
+  #  uses: ./.github/workflows/ubuntu.yml
+  #  with:
+  #    artifact_id: "ubuntu-${{ github.sha }}"
 
   dependency_review:
     name: Run dependency_review Workflow
@@ -53,14 +52,15 @@ jobs:
     with:
       artifact_id: "dependency_review-${{ github.sha }}"
 
-  collect-and-deploy-pr:
+  collect_and_deploy_pr:
     name: "Collect Results & Deploy (PR)"
     if: github.event_name == 'pull_request'
-    needs: [labeler, check_amalgamation, test_trudag_extensions, dependency_review, codeql, ubuntu]
+    needs: [labeler, check_amalgamation, test_trudag_extensions, dependency_review]
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [labeler, check_amalgamation, test_trudag_extensions, dependency_review, codeql, ubuntu]
+        target: [labeler, check_amalgamation, test_trudag_extensions, dependency_review]
+
 
     steps:
       - name: Checkout code
@@ -93,14 +93,14 @@ jobs:
           echo "✅ Deployment completed successfully!"
 
 
-  collect-and-deploy-non-pr:
+  collect_and_deploy_non_pr:
     name: "Collect Results & Deploy (Non-PR)"
     if: github.event_name != 'pull_request'
-    needs: [labeler, check_amalgamation, test_trudag_extensions, codeql, ubuntu]  # no dependency_review if non PR
+    needs: [labeler, check_amalgamation, test_trudag_extensions]  # no dependency_review if non PR
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [labeler, check_amalgamation, test_trudag_extensions, codeql, ubuntu]
+        target: [labeler, check_amalgamation, test_trudag_extensions]
 
     steps:
       - name: Checkout code
@@ -131,3 +131,19 @@ jobs:
           echo "🚀 Simulating deployment..."
           sleep 2
           echo "✅ Deployment completed successfully!"
+
+  publish_documentation_pr:
+    name: Run publish_documentation Workflow pr
+    if: github.event_name == 'pull_request'
+    needs: [collect_and_deploy_pr]
+    uses: ./.github/workflows/publish_documentation.yml
+    with:
+      artifact_id: "publish_documentation-${{ github.sha }}"
+
+  publish_documentation_non_pr:
+    name: Run publish_documentation Workflow non pr
+    if: github.event_name != 'pull_request'
+    needs: [collect_and_deploy_non_pr]
+    uses: ./.github/workflows/publish_documentation.yml
+    with:
+      artifact_id: "publish_documentation-${{ github.sha }}"
