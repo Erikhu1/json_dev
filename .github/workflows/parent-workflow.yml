@@ -32,16 +32,14 @@ jobs:
     with:
       artifact_id: "test_trudag_extensions-${{ github.sha }}"
 
-  codeql:
-    name: Run Codeql analysis Workflow
-    run: echo "This is a placeholder for the CodeQL workflow. Replace with actual steps."
+  #codeql:
+    #name: Run Codeql analysis Workflow
     #uses: ./.github/workflows/codeql-analysis.yml
     #with:
     #  artifact_id: "codeql-${{ github.sha }}"
 
-  ubuntu:
-    name: Run Ubuntu Workflow
-    run: echo "This is a placeholder for the Ubuntu workflow. Replace with actual steps."
+  #ubuntu:
+    #name: Run Ubuntu Workflow
 #    needs: [codeql] # Error if CodeQL and Ubuntu triggered at the same time due to conflicting priorities
  #   uses: ./.github/workflows/ubuntu.yml
   #  with:
