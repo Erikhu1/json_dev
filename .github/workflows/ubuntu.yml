@@ -20,10 +20,6 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
-  cancel-in-progress: false
-
 jobs:
   ci_test_gcc:
     runs-on: ubuntu-latest
