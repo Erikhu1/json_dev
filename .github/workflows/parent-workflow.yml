@@ -101,7 +101,7 @@ jobs:
       - name: Upload all_artifacts.txt
         uses: actions/upload-artifact@v4
         with:
-          name: "${{ matrix.target }}-${{ github.sha }}"
+          name: "parent-${{ matrix.target }}-${{ github.sha }}"
           path: all_artifacts.txt
 
   collect_and_deploy_non_pr:
@@ -141,7 +141,7 @@ jobs:
       - name: Upload all_artifacts.txt
         uses: actions/upload-artifact@v4
         with:
-          name: "${{ matrix.target }}-${{ github.sha }}"
+          name: "parent-${{ matrix.target }}-${{ github.sha }}"
           path: all_artifacts.txt
 
   publish_documentation_pr:
