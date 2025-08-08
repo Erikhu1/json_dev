@@ -82,12 +82,6 @@ jobs:
         env:
           current_workflow: ${{ matrix.target }}
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.target }}-${{ github.sha }}
-          path: all_artifacts/
-
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
@@ -122,12 +116,6 @@ jobs:
           fi
         env:
           current_workflow: ${{ matrix.target }}
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.target }}-${{ github.sha }}
-          path: all_artifacts/
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
