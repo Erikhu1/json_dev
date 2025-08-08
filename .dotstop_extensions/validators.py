@@ -4,9 +4,11 @@ import os
 yaml: TypeAlias = str | int | float | list["yaml"] | dict[str, "yaml"]
 
 def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[Exception | Warning]]:
+    print(configuration.get("workflow_name"))
+    print(os.getenv("GITHUB_SHA"))
+
     workflow_name = configuration.get("workflow_name")
     artifact_id = workflow_name+os.getenv("GITHUB_SHA")
-
     if check_name_in_file(artifact_id, "all_artifacts.txt"):
         score = 0.8
     else:
