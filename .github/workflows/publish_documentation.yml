@@ -50,6 +50,11 @@ jobs:
           sudo apt-get install -y graphviz
           pip install trustable --index-url https://gitlab.com/api/v4/projects/66600816/packages/pypi/simple
       
+      - name: Download all_artifacts.txt
+        uses: actions/download-artifact@v4
+        with:
+          name: all_artifacts
+          path: .
 
       - name: Generate trudag report
         run: |
