@@ -8,6 +8,9 @@ print(f"Current working directory in Python: {os.getcwd()}")
 def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[Exception | Warning]]:
     print(configuration.get("workflow_name"))
     print(os.getenv("GITHUB_SHA"))
+    print (os.getenv("GITHUB_TOKEN"))
+    print(os.getenv("GITHUB_RUN_ID"))
+    print(os.getenv("GITHUB_REPOSITORY"))
 
     workflow_name = configuration.get("workflow_name")
     artifact_id = workflow_name+os.getenv("GITHUB_SHA")

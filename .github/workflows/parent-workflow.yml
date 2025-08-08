@@ -35,17 +35,17 @@ jobs:
       artifact_id: "test_trudag_extensions-${{ github.sha }}"
 
   #codeql:
-   # name: Run Codeql analysis Workflow
+    #name: Run Codeql analysis Workflow
     #uses: ./.github/workflows/codeql-analysis.yml
     #with:
-    #  artifact_id: "codeql-${{ github.sha }}"
+      #artifact_id: "codeql-${{ github.sha }}"
 
   #ubuntu:
    # name: Run Ubuntu Workflow
     #needs: [codeql] # Error if CodeQL and Ubuntu triggered at the same time due to conflicting priorities
     #uses: ./.github/workflows/ubuntu.yml
     #with:
-     # artifact_id: "ubuntu-${{ github.sha }}"
+    #  artifact_id: "ubuntu-${{ github.sha }}"
 
   dependency_review:
     name: Run dependency_review Workflow
@@ -95,7 +95,6 @@ jobs:
     strategy:
       matrix:
         target: [labeler, check_amalgamation, test_trudag_extensions]
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
