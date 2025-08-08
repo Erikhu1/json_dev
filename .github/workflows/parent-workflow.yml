@@ -76,7 +76,6 @@ jobs:
             exit 1
           else
             echo "✅ Child workflows completed successfully!"
-            mkdir -p .
             echo "${{ matrix.target }}-${{ github.sha }}" >> all_artifacts.txt
           fi
         env:
@@ -92,7 +91,13 @@ jobs:
           else
             echo "❌ all_artifacts.txt is missing"
           fi
-          
+      
+      - name: Upload all_artifacts.txt
+        uses: actions/upload-artifact@v4
+        with:
+          name: all_artifacts
+          path: all_artifacts.txt
+
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
@@ -122,11 +127,16 @@ jobs:
             exit 1
           else
             echo "✅ Child workflows completed successfully!" 
-            mkdir -p .
             echo "${{ matrix.target }}-${{ github.sha }}" >> all_artifacts.txt
           fi
         env:
           current_workflow: ${{ matrix.target }}
+
+      - name: Upload all_artifacts.txt
+        uses: actions/upload-artifact@v4
+        with:
+          name: all_artifacts
+          path: all_artifacts.txt
 
       - name: Download artifacts
         uses: actions/download-artifact@v4

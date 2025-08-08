@@ -3,6 +3,8 @@ import os
 
 yaml: TypeAlias = str | int | float | list["yaml"] | dict[str, "yaml"]
 
+print(f"Current working directory in Python: {os.getcwd()}")
+
 def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[Exception | Warning]]:
     print(configuration.get("workflow_name"))
     print(os.getenv("GITHUB_SHA"))
