@@ -95,8 +95,6 @@ jobs:
     strategy:
       matrix:
         target: [labeler, check_amalgamation, test_trudag_extensions]
-
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
