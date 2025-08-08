@@ -76,10 +76,16 @@ jobs:
             exit 1
           else
             echo "✅ Child workflows completed successfully!"
-            echo "${{ matrix.target }}-${{ github.sha }}" > all_artifacts.txt
+            echo "${{ matrix.target }}-${{ github.sha }}" > all_artifacts/all_artifacts.txt
           fi
         env:
           current_workflow: ${{ matrix.target }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.target }}-${{ github.sha }}
+          path: all_artifacts/
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
@@ -110,10 +116,16 @@ jobs:
             exit 1
           else
             echo "✅ Child workflows completed successfully!" 
-            echo "${{ matrix.target }}-${{ github.sha }}" > all_artifacts.txt
+            echo "${{ matrix.target }}-${{ github.sha }}" > all_artifacts/all_artifacts.txt
           fi
         env:
           current_workflow: ${{ matrix.target }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.target }}-${{ github.sha }}
+          path: all_artifacts/
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
