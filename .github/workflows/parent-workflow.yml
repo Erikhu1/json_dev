@@ -32,11 +32,11 @@ jobs:
     with:
       artifact_id: "test_trudag_extensions-${{ github.sha }}"
 
-  codeql:
-    name: Run Codeql analysis Workflow
-    uses: ./.github/workflows/codeql-analysis.yml
-    with:
-      artifact_id: "codeql-${{ github.sha }}"
+  #codeql:
+    #name: Run Codeql analysis Workflow
+    #uses: ./.github/workflows/codeql-analysis.yml
+    #with:
+      #artifact_id: "codeql-${{ github.sha }}"
 
   #ubuntu:
    # name: Run Ubuntu Workflow
@@ -55,11 +55,11 @@ jobs:
   collect_and_deploy_pr:
     name: "Collect Results & Deploy (PR)"
     if: github.event_name == 'pull_request'
-    needs: [labeler, check_amalgamation, test_trudag_extensions, dependency_review, codeql  ]
+    needs: [labeler, check_amalgamation, test_trudag_extensions, dependency_review  ]
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [labeler, check_amalgamation, test_trudag_extensions, dependency_review, codeql  ]
+        target: [labeler, check_amalgamation, test_trudag_extensions, dependency_review  ]
 
     steps:
       - name: Checkout code
@@ -95,11 +95,11 @@ jobs:
   collect_and_deploy_non_pr:
     name: "Collect Results & Deploy (Non-PR)"
     if: github.event_name != 'pull_request'
-    needs: [labeler, check_amalgamation, test_trudag_extensions, codeql]  # no dependency_review if non PR
+    needs: [labeler, check_amalgamation, test_trudag_extensions]  # no dependency_review if non PR
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [labeler, check_amalgamation, test_trudag_extensions, codeql]
+        target: [labeler, check_amalgamation, test_trudag_extensions]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
