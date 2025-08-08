@@ -76,7 +76,8 @@ jobs:
             exit 1
           else
             echo "✅ Child workflows completed successfully!"
-            echo "${{ matrix.target }}-${{ github.sha }}" > all_artifacts.txt
+            mkdir -p .
+            echo "${{ matrix.target }}-${{ github.sha }}" >> all_artifacts.txt
           fi
         env:
           current_workflow: ${{ matrix.target }}
@@ -110,7 +111,8 @@ jobs:
             exit 1
           else
             echo "✅ Child workflows completed successfully!" 
-            echo "${{ matrix.target }}-${{ github.sha }}" > all_artifacts.txt
+            mkdir -p .
+            echo "${{ matrix.target }}-${{ github.sha }}" >> all_artifacts.txt
           fi
         env:
           current_workflow: ${{ matrix.target }}
