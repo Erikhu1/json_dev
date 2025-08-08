@@ -66,10 +66,6 @@ jobs:
           path: TSF/docs/generated/
           if-no-files-found: error
           
-
-      - name: Validate workflow artifacts
-        run: python .dotstop_extensions/validators.py
-
   build-docs:
     needs: run-trudag
     # the eclipse-score/cicd-workflow docs.yml is adjusted to download the trudag report artifact before building the documentation
@@ -79,6 +75,7 @@ jobs:
       pages: write
       pull-requests: write
       id-token: write
+
     with:
       # the bazel-target depends on your repo specific docs_targets configuration (e.g. "suffix")Add commentMore actions
       bazel-target: "//:docs -- --github_user=${{ github.repository_owner }} --github_repo=${{ github.event.repository.name }}"

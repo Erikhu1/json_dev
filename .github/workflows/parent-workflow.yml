@@ -75,7 +75,9 @@ jobs:
             echo "❌ ${{ matrix.target }} workflow failed! Exiting..."
             exit 1
           fi
-          echo "✅ Child workflows completed successfully!" 
+          else
+            echo "✅ Child workflows completed successfully!"
+            echo "${{ matrix.target }}-${{ github.sha }}" > all_artifacts/all_artifacts.txt
         env:
           current_workflow: ${{ matrix.target }}
 
@@ -84,13 +86,6 @@ jobs:
         with:
           name: "${{ matrix.target }}-${{ github.sha }}"
           path: artifacts/
-
-      - name: Deployment simulation
-        run: |
-          echo "🚀 Simulating deployment..."
-          sleep 2
-          echo "✅ Deployment completed successfully!"
-
 
   collect_and_deploy_non_pr:
     name: "Collect Results & Deploy (Non-PR)"
@@ -115,7 +110,9 @@ jobs:
             echo "❌ ${{ matrix.target }} workflow failed! Exiting..."
             exit 1
           fi
-          echo "✅ Child workflows completed successfully!" 
+          else
+            echo "✅ Child workflows completed successfully!" 
+            echo "${{ matrix.target }}-${{ github.sha }}" > all_artifacts/all_artifacts.txt
         env:
           current_workflow: ${{ matrix.target }}
 
@@ -124,12 +121,6 @@ jobs:
         with:
           name: "${{ matrix.target }}-${{ github.sha }}"
           path: artifacts/
-
-      - name: Deployment simulation
-        run: |
-          echo "🚀 Simulating deployment..."
-          sleep 2
-          echo "✅ Deployment completed successfully!"
 
   publish_documentation_pr:
     name: Run publish_documentation Workflow pr
