@@ -44,6 +44,12 @@ jobs:
         with:
           python-version: '3.11.2'
 
+      - name: Download all_artifacts.txt
+        uses: actions/download-artifact@v4
+        with:
+          name: all_artifacts
+          path: .
+
       - name: Debug all_artifacts.txt
         run: |
           echo "Contents of all_artifacts.txt downloaded:"
