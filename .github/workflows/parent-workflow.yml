@@ -104,6 +104,7 @@ jobs:
         with:
           name: all_artifacts
           path: all_artifacts/all_artifacts.txt
+          overwrite: true
 
   collect_and_deploy_non_pr:
     name: "Collect Results & Deploy (Non-PR)"
@@ -145,6 +146,7 @@ jobs:
         with:
           name: all_artifacts
           path: all_artifacts/all_artifacts.txt
+          overwrite: true
 
   publish_documentation_pr:
     name: Run publish_documentation Workflow pr
