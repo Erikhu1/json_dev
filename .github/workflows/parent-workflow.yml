@@ -74,10 +74,10 @@ jobs:
           if [[ "$result" != "success" ]]; then
             echo "❌ ${{ matrix.target }} workflow failed! Exiting..."
             exit 1
-          fi
           else
             echo "✅ Child workflows completed successfully!"
             echo "${{ matrix.target }}-${{ github.sha }}" > all_artifacts/all_artifacts.txt
+          fi
         env:
           current_workflow: ${{ matrix.target }}
 
@@ -109,10 +109,10 @@ jobs:
           if [[ "$result" != "success" ]]; then
             echo "❌ ${{ matrix.target }} workflow failed! Exiting..."
             exit 1
-          fi
           else
             echo "✅ Child workflows completed successfully!" 
             echo "${{ matrix.target }}-${{ github.sha }}" > all_artifacts/all_artifacts.txt
+          fi
         env:
           current_workflow: ${{ matrix.target }}
 
