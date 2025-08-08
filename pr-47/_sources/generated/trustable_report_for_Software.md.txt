@@ -56,7 +56,7 @@ The contribution to the score of a parent item by a suspiciously linked child is
 
 | Item   | Summary | Score |
 |--------|---------|-------|
-| [JLS-01](JLS.md#jls-01) |  The JSON-library project CI executes on each pull request (opened, reopened, synchronized) the integration test suite, and failures in these runs are investigated by contributors. | 0.20 |
+| [JLS-01](JLS.md#jls-01) |  The JSON-library project CI executes on each pull request (opened, reopened, synchronized) the integration test suite, and failures in these runs are investigated by contributors. | 0.80 |
 | [JLS-02](JLS.md#jls-02) |  Fuzz testing is used to uncover edge cases and failure modes throughout development. (https://github.com/nlohmann/json/blob/develop/tests/fuzzing.md) | 0.00 |
 | [JLS-03](JLS.md#jls-03) |  Automated tests are reviewed by a Subject Matter Expert to verify they test the properties they claim to. | 0.00 |
 | [JLS-04](JLS.md#jls-04) |  The project runs dependabot on all code entering the main branch, blocking merges until all warnings are resolved. (https://github.com/score-json/json/blob/main/nlohmann_json/.github/dependabot.yml) | 0.00 |
@@ -110,13 +110,13 @@ The contribution to the score of a parent item by a suspiciously linked child is
 | [TA-SUPPLY_CHAIN](TA.md#ta-supply_chain) |  All sources for JSON-Library and tools are mirrored in our controlled environment. | 0.00 |
 | [TA-TESTS](TA.md#ta-tests) |  All tests for JSON-Library, and its build and test environments, are constructed from controlled/mirrored sources and are reproducible, with any exceptions documented. | 0.00 |
 | [TA-UPDATES](TA.md#ta-updates) |  JSON-Library components, configurations and tools are updated under specified change and configuration management controls. | 0.00 |
-| [TA-VALIDATION](TA.md#ta-validation) |  All specified tests are executed repeatedly, under defined conditions in controlled environments, according to specified objectives. | 0.20 |
+| [TA-VALIDATION](TA.md#ta-validation) |  All specified tests are executed repeatedly, under defined conditions in controlled environments, according to specified objectives. | 0.80 |
 
 ## Compliance for TRUSTABLE
 
 | Item   | Summary | Score |
 |--------|---------|-------|
-| [TRUSTABLE-SOFTWARE](TRUSTABLE.md#trustable-software) |  This release of JSON-Library is Trustable. | 0.01 |
+| [TRUSTABLE-SOFTWARE](TRUSTABLE.md#trustable-software) |  This release of JSON-Library is Trustable. | 0.04 |
 
 ## Compliance for TT
 
@@ -127,7 +127,7 @@ The contribution to the score of a parent item by a suspiciously linked child is
 | [TT-CONSTRUCTION](TT.md#tt-construction) |  Tools are provided to build JSON-Library from trusted sources (also provided) with full reproducibility. | 0.00 |
 | [TT-EXPECTATIONS](TT.md#tt-expectations) |  Documentation is provided, specifying what JSON-Library is expected to do, and what it must not do, and how this is verified. | 0.00 |
 | [TT-PROVENANCE](TT.md#tt-provenance) |  All inputs (and attestations for claims) for JSON-Library are provided with known provenance. | 0.00 |
-| [TT-RESULTS](TT.md#tt-results) |  Evidence is provided to demonstrate that JSON-Library does what it is supposed to do, and does not do what it must not do. | 0.07 |
+| [TT-RESULTS](TT.md#tt-results) |  Evidence is provided to demonstrate that JSON-Library does what it is supposed to do, and does not do what it must not do. | 0.27 |
 
 ## Compliance for WFJ
 
@@ -152,6 +152,6 @@ The contribution to the score of a parent item by a suspiciously linked child is
 _Generated for: Software_
 
 * _Repository root: /home/runner/work/json_dev/json_dev_
-* _Commit SHA: c633c67dc3e4b722c62e86deb4458db6769a5874_
-* _Commit date/time: Fri Aug  8 16:55:18 2025_
-* _Commit tag: c633c67_
+* _Commit SHA: 37d70694e6fd8074ca53434f583e13cd99cb2f9e_
+* _Commit date/time: Fri Aug  8 17:00:18 2025_
+* _Commit tag: 37d7069_
