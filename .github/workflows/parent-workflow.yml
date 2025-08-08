@@ -38,12 +38,12 @@ jobs:
     #with:
     #  artifact_id: "codeql-${{ github.sha }}"
 
-  #ubuntu:
-   # name: Run Ubuntu Workflow
-    #needs: [codeql] # Error if CodeQL and Ubuntu triggered at the same time due to conflicting priorities
-    #uses: ./.github/workflows/ubuntu.yml
-    #with:
-     # artifact_id: "ubuntu-${{ github.sha }}"
+  ubuntu:
+    name: Run Ubuntu Workflow
+    needs: [codeql] # Error if CodeQL and Ubuntu triggered at the same time due to conflicting priorities
+    uses: ./.github/workflows/ubuntu.yml
+    with:
+      artifact_id: "ubuntu-${{ github.sha }}"
 
   dependency_review:
     name: Run dependency_review Workflow
@@ -55,11 +55,11 @@ jobs:
   collect_and_deploy_pr:
     name: "Collect Results & Deploy (PR)"
     if: github.event_name == 'pull_request'
-    needs: [labeler, check_amalgamation, test_trudag_extensions, dependency_review  ]
+    needs: [labeler, check_amalgamation, test_trudag_extensions, dependency_review, codeql  ]
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [labeler, check_amalgamation, test_trudag_extensions, dependency_review  ]
+        target: [labeler, check_amalgamation, test_trudag_extensions, dependency_review, codeql  ]
 
     steps:
       - name: Checkout code
@@ -95,12 +95,11 @@ jobs:
   collect_and_deploy_non_pr:
     name: "Collect Results & Deploy (Non-PR)"
     if: github.event_name != 'pull_request'
-    needs: [labeler, check_amalgamation, test_trudag_extensions]  # no dependency_review if non PR
+    needs: [labeler, check_amalgamation, test_trudag_extensions, codeql]  # no dependency_review if non PR
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [labeler, check_amalgamation, test_trudag_extensions]
-
+        target: [labeler, check_amalgamation, test_trudag_extensions, codeql]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
