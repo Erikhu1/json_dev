@@ -76,6 +76,7 @@ jobs:
             exit 1
           else
             echo "✅ Child workflows completed successfully!"
+            mkdir -p dependency_review
             echo "${{ matrix.target }}-${{ github.sha }}" > all_artifacts/all_artifacts.txt
           fi
         env:
