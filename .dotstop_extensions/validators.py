@@ -14,7 +14,7 @@ def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[E
     print(os.getenv("GITHUB_REPOSITORY"))
 
     workflow_name = configuration.get("workflow_name")
-    artifact_id = workflow_name+os.getenv("GITHUB_SHA")
+    artifact_id = workflow_name+"-"+os.getenv("GITHUB_SHA")
     github_token = os.getenv("GITHUB_TOKEN")
     run_id = os.getenv("GITHUB_RUN_ID")
     repository = os.getenv("GITHUB_REPOSITORY")  
