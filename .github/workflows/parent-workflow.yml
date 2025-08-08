@@ -76,7 +76,8 @@ jobs:
             exit 1
           else
             echo "✅ Child workflows completed successfully!"
-            echo "${{ matrix.target }}-${{ github.sha }}" >> all_artifacts/all_artifacts.txt
+            mkdir -p all_artifacts
+            echo "${{ matrix.target }}-${{ github.sha }}: $result" >> all_artifacts/all_artifacts.txt
           fi
         env:
           current_workflow: ${{ matrix.target }}
@@ -97,6 +98,12 @@ jobs:
         with:
           name: "${{ matrix.target }}-${{ github.sha }}"
           path: artifacts/
+
+      - name: upload all_artifacts.txt
+        uses: actions/upload-artifact@v4
+        with:
+          name: all_artifacts
+          path: all_artifacts/all_artifacts.txt
 
   collect_and_deploy_non_pr:
     name: "Collect Results & Deploy (Non-PR)"
@@ -121,7 +128,8 @@ jobs:
             exit 1
           else
             echo "✅ Child workflows completed successfully!" 
-            echo "${{ matrix.target }}-${{ github.sha }}" >> all_artifacts/all_artifacts.txt
+            mkdir -p all_artifacts
+            echo "${{ matrix.target }}-${{ github.sha }}: $result" >> all_artifacts/all_artifacts.txt
           fi
         env:
           current_workflow: ${{ matrix.target }}
@@ -131,6 +139,12 @@ jobs:
         with:
           name: "${{ matrix.target }}-${{ github.sha }}"
           path: artifacts/
+
+      - name: upload all_artifacts.txt
+        uses: actions/upload-artifact@v4
+        with:
+          name: all_artifacts
+          path: all_artifacts/all_artifacts.txt
 
   publish_documentation_pr:
     name: Run publish_documentation Workflow pr
@@ -147,10 +161,3 @@ jobs:
     uses: ./.github/workflows/publish_documentation.yml
     with:
       artifact_id: "publish_documentation-${{ github.sha }}"
-  
-  upload_all_artifacts:
-    name: Upload all_artifacts.txt
-    uses: actions/upload-artifact@v4
-    with:
-      name: "collected_artifacts-${{ github.sha }}"
-      path: all_artifacts.txt
