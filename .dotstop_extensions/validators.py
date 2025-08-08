@@ -1,5 +1,6 @@
 from typing import TypeAlias
 import os
+import requests
 
 yaml: TypeAlias = str | int | float | list["yaml"] | dict[str, "yaml"]
 
