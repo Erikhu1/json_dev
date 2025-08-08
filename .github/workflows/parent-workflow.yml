@@ -82,6 +82,17 @@ jobs:
         env:
           current_workflow: ${{ matrix.target }}
 
+      - name: Debug Directory and File Existence
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Contents of current directory:"
+          ls -l
+          if [ -f "all_artifacts.txt" ]; then
+            echo "✅ Found all_artifacts.txt"
+          else
+            echo "❌ all_artifacts.txt is missing"
+          fi
+          
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
