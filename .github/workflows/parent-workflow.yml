@@ -102,7 +102,7 @@ jobs:
       - name: upload all_artifacts.txt
         uses: actions/upload-artifact@v4
         with:
-          name: all_artifacts
+          name: all_artifacts-${{ github.sha }}
           path: all_artifacts/all_artifacts.txt
           overwrite: true
 
