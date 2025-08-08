@@ -11,8 +11,40 @@ def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[E
 
     workflow_name = configuration.get("workflow_name")
     artifact_id = workflow_name+os.getenv("GITHUB_SHA")
-    
-    if check_name_in_file(artifact_id, "all_artifacts.txt"):
+    github_token = os.getenv("GITHUB_TOKEN")
+    run_id = os.getenv("GITHUB_RUN_ID")
+    repository = os.getenv("GITHUB_REPOSITORY")  
+
+
+ # Ensure all required variables are available
+    if not github_token or not run_id or not repository:
+        raise RuntimeError("Missing required environment variables: GITHUB_TOKEN, GITHUB_RUN_ID, or GITHUB_REPOSITORY.")
+
+    # GitHub API URL to list artifacts for the current workflow run
+    url = f"https://api.github.com/repos/{repository}/actions/runs/{run_id}/artifacts"
+
+    # Add authentication headers using the GitHub token
+    headers = {
+        "Authorization": f"Bearer {github_token}",
+        "Accept": "application/vnd.github+json"
+    }
+
+    # Make the request to the GitHub API to fetch artifacts
+    response = requests.get(url, headers=headers)
+
+    # Check for a successful response
+    if response.status_code != 200:
+        raise RuntimeError(f"Failed to fetch artifacts: {response.status_code} - {response.text}")
+
+    # Parse the JSON response
+    data = response.json()
+    artifacts = data.get("artifacts", [])
+
+    # Extract artifact names
+    artifact_names = [artifact["name"] for artifact in artifacts]
+
+
+    if artifact_id in artifact_names:
         score = 0.8
     else:
         score = 0.2
@@ -20,17 +52,3 @@ def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[E
     return (score, [])
 
 
-def check_name_in_file(name_to_check, file_path):
-    try:
-        with open(file_path, 'r') as file:
-            # Read all lines in the file
-            contents = file.read()
-            
-            # Check if the name exists in the file (case-sensitive match)
-            if name_to_check in contents:
-                return True
-            else:
-                return False
-    except FileNotFoundError:
-        print(f"Error: The file '{file_path}' does not exist.")
-        return False
