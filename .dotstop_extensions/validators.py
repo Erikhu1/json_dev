@@ -1,10 +1,30 @@
 from typing import TypeAlias
+import os
 
 yaml: TypeAlias = str | int | float | list["yaml"] | dict[str, "yaml"]
 
 def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[Exception | Warning]]:
-    artifact_name = configuration.get("artifact_name", None)
-    
-    score = 0.7
-    print(f"Test execution check for '{artifact_name}' assigns the score: {score}")
+    artifact_id = "amalgamation_check"+os.getenv("GITHUB_SHA")
+
+    if check_name_in_file(artifact_id, "all_artifacts.txt"):
+        score = 0.8
+    else:
+        score = 0.2
+    print(f"Test execution check for '{artifact_id}' assigns the score: {score}")
     return (score, [])
+
+
+def check_name_in_file(name_to_check, file_path):
+    try:
+        with open(file_path, 'r') as file:
+            # Read all lines in the file
+            contents = file.read()
+            
+            # Check if the name exists in the file (case-sensitive match)
+            if name_to_check in contents:
+                return True
+            else:
+                return False
+    except FileNotFoundError:
+        print(f"Error: The file '{file_path}' does not exist.")
+        return False
