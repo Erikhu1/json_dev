@@ -7,6 +7,7 @@
 #
 # Source repository: https://github.com/actions/dependency-review-action
 name: 'Dependency Review'
+
 on:  
   workflow_call:
     inputs:
@@ -14,7 +15,6 @@ on:
         description: 'Unique identifier for artifacts'
         required: true
         type: string
-
 
 permissions:
   contents: read
@@ -32,7 +32,6 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: 'Dependency Review'
         uses: actions/dependency-review-action@ce3cf9537a52e8119d91fd484ab5b8a807627bf8 # v4.6.0
-
 
       - name: Generate dependency_review artifact
         run: |
