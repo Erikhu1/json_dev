@@ -14,7 +14,7 @@ def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[E
     score = 0.0
 
     # Determine number of expected workflows based on the event type
-    if github_event_name == "pull request":
+    if github_event_name == "pull_request":
         num_expected_workflows = len(configuration)
     else: 
         num_expected_workflows = len(configuration) - 1  # Dependency review excluded if not PR
