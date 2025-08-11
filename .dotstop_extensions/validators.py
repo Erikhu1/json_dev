@@ -19,7 +19,7 @@ def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[E
     else: 
         num_expected_workflows = len(configuration)
 
- # Ensure all required variables are available
+    # Ensure all required variables are available
     if not github_token or not run_id or not repository:
         raise RuntimeError("Missing required environment variables: GITHUB_TOKEN, GITHUB_RUN_ID, or GITHUB_REPOSITORY.")
 
