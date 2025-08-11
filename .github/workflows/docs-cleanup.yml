@@ -20,10 +20,10 @@ permissions:
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs every day at midnight UTC
+    - cron: '0 16 * * *' # Runs every day at midnight UTC
 
 jobs:
   docs-cleanup:
-    uses: eclipse-score/cicd-workflows/.github/workflows/docs-cleanup.yml@main
+    uses: ./.github/workflows/docs-cleanup-copy.yml
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
