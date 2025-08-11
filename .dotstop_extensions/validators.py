@@ -51,7 +51,7 @@ def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[E
         
     for value in configuration.items():
         print(f"Checking workflow: {value}")
-        artifact_id = value+"-"+os.getenv("GITHUB_SHA")
+        artifact_id = str(value)+"-"+os.getenv("GITHUB_SHA")
 
         if artifact_id in artifact_names:
             score = score + 1 / len(configuration)
