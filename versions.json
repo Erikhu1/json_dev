@@ -1,66 +1,14 @@
 [
   {
     "version": "main",
-    "url": "https://Erikhu1.github.io/json/main/"
-  },
-  {
-    "version": "pr-1",
-    "url": "https://Erikhu1.github.io/json/pr-1/"
-  },
-  {
-    "version": "pr-2",
-    "url": "https://Erikhu1.github.io/json/pr-2/"
-  },
-  {
-    "version": "pr-41",
-    "url": "https://Erikhu1.github.io/json_dev/pr-41/"
-  },
-  {
-    "version": "pr-42",
-    "url": "https://Erikhu1.github.io/json_dev/pr-42/"
-  },
-  {
-    "version": "pr-43",
-    "url": "https://Erikhu1.github.io/json_dev/pr-43/"
-  },
-  {
-    "version": "pr-44",
-    "url": "https://Erikhu1.github.io/json_dev/pr-44/"
+    "url": "https://eclipse-score.github.io/json_dev/main/"
   },
   {
     "version": "pr-45",
     "url": "https://Erikhu1.github.io/json_dev/pr-45/"
   },
   {
-    "version": "pr-46",
-    "url": "https://Erikhu1.github.io/json_dev/pr-46/"
-  },
-  {
-    "version": "pr-47",
-    "url": "https://Erikhu1.github.io/json_dev/pr-47/"
-  },
-  {
     "version": "pr-48",
     "url": "https://Erikhu1.github.io/json_dev/pr-48/"
-  },
-  {
-    "version": "pr-49",
-    "url": "https://Erikhu1.github.io/json_dev/pr-49/"
-  },
-  {
-    "version": "pr-50",
-    "url": "https://Erikhu1.github.io/json_dev/pr-50/"
-  },
-  {
-    "version": "pr-51",
-    "url": "https://Erikhu1.github.io/json_dev/pr-51/"
-  },
-  {
-    "version": "pr-52",
-    "url": "https://Erikhu1.github.io/json_dev/pr-52/"
-  },
-  {
-    "version": "pr-53",
-    "url": "https://Erikhu1.github.io/json_dev/pr-53/"
   }
 ]
