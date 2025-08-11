@@ -13,9 +13,15 @@ def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[E
     print(os.getenv("GITHUB_REPOSITORY"))
 
     github_token = os.getenv("GITHUB_TOKEN")
+    github_event_name = os.getenv("GITHUB_EVENT_NAME")
     run_id = os.getenv("GITHUB_RUN_ID")
     repository = os.getenv("GITHUB_REPOSITORY")  
     score = 0.0
+
+    if github_event_name == "pull request":
+        num_expected_workflows = len(configuration)
+    else: 
+        num_expected_workflows = len(configuration) - 1  # Dependency review excluded if not PR
 
  # Ensure all required variables are available
     if not github_token or not run_id or not repository:
@@ -54,10 +60,13 @@ def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[E
         artifact_id = str(value)+"-"+os.getenv("GITHUB_SHA")
 
         if artifact_id in artifact_names:
-            score = score + 1 / len(configuration)
+            score = score + 1 / num_expected_workflows
             print(f"Artifact for workflow {key} found. Current cumulative score: {score}")
-        else:
-            print(f"Artifact for workflow {key} NOT found. Current cumulative score: {score}")
+        else: 
+            if (str(value) == "dependency-review") & github_event_name == "pull request":
+                print(f"Skipped dependency-review workflow for non-PR.")
+            else:
+                print(f"Artifact for workflow {key} NOT found. Current cumulative score: {score}")
     return (score, [])
 
 
