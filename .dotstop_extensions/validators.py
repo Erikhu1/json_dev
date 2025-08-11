@@ -64,6 +64,8 @@ def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[E
                 print(f"Skipped dependency-review workflow for non-PR.")
             else:
                 print(f"Artifact for workflow {key} NOT found. Current cumulative score: {score}")
+
+        print(f"Total score: {score} out of 1.0")
     return (score, [])
 
 
