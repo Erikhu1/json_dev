@@ -49,16 +49,16 @@ def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[E
     for name in artifact_names:
         print(f"- {name}")  # Print each artifact name
         
-    for value in configuration.items():
+    for key in configuration.items():
         print(f"Checking workflow: {value}")
-        artifact_id = str(value)+"-"+os.getenv("GITHUB_SHA")
+        artifact_id = str(key)+"-"+os.getenv("GITHUB_SHA")
 
         if artifact_id in artifact_names:
             score = score + 1 / len(configuration)
+            print(f"Artifact for workflow {key} found. Current cumulative score: {score}")
         else:
             score = score
-
-        print(f"Artifact for workflow {value} found. Current cumulative score: {score}")
+            print(f"Artifact for workflow {key} NOT found. Current cumulative score: {score}")
     return (score, [])
 
 
