@@ -14,10 +14,10 @@ def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[E
     score = 0.0
 
     # Determine number of expected workflows based on the event type
-    if github_event_name == "pull_request":
-        num_expected_workflows = len(configuration)
-    else: 
+    if github_event_name != "pull_request" and configuration.get("dependency_review") is not None:
         num_expected_workflows = len(configuration) - 1  # Dependency review excluded if not PR
+    else: 
+        num_expected_workflows = len(configuration)
 
  # Ensure all required variables are available
     if not github_token or not run_id or not repository:
@@ -65,7 +65,7 @@ def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[E
             else:
                 print(f"Artifact for workflow {key} NOT found. Current cumulative score: {score}")
 
-        print(f"Total score: {score} out of 1.0")
+    print(f"Total score: {score} out of 1.0")
     return (score, [])
 
 
