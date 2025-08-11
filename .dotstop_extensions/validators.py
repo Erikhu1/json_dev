@@ -60,7 +60,7 @@ def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[E
             score = score + 1 / num_expected_workflows
             print(f"Artifact for workflow {key} found. Current cumulative score: {score}")
         else: 
-            if (str(value) == "dependency-review") and (github_event_name != "pull_request"):
+            if (str(value) == "dependency_review") and (github_event_name != "pull_request"):
                 print(f"Skipped dependency-review workflow for non-PR.")
             else:
                 print(f"Artifact for workflow {key} NOT found. Current cumulative score: {score}")
