@@ -6,19 +6,16 @@ yaml: TypeAlias = str | int | float | list["yaml"] | dict[str, "yaml"]
 
 print(f"Current working directory in Python: {os.getcwd()}")
 
-def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[Exception | Warning]]:
-    print(configuration.get("workflow_name"))
+def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[Exception | Warning]]:    
     print(os.getenv("GITHUB_SHA"))
     print (os.getenv("GITHUB_TOKEN"))
     print(os.getenv("GITHUB_RUN_ID"))
     print(os.getenv("GITHUB_REPOSITORY"))
 
-    workflow_name = configuration.get("workflow_name")
-    artifact_id = workflow_name+"-"+os.getenv("GITHUB_SHA")
     github_token = os.getenv("GITHUB_TOKEN")
     run_id = os.getenv("GITHUB_RUN_ID")
     repository = os.getenv("GITHUB_REPOSITORY")  
-
+    score = 0.0
 
  # Ensure all required variables are available
     if not github_token or not run_id or not repository:
@@ -47,12 +44,21 @@ def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[E
     # Extract artifact names
     artifact_names = [artifact["name"] for artifact in artifacts]
 
+    # Print all items in artifact_names
+    print("Listing all artifact names:")
+    for name in artifact_names:
+        print(f"- {name}")  # Print each artifact name
+        
+    for value in configuration.items():
+        print(f"Checking workflow: {value}")
+        artifact_id = value+"-"+os.getenv("GITHUB_SHA")
 
-    if artifact_id in artifact_names:
-        score = 0.8
-    else:
-        score = 0.2
-    print(f"Test execution check for '{artifact_id}' assigns the score: {score}")
+        if artifact_id in artifact_names:
+            score = score + 1 / len(configuration)
+        else:
+            score = score
+
+        print(f"Artifact for workflow {value} found. Current cumulative score: {score}")
     return (score, [])
 
 
