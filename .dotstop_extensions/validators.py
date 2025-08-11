@@ -7,17 +7,13 @@ yaml: TypeAlias = str | int | float | list["yaml"] | dict[str, "yaml"]
 print(f"Current working directory in Python: {os.getcwd()}")
 
 def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[Exception | Warning]]:    
-    print(os.getenv("GITHUB_SHA"))
-    print (os.getenv("GITHUB_TOKEN"))
-    print(os.getenv("GITHUB_RUN_ID"))
-    print(os.getenv("GITHUB_REPOSITORY"))
-
     github_token = os.getenv("GITHUB_TOKEN")
     github_event_name = os.getenv("GITHUB_EVENT_NAME")
     run_id = os.getenv("GITHUB_RUN_ID")
     repository = os.getenv("GITHUB_REPOSITORY")  
     score = 0.0
 
+    # Determine number of expected workflows based on the event type
     if github_event_name == "pull request":
         num_expected_workflows = len(configuration)
     else: 
@@ -53,8 +49,9 @@ def check_artifact_exists(configuration: dict[str, yaml]) -> tuple[float, list[E
     # Print all items in artifact_names
     print("Listing all artifact names:")
     for name in artifact_names:
-        print(f"- {name}")  # Print each artifact name
+        print(f"- {name}") 
         
+    # Check if artifacts for each workflow exist    
     for key,value in configuration.items():
         print(f"Checking workflow: {key},{value}")
         artifact_id = str(value)+"-"+os.getenv("GITHUB_SHA")
