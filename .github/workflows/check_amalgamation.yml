@@ -36,7 +36,6 @@ jobs:
       MAIN_DIR: ${{ github.workspace }}/main
       INCLUDE_DIR: ${{ github.workspace }}/main/single_include/nlohmann
       TOOL_DIR: ${{ github.workspace }}/tools/tools/amalgamate
-      CURR_DIR: ${{ github.workspace }}
 
     steps:
       - name: Harden Runner
@@ -85,7 +84,6 @@ jobs:
 
           echo "Contents of check_amalgamation:"
           ls -l $GITHUB_WORKSPACE/check_amalgamation/
-
 
       - name: Upload amalgamation artifact
         uses: actions/upload-artifact@v4
