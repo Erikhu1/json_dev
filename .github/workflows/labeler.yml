@@ -40,11 +40,11 @@ jobs:
           echo "Generating label artifact with meaningful data..."
           mkdir -p labeler
 
-          # Add an overview of the run (Static information about the workflow)
+
           echo "Workflow Name: Pull Request Labeler" > labeler/labeler.txt
           echo "Artifact ID: ${{ inputs.artifact_id }}" >> labeler/labeler.txt
 
-          # Check for outputs (labels applied) from the labeler step
+
           if [[ -n "${{ steps.label_step.outputs.labels }}" ]]; then
             echo "Labels Applied:" >> labeler/labeler.txt
             echo "${{ steps.label_step.outputs.labels }}" >> labeler/labeler.txt
