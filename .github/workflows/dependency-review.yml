@@ -18,6 +18,8 @@ on:
 
 permissions:
   contents: read
+  security-events: read  
+
 
 jobs:
   dependency-review:
@@ -42,7 +44,6 @@ jobs:
           echo "Generating Dependency Review artifact..."
           mkdir -p dependency_review
           echo '${{ steps.dependency_review.outputs.dependency-review }}' > dependency_review/dependency_review.json
-        if: ${{ steps.dependency_review.outputs.dependency-review }} # Ensure only runs if there is output
 
 
       - name: Upload dependency_review artifact
