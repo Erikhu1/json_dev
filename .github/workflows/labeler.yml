@@ -27,28 +27,15 @@ jobs:
         with:
           egress-policy: audit
 
-      # Step 2: Run the labeler
+      # Step 2: Run the labeler and capture output
       - name: Apply Labels to Pull Request
         id: label_step
         uses: srvaroa/labeler@e216fb40e2e6d3b17d90fb1d950f98bee92f65ce # master
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        continue-on-error: true # So the workflow continues even if labeling fails
 
-      # Step 3: Fetch Applied Labels Programmatically
-      - name: Fetch Applied Labels
-        id: fetch_labels
-        run: |
-          echo "Fetching applied labels from the GitHub API..."
-          PR_NUMBER=$(echo "${{ github.event.pull_request.number }}")
-          REPO="${{ github.repository }}"
-          LABELS=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/$REPO/issues/$PR_NUMBER | jq -r '.labels[].name')
-
-          echo "Labels applied to the pull request: $LABELS"
-          echo "applied_labels=$LABELS" >> $GITHUB_OUTPUT
-
-      # Step 4: Generate label artifact with meaningful results
+      # Step 3: Generate label artifact from logs
       - name: Generate label artifact
         run: |
           echo "Generating label artifact with meaningful data..."
@@ -57,14 +44,19 @@ jobs:
           echo "Workflow Name: Pull Request Labeler" > labeler/labeler.txt
           echo "Artifact ID: ${{ inputs.artifact_id }}" >> labeler/labeler.txt
 
-          if [[ -n "${{ steps.fetch_labels.outputs.applied_labels }}" ]]; then
+          # Download the logs for this job and extract the labels
+          LOG_FILE="labeler/labeler.log"
+          gh run view $GITHUB_RUN_ID --log > "$LOG_FILE" 2>/dev/null || true
+
+          FINAL_LABELS=$(grep 'Final set of labels:' "$LOG_FILE" | tail -1 | sed 's/.*Final set of labels: //')
+          if [[ -n "$FINAL_LABELS" ]]; then
             echo "Labels Applied:" >> labeler/labeler.txt
-            echo "${{ steps.fetch_labels.outputs.applied_labels }}" >> labeler/labeler.txt
+            echo "$FINAL_LABELS" >> labeler/labeler.txt
           else
             echo "No labels were applied." >> labeler/labeler.txt
           fi
 
-      # Step 5: Upload the artifact
+      # Step 4: Upload the artifact
       - name: Upload label artifact
         uses: actions/upload-artifact@v4
         with:
