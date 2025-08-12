@@ -50,6 +50,7 @@ jobs:
 
       - name: Check amalgamation
         run: |
+          mkdir -p check_amalgamation
           cd $MAIN_DIR
 
           rm -fr $INCLUDE_DIR/json.hpp~ $INCLUDE_DIR/json_fwd.hpp~
