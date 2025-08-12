@@ -62,7 +62,6 @@ jobs:
 
       - name: Check amalgamation
         run: |
-          mkdir -p check_amalgamation
           cd $MAIN_DIR
 
           rm -fr $INCLUDE_DIR/json.hpp~ $INCLUDE_DIR/json_fwd.hpp~
@@ -84,6 +83,9 @@ jobs:
           find $MAIN_DIR -name '*.orig' -exec false {} \+
 
 
+      - name: generate amalgamation artifact
+        run: |
+          mkdir -p check_amalgamation
           mv json_diff.txt check_amalgamation/
           mv format_logs.txt check_amalgamation/
           echo "Contents of check_amalgamation:"
