@@ -33,7 +33,7 @@ jobs:
       - name: 'Checkout Repository'
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: 'Dependency Review'
-        id: dependency_review
+        id: dependency_review_op
         uses: actions/dependency-review-action@ce3cf9537a52e8119d91fd484ab5b8a807627bf8
         with: 
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -43,16 +43,10 @@ jobs:
         run: |
           echo "Generating Dependency Review artifact..."
           mkdir -p dependency_review
-          echo ' 1 ${{ steps.dependency_review.outputs.dependency_review }}'
-          echo '2 ${{ steps.dependency_review.dependency_review }}'
-          echo '3 ${{ steps.dependency-review }}'
+          echo ' 1 ${{ steps.dependency_review_op.outputs.dependency_review }}'
+          echo '2 ${{  steps.dependency_review_op.outputs }}'
+          echo '3 ${{  steps.dependency_review_op }}'
           echo '4 ${{ steps.dependency_review.dependency_review.output }}'
-          echo '5 ${{ steps.dependency_review.outputs.dependency_review }}'
-          echo '6 ${{ steps.dependency_review.outputs.dependency_review.Vulnerabilities }}'
-          echo '7 ${{ steps.dependency_review.dependency_review.Vulnerabilities }}'
-          echo '8 ${{ steps.dependency-review.Vulnerabilities}}'
-          echo '9 ${{ steps.dependency_review.dependency_review.output.Vulnerabilities }}'
-          echo '10 ${{ steps.dependency_review.output.dependency_review.Vulnerabilities }}'
           echo '${{ steps.dependency_review.outputs.dependency-review }}' > dependency_review/dependency_review.txt
 
 
