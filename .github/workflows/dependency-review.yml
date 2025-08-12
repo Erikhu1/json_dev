@@ -1,6 +1,13 @@
+# Dependency Review Action
+#
+# This Action will scan dependency manifest files that change as part of a Pull Request,
+# surfacing known-vulnerable versions of the packages declared or updated in the PR.
+# Once installed, if the workflow run is marked as required,
+# PRs introducing known-vulnerable packages will be blocked from merging.
+#
+# Source repository: https://github.com/actions/dependency-review-action
 name: 'Dependency Review'
-
-on:
+on:  
   workflow_call:
     inputs:
       artifact_id:
@@ -8,44 +15,32 @@ on:
         required: true
         type: string
 
+
 permissions:
   contents: read
-  security-events: read
 
 jobs:
   dependency-review:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Secure the runner by hardening
       - name: Harden Runner
         uses: step-security/harden-runner@c6295a65d1254861815972266d5933fd6e532bdf # v2.11.1
         with:
           egress-policy: audit
 
-      # Step 2: Checkout the code for dependency review
       - name: 'Checkout Repository'
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-
-      # Step 3: Perform the dependency review analysis
       - name: 'Dependency Review'
-        id: dependency_review_op
-        uses: actions/dependency-review-action@ce3cf9537a52e8119d91fd484ab5b8a807627bf8
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/dependency-review-action@ce3cf9537a52e8119d91fd484ab5b8a807627bf8 # v4.6.0
 
-      # Step 4: Capture the Dependency Review output from logs
-      - name: Save Dependency Review to File
+      - name: Capture Dependency Review output
         run: |
+          echo "Re-running dependency review for output capture..."
           mkdir -p dependency_review
-          echo "Saving Dependency Review results..." >> dependency_review/summary.txt
+          # Run the review action as a CLI and capture output (simulate with npx for JS projects)
+          npx --yes @github/dependency-review-action > dependency_review/dependency_review_output.txt 2>&1 || true
 
-          # Attempt to extract logs from temp files or any action outputs
-          find /home/runner/work/_temp -type f -name "*dependency*" -exec cat {} \; >> dependency_review/summary.txt
-          
-          echo "Dependency review completed. The results are saved to 'summary.txt'." >> dependency_review/summary.txt
-
-      # Step 5: Upload Dependency Review results as an artifact
-      - name: Upload Dependency Review Artifact
+      - name: Upload dependency_review artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ inputs.artifact_id }}
