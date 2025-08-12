@@ -39,6 +39,7 @@ jobs:
           mkdir -p dependency_review
           echo "Dependency Review Result:" > dependency_review/summary.txt
           if [[ -f "$GITHUB_STEP_SUMMARY" ]]; then
+            echo cat "$GITHUB_STEP_SUMMARY" 
             cat "$GITHUB_STEP_SUMMARY" >> dependency_review/summary.txt
           else
             echo "No summary generated during the Dependency Review step!" >> dependency_review/summary.txt
