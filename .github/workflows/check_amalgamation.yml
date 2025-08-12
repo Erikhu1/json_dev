@@ -84,11 +84,11 @@ jobs:
           find $MAIN_DIR -name '*.orig' -exec false {} \+
 
           cd $CURR_DIR
-          mkdir -p check_amalgamation
-          mv json_diff.txt check_amalgamation/
-          mv format_logs.txt check_amalgamation/
+          mkdir -p ./check_amalgamation
+          mv json_diff.txt ./check_amalgamation/
+          mv format_logs.txt ./check_amalgamation/
           echo "Contents of check_amalgamation:"
-          ls -l check_amalgamation
+          ls -l ./check_amalgamation
 
 
       - name: Upload amalgamation artifact
