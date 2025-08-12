@@ -31,25 +31,14 @@ jobs:
       - name: 'Checkout Repository'
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: 'Dependency Review'
-        id: dependency_review_op 
-        outputs:
-          summary: ${{ steps.dependency_review_op.outputs.summary }}
-          output: ${{ steps.dependency_review_op.outputs.output }}
         uses: actions/dependency-review-action@ce3cf9537a52e8119d91fd484ab5b8a807627bf8 # v4.6.0
 
-      - name: Save Dependency Review summary
+
+      - name: Generate dependency_review artifact
         run: |
+          echo "Generating Dependency Review artifact..."
           mkdir -p dependency_review
-          echo "Dependency Review Result:" > dependency_review/summary.txt
-          cat "$GITHUB_STEP_SUMMARY" >> dependency_review/summary.txt
-          echo "$GITHUB_STEP_SUMMARY" >> dependency_review/summary.txt
-          echo "$GITHUB_OUTPUT" >> dependency_review/summary.txt
-          cat "$GITHUB_OUTPUT" >> dependency_review/summary.txt
-          echo "${{steps.dependency_review_op.outputs.output}}" >> dependency_review/summary.txt
-          echo "${{steps.dependency_review_op.outputs.summary}}" >> dependency_review/summary.txt
-
-
-
+          echo "dependency review processed for ${{ inputs.artifact_id }}" > dependency_review/dependency_review.txt
 
       - name: Upload dependency_review artifact
         uses: actions/upload-artifact@v4
