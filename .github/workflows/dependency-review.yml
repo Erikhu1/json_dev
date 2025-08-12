@@ -26,7 +26,7 @@ jobs:
       - name: 'Dependency Review'
         run: |
           mkdir -p dependency_review
-          actions/dependency-review-action@v4.6.0 2>&1 | tee dependency_review/dependency_review.txt
+          actions/dependency-review-action@ce3cf9537a52e8119d91fd484ab5b8a807627bf8 2>&1 | tee dependency_review/dependency_review.txt
 
       # Upload the captured logs as an artifact
       - name: Upload dependency_review artifact
