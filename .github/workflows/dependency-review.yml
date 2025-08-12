@@ -43,8 +43,14 @@ jobs:
         run: |
           echo "Generating Dependency Review artifact..."
           mkdir -p dependency_review
-          echo ' 1 ${{ steps.dependency_review.outputs.dependency-review }}'
-          echo '2 ${{ steps.dependency_review.dependency-review }}'
+          echo ' 1 ${{ steps.dependency_review.outputs.dependency_review }}'
+          echo '2 ${{ steps.dependency_review.dependency_review }}'
+          echo '3 ${{ dependency-review }}'
+          echo '4 ${{ steps.dependency_review.dependency_review.output }}'
+          echo '5 ${{ steps.dependency_review.output.dependency_review }}'
+
+
+
           echo '${{ steps.dependency_review.outputs.dependency-review }}' > dependency_review/dependency_review.txt
 
 
