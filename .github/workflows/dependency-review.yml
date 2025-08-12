@@ -38,7 +38,7 @@ jobs:
           mkdir -p dependency_review
           echo "Dependency Review Result:" > dependency_review/summary.txt
           cat "$GITHUB_STEP_SUMMARY" >> dependency_review/summary.txt
-          echo "GITHUB_STEP_SUMMARY" >> dependency_review/summary.txt
+          echo "$GITHUB_STEP_SUMMARY" >> dependency_review/summary.txt
           echo "$GITHUB_OUTPUT" >> dependency_review/summary.txt
           cat "$GITHUB_OUTPUT" >> dependency_review/summary.txt
 
