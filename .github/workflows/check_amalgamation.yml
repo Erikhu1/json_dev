@@ -27,6 +27,7 @@ jobs:
 
       - name: Save PR number
         run: |
+          mkdir -p check_amalgamation
           mkdir -p check_amalgamation/pr
           echo ${{ github.event.number }} > check_amalgamation/pr/number
           echo ${{ github.event.pull_request.user.login }} > check_amalgamation/pr/author
