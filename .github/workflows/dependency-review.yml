@@ -43,7 +43,8 @@ jobs:
         run: |
           echo "Generating Dependency Review artifact..."
           mkdir -p dependency_review
-          cat $GITHUB_STEP_SUMMARY
+          echo $GITHUB_STEP_SUMMARY
+          cat $GITHUB_STEP_SUMMARY > dependency_review/dependency_review.txt
           echo '${{ steps.dependency_review.outputs.dependency-review }}' > dependency_review/dependency_review.txt
 
 
