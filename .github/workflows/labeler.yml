@@ -34,7 +34,21 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
-      # Step 3: Generate label artifact
+      # Step 3: Fetch Applied Labels Programmatically
+      - name: Fetch Applied Labels
+        id: fetch_labels
+        run: |
+          echo "Fetching applied labels from the GitHub API..."
+          PR_NUMBER=$(echo "${{ github.event.pull_request.number }}")
+          REPO="${{ github.repository }}"
+          LABELS=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/$REPO/issues/$PR_NUMBER | jq -r '.labels[].name')
+
+          echo "Labels applied to the pull request: $LABELS"
+          echo "applied_labels=$LABELS" >> $GITHUB_OUTPUT
+
+      # Step 4: Generate label artifact with meaningful results
       - name: Generate label artifact
         run: |
           echo "Generating label artifact with meaningful data..."
@@ -43,14 +57,14 @@ jobs:
           echo "Workflow Name: Pull Request Labeler" > labeler/labeler.txt
           echo "Artifact ID: ${{ inputs.artifact_id }}" >> labeler/labeler.txt
 
-          if [[ -n "${{ steps.label_step.outputs.labels }}" ]]; then
+          if [[ -n "${{ steps.fetch_labels.outputs.applied_labels }}" ]]; then
             echo "Labels Applied:" >> labeler/labeler.txt
-            echo "${{ steps.label_step.outputs.labels }}" >> labeler/labeler.txt
+            echo "${{ steps.fetch_labels.outputs.applied_labels }}" >> labeler/labeler.txt
           else
             echo "No labels were applied." >> labeler/labeler.txt
           fi
 
-      # Step 4: Upload the artifact
+      # Step 5: Upload the artifact
       - name: Upload label artifact
         uses: actions/upload-artifact@v4
         with:
