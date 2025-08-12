@@ -42,7 +42,7 @@ jobs:
           echo "fail-on-scopes: ${{ steps.dep_review.outputs.fail-on-scopes }}" >> dependency_review/summary.txt
           echo "allowed-ghsas: ${{ steps.dep_review.outputs.allowed-ghsas }}" >> dependency_review/summary.txt
           echo "deny-listed-ghsas: ${{ steps.dep_review.outputs.deny-listed-ghsas }}" >> dependency_review/summary.txt
-          echo "{markdown content}" >> $GITHUB_STEP_SUMMARY
+          echo $GITHUB_STEP_SUMMARY >> dependency_review/summary.txt
 
 
       - name: Upload dependency_review artifact
