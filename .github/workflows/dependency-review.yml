@@ -43,7 +43,9 @@ jobs:
         run: |
           echo "Generating Dependency Review artifact..."
           mkdir -p dependency_review
-          echo '${{ steps.dependency_review.outputs.dependency-review }}' > dependency_review/dependency_review.json
+          echo ' 1 ${{ steps.dependency_review.outputs.dependency-review }}'
+          echo '2 ${{ steps.dependency_review.dependency-review }}'
+          echo '${{ steps.dependency_review.outputs.dependency-review }}' > dependency_review/dependency_review.txt
 
 
       - name: Upload dependency_review artifact
