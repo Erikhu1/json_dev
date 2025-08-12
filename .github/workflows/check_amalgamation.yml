@@ -36,6 +36,7 @@ jobs:
       MAIN_DIR: ${{ github.workspace }}/main
       INCLUDE_DIR: ${{ github.workspace }}/main/single_include/nlohmann
       TOOL_DIR: ${{ github.workspace }}/tools/tools/amalgamate
+      CURR_DIR: $(pwd)
 
     steps:
       - name: Harden Runner
@@ -82,7 +83,7 @@ jobs:
           echo Check
           find $MAIN_DIR -name '*.orig' -exec false {} \+
 
-          cd $PREV_DIR
+          cd CURR_DIR
           mkdir -p check_amalgamation
           mv json_diff.txt check_amalgamation/
           mv format_logs.txt check_amalgamation/
