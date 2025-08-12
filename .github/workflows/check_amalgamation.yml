@@ -84,7 +84,7 @@ jobs:
           find $MAIN_DIR -name '*.orig' -exec false {} \+
 
           echo "Contents of check_amalgamation:"
-          ls -l check_amalgamation
+          ls -l $GITHUB_WORKSPACE/check_amalgamation/
 
 
       - name: Upload amalgamation artifact
