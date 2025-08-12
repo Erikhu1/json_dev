@@ -38,7 +38,7 @@ jobs:
         run: |
           echo "Generating Dependency Review artifact..."
           mkdir -p dependency_review
-          echo "dependency review processed for ${{ inputs.artifact_id }}" > dependency_review/dependency_review.txt
+          echo "${{ steps.dependency-review.outputs.dependency-review }}" > dependency_review/dependency_review.json
 
       - name: Upload dependency_review artifact
         uses: actions/upload-artifact@v4
