@@ -34,7 +34,7 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
-      # Step 3: Generate label artifact with meaningful results
+      # Step 3: Generate label artifact
       - name: Generate label artifact
         run: |
           echo "Generating label artifact with meaningful data..."
