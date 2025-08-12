@@ -33,25 +33,20 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Step 4: Capture the Dependency Review output into a file
-      - name: Save Dependency Review to a file
-        id: save_dependency_review
+      # Step 4: Capture the Dependency Review output from logs
+      - name: Save Dependency Review to File
         run: |
-          echo "Saving Dependency Review results to an artifact..."
           mkdir -p dependency_review
+          echo "Saving Dependency Review results..." >> dependency_review/summary.txt
 
-          # Check for $GITHUB_STEP_SUMMARY content - primary source of logs/summaries
-          echo "::debug::Copying dependency review result to a file..."
-          if [ -s "$GITHUB_STEP_SUMMARY" ]; then
-            cat $GITHUB_STEP_SUMMARY > dependency_review/summary.txt
-          else
-            echo "No data found in GITHUB_STEP_SUMMARY. Dependency Review output may be missing." > dependency_review/summary.txt
-          fi
-        shell: bash
+          # Attempt to extract logs from temp files or any action outputs
+          find /home/runner/work/_temp -type f -name "*dependency*" -exec cat {} \; >> dependency_review/summary.txt
+          
+          echo "Dependency review completed. The results are saved to 'summary.txt'." >> dependency_review/summary.txt
 
-      # Step 5: Upload the output file as an artifact
+      # Step 5: Upload Dependency Review results as an artifact
       - name: Upload Dependency Review Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ inputs.artifact_id }}
           path: dependency_review/
