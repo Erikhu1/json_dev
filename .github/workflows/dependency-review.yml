@@ -1,5 +1,6 @@
 name: 'Dependency Review'
-on:  
+
+on:
   workflow_call:
     inputs:
       artifact_id:
@@ -9,35 +10,48 @@ on:
 
 permissions:
   contents: read
-  security-events: read  
+  security-events: read
 
 jobs:
   dependency-review:
     runs-on: ubuntu-latest
     steps:
+      # Step 1: Secure the runner by hardening
       - name: Harden Runner
         uses: step-security/harden-runner@c6295a65d1254861815972266d5933fd6e532bdf # v2.11.1
         with:
           egress-policy: audit
 
+      # Step 2: Checkout the code for dependency review
       - name: 'Checkout Repository'
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
+      # Step 3: Perform the dependency review analysis
       - name: 'Dependency Review'
         id: dependency_review_op
         uses: actions/dependency-review-action@ce3cf9537a52e8119d91fd484ab5b8a807627bf8
-        with: 
+        with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Capture Dependency Review Logs
+      # Step 4: Capture the Dependency Review output into a file
+      - name: Save Dependency Review to a file
+        id: save_dependency_review
         run: |
-          echo "Capturing Dependency Review logs..."
+          echo "Saving Dependency Review results to an artifact..."
           mkdir -p dependency_review
-          # Redirect the previous step logs into a file
-          find /home/runner/work/_temp -type f -name "dependency*" -exec cat {} >> dependency_review/dependency_review.txt \;
 
-      - name: Upload dependency_review artifact
-        uses: actions/upload-artifact@v4
+          # Check for $GITHUB_STEP_SUMMARY content - primary source of logs/summaries
+          echo "::debug::Copying dependency review result to a file..."
+          if [ -s "$GITHUB_STEP_SUMMARY" ]; then
+            cat $GITHUB_STEP_SUMMARY > dependency_review/summary.txt
+          else
+            echo "No data found in GITHUB_STEP_SUMMARY. Dependency Review output may be missing." > dependency_review/summary.txt
+          fi
+        shell: bash
+
+      # Step 5: Upload the output file as an artifact
+      - name: Upload Dependency Review Artifact
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ inputs.artifact_id }}
           path: dependency_review/
