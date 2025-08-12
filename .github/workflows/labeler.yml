@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   label:
@@ -20,21 +21,41 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Harden the runner
       - name: Harden Runner
         uses: step-security/harden-runner@c6295a65d1254861815972266d5933fd6e532bdf # v2.11.1
         with:
           egress-policy: audit
 
-      - uses: srvaroa/labeler@e216fb40e2e6d3b17d90fb1d950f98bee92f65ce # master
+      # Step 2: Run the labeler
+      - name: Apply Labels to Pull Request
+        id: label_step
+        uses: srvaroa/labeler@e216fb40e2e6d3b17d90fb1d950f98bee92f65ce # master
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
+      # Step 3: Generate label artifact with meaningful results
       - name: Generate label artifact
         run: |
-          echo "Generating label artifact..."
+          echo "Generating label artifact with meaningful data..."
           mkdir -p labeler
-          echo "Labels processed for ${{ inputs.artifact_id }}" > labeler/labeler.txt
 
+          # Add an overview of the run (Static information about the workflow)
+          echo "Workflow Name: Pull Request Labeler" > labeler/labeler.txt
+          echo "Artifact ID: ${{ inputs.artifact_id }}" >> labeler/labeler.txt
+
+          # Check for outputs (labels applied) from the labeler step
+          if [[ -n "${{ steps.label_step.outputs.labels }}" ]]; then
+            echo "Labels Applied:" >> labeler/labeler.txt
+            echo "${{ steps.label_step.outputs.labels }}" >> labeler/labeler.txt
+          else
+            echo "No labels were applied." >> labeler/labeler.txt
+          fi
+
+          # Add a timestamp
+          echo "Run completed at: $(date)" >> labeler/labeler.txt
+
+      # Step 4: Upload the artifact
       - name: Upload label artifact
         uses: actions/upload-artifact@v4
         with:
