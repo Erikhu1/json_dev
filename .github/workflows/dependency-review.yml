@@ -31,14 +31,17 @@ jobs:
       - name: 'Checkout Repository'
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: 'Dependency Review'
+        id: dep_review
         uses: actions/dependency-review-action@ce3cf9537a52e8119d91fd484ab5b8a807627bf8 # v4.6.0
 
-      - name: Capture Dependency Review output
+      - name: Save Dependency Review summary
         run: |
-          echo "Re-running dependency review for output capture..."
           mkdir -p dependency_review
-          # Run the review action as a CLI and capture output (simulate with npx for JS projects)
-          npx --yes @github/dependency-review-action > dependency_review/dependency_review_output.txt 2>&1 || true
+          echo "Dependency Review Result:" > dependency_review/summary.txt
+          echo "fail-on-severity: ${{ steps.dep_review.outputs.fail-on-severity }}" >> dependency_review/summary.txt
+          echo "fail-on-scopes: ${{ steps.dep_review.outputs.fail-on-scopes }}" >> dependency_review/summary.txt
+          echo "allowed-ghsas: ${{ steps.dep_review.outputs.allowed-ghsas }}" >> dependency_review/summary.txt
+          echo "deny-listed-ghsas: ${{ steps.dep_review.outputs.deny-listed-ghsas }}" >> dependency_review/summary.txt
 
       - name: Upload dependency_review artifact
         uses: actions/upload-artifact@v4
