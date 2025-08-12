@@ -29,12 +29,12 @@ jobs:
         with: 
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Generate dependency_review artifact
+      - name: Capture Dependency Review Logs
         run: |
-          echo "Generating Dependency Review artifact..."
+          echo "Capturing Dependency Review logs..."
           mkdir -p dependency_review
-          # Write the GitHub step summary (action logs) to the artifact
-          cat $GITHUB_STEP_SUMMARY > dependency_review/dependency_review.txt
+          # Redirect the previous step logs into a file
+          find /home/runner/work/_temp -type f -name "dependency*" -exec cat {} >> dependency_review/dependency_review.txt \;
 
       - name: Upload dependency_review artifact
         uses: actions/upload-artifact@v4
