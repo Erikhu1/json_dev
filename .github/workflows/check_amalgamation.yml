@@ -36,7 +36,7 @@ jobs:
       MAIN_DIR: ${{ github.workspace }}/main
       INCLUDE_DIR: ${{ github.workspace }}/main/single_include/nlohmann
       TOOL_DIR: ${{ github.workspace }}/tools/tools/amalgamate
-      CURR_DIR: $(pwd)
+      CURR_DIR: ${{ github.workspace }}
 
     steps:
       - name: Harden Runner
