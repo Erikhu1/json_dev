@@ -40,10 +40,8 @@ jobs:
           echo "Generating label artifact with meaningful data..."
           mkdir -p labeler
 
-
           echo "Workflow Name: Pull Request Labeler" > labeler/labeler.txt
           echo "Artifact ID: ${{ inputs.artifact_id }}" >> labeler/labeler.txt
-
 
           if [[ -n "${{ steps.label_step.outputs.labels }}" ]]; then
             echo "Labels Applied:" >> labeler/labeler.txt
