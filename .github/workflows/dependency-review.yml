@@ -47,7 +47,12 @@ jobs:
           echo '2 ${{ steps.dependency_review.dependency_review }}'
           echo '3 ${{ steps.dependency-review }}'
           echo '4 ${{ steps.dependency_review.dependency_review.output }}'
-          echo '5 ${{ steps.dependency_review.output.dependency_review }}'
+          echo '5 ${{ steps.dependency_review.outputs.dependency_review }}'
+          echo '6 ${{ steps.dependency_review.outputs.dependency_review.Vulnerabilities }}'
+          echo '7 ${{ steps.dependency_review.dependency_review.Vulnerabilities }}'
+          echo '8 ${{ steps.dependency-review.Vulnerabilities}}'
+          echo '9 ${{ steps.dependency_review.dependency_review.output.Vulnerabilities }}'
+          echo '10 ${{ steps.dependency_review.output.dependency_review.Vulnerabilities }}'
           echo '${{ steps.dependency_review.outputs.dependency-review }}' > dependency_review/dependency_review.txt
 
 
