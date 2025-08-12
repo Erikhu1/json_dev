@@ -1,3 +1,11 @@
+# Dependency Review Action
+#
+# This Action will scan dependency manifest files that change as part of a Pull Request,
+# surfacing known-vulnerable versions of the packages declared or updated in the PR.
+# Once installed, if the workflow run is marked as required,
+# PRs introducing known-vulnerable packages will be blocked from merging.
+#
+# Source repository: https://github.com/actions/dependency-review-action
 name: 'Dependency Review'
 on:  
   workflow_call:
@@ -6,6 +14,7 @@ on:
         description: 'Unique identifier for artifacts'
         required: true
         type: string
+
 
 permissions:
   contents: read
@@ -21,14 +30,21 @@ jobs:
 
       - name: 'Checkout Repository'
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-
-      # Run the Dependency Review Action and capture logs
       - name: 'Dependency Review'
-        run: |
-          mkdir -p dependency_review
-          actions/dependency-review-action@ce3cf9537a52e8119d91fd484ab5b8a807627bf8 2>&1 | tee dependency_review/dependency_review.txt
+        id: dependency_review
+        uses: actions/dependency-review-action@ce3cf9537a52e8119d91fd484ab5b8a807627bf8
+        with: 
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Upload the captured logs as an artifact
+
+      - name: Generate dependency_review artifact
+        run: |
+          echo "Generating Dependency Review artifact..."
+          mkdir -p dependency_review
+          echo '${{ steps.dependency_review.outputs.dependency-review }}' > dependency_review/dependency_review.json
+        if: ${{ steps.dependency_review.outputs.dependency-review }} # Ensure only runs if there is output
+
+
       - name: Upload dependency_review artifact
         uses: actions/upload-artifact@v4
         with:
