@@ -83,7 +83,7 @@ jobs:
           echo Check
           find $MAIN_DIR -name '*.orig' -exec false {} \+
 
-          cd $CURR_DIR
+          cd -
           mkdir -p ./check_amalgamation
           mv json_diff.txt ./check_amalgamation/
           mv format_logs.txt ./check_amalgamation/
