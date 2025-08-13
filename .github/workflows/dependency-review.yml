@@ -52,7 +52,7 @@ jobs:
           echo "comment-content:"
           echo "${{ steps.dependency-review.outputs.comment-content }}" >> dependency_review/dependency_review.txt
           echo "dependency-changes:"
-          echo "$dependency-changes" | jq >> dependency_review/dependency_review.txt
+          echo "$dependency-changes" | jq '.[].package_url'>> dependency_review/dependency_review.txt
 
       - name: Upload Dependency Review Artifact
         uses: actions/upload-artifact@v4
