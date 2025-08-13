@@ -37,18 +37,15 @@ jobs:
       - name: Generate Dependency Review Artifact
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          comment-content: ${{ steps.dependency-review.outputs.comment-content }}
-          dependency-changes: ${{ steps.dependency-review.outputs.dependency-changes }}
-
         run: |
           echo "Creating Dependency Review artifact..."
 
           # Create the directory for the artifact
           mkdir -p dependency_review
 
-          echo "$comment-content" > dependency_review/summary.html
+          echo "${{ steps.dependency-review.outputs.comment-content }}" > dependency_review/summary.html
 
-
+          # Single quotation marks are used to prevent JSON parsing issues
           echo '${{ steps.dependency-review.outputs.dependency-changes }}' | jq '.' > dependency_review/dependency_changes.json
 
       - name: Upload Dependency Review Artifact
