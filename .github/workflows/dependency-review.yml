@@ -46,7 +46,7 @@ jobs:
           # Create the directory for the artifact
           mkdir -p dependency_review
 
-          echo '$comment-content' > dependency_review/summary.html
+          echo "$comment-content" > dependency_review/summary.html
 
 
           echo '${{ steps.dependency-review.outputs.dependency-changes }}' | jq '.' > dependency_review/dependency_changes.json
