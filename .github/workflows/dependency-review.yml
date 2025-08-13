@@ -37,6 +37,9 @@ jobs:
       - name: Generate Dependency Review Artifact
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          comment-content: ${{ steps.dependency-review.outputs.comment-content }}
+          dependency-changes: ${{ steps.dependency-review.outputs.dependency-changes }}
+
         run: |
           echo "Creating Dependency Review artifact..."
 
@@ -46,10 +49,10 @@ jobs:
           # General artifact info
           echo "Workflow Name: Dependency Review" > dependency_review/dependency_review.txt
           echo "Artifact ID: ${{ inputs.artifact_id }}" >> dependency_review/dependency_review.txt
-          echo "comment-content:" >> dependency_review/dependency_review.txt
+          echo "comment-content:"
           echo "${{ steps.dependency-review.outputs.comment-content }}" >> dependency_review/dependency_review.txt
-          echo "dependency-changes:" >> dependency_review/dependency_review.txt
-          echo "${{ steps.dependency-review.outputs.dependency-changes }}" >> dependency_review/dependency_review.txt
+          echo "dependency-changes:"
+          echo "$dependency-changes" | jq >> dependency_review/dependency_review.txt
 
       - name: Upload Dependency Review Artifact
         uses: actions/upload-artifact@v4
