@@ -26,7 +26,7 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: srvaroa/labeler # master
+      - uses: srvaroa/labeler@e216fb40e2e6d3b17d90fb1d950f98bee92f65cf # master
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
