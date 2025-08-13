@@ -50,9 +50,9 @@ jobs:
           echo "Workflow Name: Dependency Review" > dependency_review/dependency_review.txt
           echo "Artifact ID: ${{ inputs.artifact_id }}" >> dependency_review/dependency_review.txt
           echo "comment-content:"
-          echo "$comment-content" | jq >> dependency_review/dependency_review.txt
+          echo "$comment-content" >> dependency_review/dependency_review.txt
           echo "dependency-changes:"
-          echo "$dependency-changes" | jq >> dependency_review/dependency_review.txt
+          echo "$dependency-changes" >> dependency_review/dependency_review.txt
 
       - name: Upload Dependency Review Artifact
         uses: actions/upload-artifact@v4
