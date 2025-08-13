@@ -13,6 +13,48 @@ permissions:
   pull-requests: write
 
 jobs:
+  clone_missing_labels:
+    runs-on: ubuntu-latest
+  
+    steps:
+    - name: compare labels
+      run: |
+
+        # Source repository (the one we're cloning labels FROM)
+        SOURCE_REPO="nlohmann/json"
+
+        # Destination repository (the current repository)
+        TARGET_REPO="erikhu1/json_dev"
+
+        echo "Fetching labels from $SOURCE_REPO..."
+        SOURCE_LABELS=$(gh api -X GET "repos/$SOURCE_REPO/labels" | jq -c '.[]')
+
+        echo "Fetching labels from $TARGET_REPO..."
+        TARGET_LABELS=$(gh api -X GET "repos/$TARGET_REPO/labels" | jq -c '.[]')
+
+        echo "Cloning missing labels from $SOURCE_REPO to $TARGET_REPO..."
+
+        # Loop through all labels in the source repository
+        while IFS= read -r source_label; do
+          LABEL_NAME=$(echo "$source_label" | jq -r '.name')
+          LABEL_COLOR=$(echo "$source_label" | jq -r '.color')
+          LABEL_DESCRIPTION=$(echo "$source_label" | jq -r '.description')
+
+          # Check if the label already exists in the target repo
+          LABEL_EXISTS=$(echo "$TARGET_LABELS" | jq -r --arg NAME "$LABEL_NAME" '. | map(select(.name == $NAME)) | length')
+
+          if [ "$LABEL_EXISTS" -eq 0 ]; then
+            # Create the label in the target repository if it doesn't exist
+            echo "Creating label: $LABEL_NAME..."
+            gh api -X POST "repos/$TARGET_REPO/labels" -f name="$LABEL_NAME" -f color="$LABEL_COLOR" -f description="$LABEL_DESCRIPTION"
+          else
+            echo "Label '$LABEL_NAME' already exists in $TARGET_REPO. Skipping..."
+          fi
+        done <<< "$SOURCE_LABELS"
+
+        echo "All labels cloned successfully!"
+
+
   label:
     permissions:
       contents: read
@@ -40,7 +82,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "Generating label artifact with meaningful data..."
+          echo "Generating label artifact..."
           mkdir -p labeler
 
           echo "Workflow Name: Pull Request Labeler" > labeler/labeler.txt
