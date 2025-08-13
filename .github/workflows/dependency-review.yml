@@ -56,7 +56,7 @@ jobs:
         run: |
           echo "Creating Dependency Review artifact..."
           mkdir -p dependency_review
-          echo "$dependency-changes" | jq '.' >> dependency_review/dependency_changes.json
+          echo "$dependency-changes" | jq '.' > dependency_review/dependency_changes.json
 
       - name: Upload Dependency Review Artifact
         uses: actions/upload-artifact@v4
