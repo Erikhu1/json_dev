@@ -46,11 +46,11 @@ jobs:
           # Create the directory for the artifact
           mkdir -p dependency_review
 
-          echo "${{ steps.dependency-review.outputs.comment-content }}" >> dependency_review/dependency_review.html
+          echo "${{ steps.dependency-review.outputs.comment-content }}" >> dependency_review/summary.html
           sed -i 's/:green_circle:/🟢/g' dependency_review/dependency_review.html
           sed -i 's/:warning:/⚠️/g' dependency_review/dependency_review.html
 
-          echo "${{ steps.dependency-review.outputs.dependency-changes }}" >> dependency_review/dependency_review.json
+          echo "${{ steps.dependency-review.outputs.dependency-changes }}" | jq '.' >> dependency_review/dependency_changes.json
 
       - name: Upload Dependency Review Artifact
         uses: actions/upload-artifact@v4
