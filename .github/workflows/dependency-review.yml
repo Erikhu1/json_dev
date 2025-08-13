@@ -50,6 +50,15 @@ jobs:
           sed -i 's/:green_circle:/🟢/g' dependency_review/summary.html
           sed -i 's/:warning:/⚠️/g' dependency_review/summary.html
 
+      - name: Generate Dependency Review Artifact2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          comment-content: ${{ steps.dependency-review.outputs.comment-content }}
+          dependency-changes: ${{ steps.dependency-review.outputs.dependency-changes }}
+
+        run: |
+          echo "Creating Dependency Review artifact..."
+          mkdir -p dependency_review
           echo "$dependency-changes" | jq '.' >> dependency_review/dependency_changes.json
 
       - name: Upload Dependency Review Artifact
