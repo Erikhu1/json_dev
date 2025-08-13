@@ -34,24 +34,23 @@ jobs:
         id: dependency-review
         uses: actions/dependency-review-action@ce3cf9537a52e8119d91fd484ab5b8a807627bf8 # v4.6.0
 
-      - name: Generate Dependency Review Artifact
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          comment-content: ${{ steps.dependency-review.outputs.comment-content }}
-          dependency-changes: ${{ steps.dependency-review.outputs.dependency-changes }}
-
-        run: |
-          echo "Creating Dependency Review artifact..."
-
-          # Create the directory for the artifact
-          mkdir -p dependency_review
-
-          # General artifact info
-          echo "Workflow Name: Dependency Review" > dependency_review/dependency_review.txt
-          echo "Artifact ID: ${{ inputs.artifact_id }}" >> dependency_review/dependency_review.txt
-          echo "comment-content: ${{ steps.dependency-review.outputs.comment-content }}" | jq >> dependency_review/dependency_review.txt
-          echo "dependency-changes: ${{ steps.dependency-review.outputs.dependency-changes }}" | jq >> dependency_review/dependency_review.txt
-
+      - name: 'Report'
+        # make sure this step runs even if the previous failed
+        if: ${{ failure() && steps.review.conclusion == 'failure' }}
+        shell: bash
+        env: # store comment HTML data in an environment variable
+          COMMENT: ${{ steps.review.outputs.comment-content }}
+        run: | # do something with the comment:
+          echo "$COMMENT"
+      - name: 'List vulnerable dependencies'
+        # make sure this step runs even if the previous failed
+        if: ${{ failure() && steps.review.conclusion == 'failure' }}
+        shell: bash
+        env: # store JSON data in an environment variable
+          VULNERABLE_CHANGES: ${{ steps.review.outputs.vulnerable-changes }}
+        run: | # do something with the JSON:
+          echo "$VULNERABLE_CHANGES" | jq '.[].package_url'
+          
       - name: Upload Dependency Review Artifact
         uses: actions/upload-artifact@v4
         with:
