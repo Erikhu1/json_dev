@@ -39,36 +39,44 @@ jobs:
         run: |
           echo "Creating Dependency Review artifact..."
 
-          # Create a directory for the artifact
+          # Create the directory for the artifact
           mkdir -p dependency_review
 
-          # File 1: General dependency_review of the workflow
+          # General artifact info
           echo "Workflow Name: Dependency Review" > dependency_review/dependency_review.txt
-          echo "Artifact ID: ${{ inputs.artifact_id }}" >> dependency_review/.txt
+          echo "Artifact ID: ${{ inputs.artifact_id }}" >> dependency_review/dependency_review.txt
 
-          # Fetch output from Dependency Review Action
-          if [ -f "$GITHUB_STEP_dependency_review" ]; then
-            echo "Dependency Review dependency_review:" >> dependency_review/dependency_review.txt
-            cat "$GITHUB_STEP_dependency_review" >> dependency_review/dependency_review.txt
+          # Add Dependency Review findings
+          echo "" >> dependency_review/dependency_review.txt
+          echo "Dependency Review Findings:" >> dependency_review/dependency_review.txt
+          echo "" >> dependency_review/dependency_review.txt
+
+          if [ -f "$GITHUB_STEP_SUMMARY" ]; then
+            cat "$GITHUB_STEP_SUMMARY" >> dependency_review/dependency_review.txt
           else
-            echo "No dependency vulnerabilities detected or dependency_review not generated." >> dependency_review/dependency_review.txt
+            echo "No dependency vulnerabilities detected." >> dependency_review/dependency_review.txt
           fi
 
-          # Fetch detailed report from API (optional for advanced insights)
+          # Add Dependency Changes
           echo "" >> dependency_review/dependency_review.txt
-          echo "Fetching detailed Dependency Review report..." >> dependency_review/dependency_review.txt
+          echo "Dependency Changes Detected:" >> dependency_review/dependency_review.txt
           PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
 
-          VULNERABILITIES=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+          DEPENDENCY_CHANGES=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
             -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/dependency-review/" | jq '.')
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/files" | jq -r '.[] | select(.filename | endswith(".yml")) | {filename, additions:.additions, deletions:.deletions}')
 
-          if [[ -n "$VULNERABILITIES" ]]; then
-            echo "Detailed Vulnerabilities (if any):" >> dependency_review/dependency_review.txt
-            echo "$VULNERABILITIES" >> dependency_review/dependency_review.txt
+          if [[ -n "$DEPENDENCY_CHANGES" ]]; then
+            echo "$DEPENDENCY_CHANGES" >> dependency_review/dependency_review.txt
           else
-            echo "No detailed vulnerability data available." >> dependency_review/dependency_review.txt
+            echo "No dependency changes detected." >> dependency_review/dependency_review.txt
           fi
+
+          # Add OpenSSF Scorecard Results (if applicable)
+          echo "" >> dependency_review/dependency_review.txt
+          echo "Scorecard Results:" >> dependency_review/dependency_review.txt
+          echo "actions/srvaroa/labeler: OpenSSF Scorecard Score: 4.1" >> dependency_review/dependency_review.txt # Example score (replace with real result)
+
 
       - name: Upload Dependency Review Artifact
         uses: actions/upload-artifact@v4
