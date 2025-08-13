@@ -36,10 +36,10 @@ jobs:
 
       - name: 'Report'
         # make sure this step runs even if the previous failed
-        if: ${{ failure() && steps.review.conclusion == 'failure' }}
+        if: ${{ failure() && steps.dependency-review.conclusion == 'failure' }}
         shell: bash
         env: # store comment HTML data in an environment variable
-          COMMENT: ${{ steps.review.outputs.comment-content }}
+          COMMENT: ${{ steps.dependency-review.outputs.comment-content }}
         run: | # do something with the comment:
           echo "$COMMENT"
       - name: 'List vulnerable dependencies'
@@ -47,10 +47,10 @@ jobs:
         if: ${{ failure() && steps.review.conclusion == 'failure' }}
         shell: bash
         env: # store JSON data in an environment variable
-          VULNERABLE_CHANGES: ${{ steps.review.outputs.vulnerable-changes }}
+          VULNERABLE_CHANGES: ${{ steps.dependency-review.outputs.vulnerable-changes }}
         run: | # do something with the JSON:
           echo "$VULNERABLE_CHANGES" | jq '.[].package_url'
-          
+
       - name: Upload Dependency Review Artifact
         uses: actions/upload-artifact@v4
         with:
