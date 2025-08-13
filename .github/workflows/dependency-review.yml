@@ -50,7 +50,7 @@ jobs:
           sed -i 's/:green_circle:/🟢/g' dependency_review/summary.html
           sed -i 's/:warning:/⚠️/g' dependency_review/summary.html
 
-          echo "${{ steps.dependency-review.outputs.dependency-changes }}" | jq '.' >> dependency_review/dependency_changes.json
+          echo "$dependency-changes" | jq '.' >> dependency_review/dependency_changes.json
 
       - name: Upload Dependency Review Artifact
         uses: actions/upload-artifact@v4
