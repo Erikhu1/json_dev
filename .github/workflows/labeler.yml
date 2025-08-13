@@ -21,11 +21,12 @@ jobs:
     steps:
     - name: compare labels
       run: |
+      
         # Source repository (the one we're cloning labels FROM)
         SOURCE_REPO="nlohmann/json"
 
         # Dynamically determine the current repository (target repository)
-        TARGET_REPO="erikhu1/json_dev"
+        TARGET_REPO="${GITHUB_REPOSITORY}"
 
         echo "Cloning labels from $SOURCE_REPO to $TARGET_REPO..."
 
