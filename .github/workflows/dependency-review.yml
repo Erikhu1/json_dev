@@ -65,7 +65,7 @@ jobs:
 
           if [[ -n "$VULNERABILITIES" ]]; then
             echo "Detailed Vulnerabilities (if any):" >> dependency_review/dependency_review.txt
-            echo "$VULNERABILITIES" | jq '.' >> dependency_review/dependency_review.txt
+            echo "$VULNERABILITIES" >> dependency_review/dependency_review.txt
           else
             echo "No detailed vulnerability data available." >> dependency_review/dependency_review.txt
           fi
