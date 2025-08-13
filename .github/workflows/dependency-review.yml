@@ -38,8 +38,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           comment-content: ${{ steps.dependency-review.outputs.comment-content }}
-          dependency-changes: ${{ steps.dependency-review.outputs.dependency-changes }}
-
         run: |
           echo "Creating Dependency Review artifact..."
 
@@ -53,7 +51,6 @@ jobs:
       - name: Generate Dependency Review Artifact2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          comment-content: ${{ steps.dependency-review.outputs.comment-content }}
           dependency-changes: ${{ steps.dependency-review.outputs.dependency-changes }}
 
         run: |
