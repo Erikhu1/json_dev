@@ -38,6 +38,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VULNERABLE_CHANGES: ${{ steps.dependency-review.outputs.vulnerable-changes }}
+          dependency-changes: ${{ steps.dependency-review.outputs.dependency-changes }}
+          invalid-license-changes: ${{ steps.dependency-review.outputs.invalid-license-changes }}
+          denied-changes: ${{ steps.dependency-review.outputs.denied-changes }}
+          comment-content: ${{ steps.dependency-review.outputs.comment-content }}
+
         run: |
           echo "Creating Dependency Review artifact..."
 
@@ -48,7 +53,10 @@ jobs:
           echo "Workflow Name: Dependency Review" > dependency_review/dependency_review.txt
           echo "Artifact ID: ${{ inputs.artifact_id }}" >> dependency_review/dependency_review.txt
           echo "Vulnerable Changes: ${{ steps.dependency-review.outputs.vulnerable-changes }}" >> dependency_review/dependency_review.txt
-
+          echo "dependency-changes: ${{ steps.dependency-review.outputs.dependency-changes }}" >> dependency_review/dependency_review.txt
+          echo "invalid-license-changes: ${{ steps.dependency-review.outputs.invalid-license-changes }}" >> dependency_review/dependency_review.txt
+          echo "denied-changes: ${{ steps.dependency-review.outputs.denied-changes }}" >> dependency_review/dependency_review.txt
+          echo "comment-content: ${{ steps.dependency-review.outputs.comment-content }}" >> dependency_review/dependency_review.txt
 
       - name: Upload Dependency Review Artifact
         uses: actions/upload-artifact@v4
