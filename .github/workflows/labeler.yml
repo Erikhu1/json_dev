@@ -21,26 +21,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Harden the runner
       - name: Harden Runner
         uses: step-security/harden-runner@c6295a65d1254861815972266d5933fd6e532bdf # v2.11.1
         with:
           egress-policy: audit
 
-      # Step 2: Run the labeler and capture output
-      - name: Apply Labels to Pull Request
-        id: label_step
-        uses: srvaroa/labeler@e216fb40e2e6d3b17d90fb1d950f98bee92f65ce # master
+      - uses: srvaroa/labeler@e216fb40e2e6d3b17d90fb1d950f98bee92f65ce # master
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-        continue-on-error: true # So the workflow continues even if labeling fails
 
-      # Step 3: Generate label artifact from PR labels
       - name: Generate label artifact
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "Generating label artifact with meaningful data..."
+          echo "Generating label artifact..."
           mkdir -p labeler
 
           echo "Workflow Name: Pull Request Labeler" > labeler/labeler.txt
@@ -61,7 +55,6 @@ jobs:
             echo "No labels were applied." >> labeler/labeler.txt
           fi
 
-      # Step 4: Upload the artifact
       - name: Upload label artifact
         uses: actions/upload-artifact@v4
         with:

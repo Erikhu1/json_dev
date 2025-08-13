@@ -33,13 +33,44 @@ jobs:
       - name: 'Dependency Review'
         uses: actions/dependency-review-action@ce3cf9537a52e8119d91fd484ab5b8a807627bf8 # v4.6.0
 
-      - name: Save Dependency Review summary
+      - name: Generate Dependency Review Artifact
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          mkdir -p dependency_review
-          echo "Dependency Review Result:" > dependency_review/summary.txt
-          cat "$GITHUB_STEP_SUMMARY" >> dependency_review/summary.txt
+          echo "Creating Dependency Review artifact..."
 
-      - name: Upload dependency_review artifact
+          # Create a directory for the artifact
+          mkdir -p dependency_review
+
+          # File 1: General dependency_review of the workflow
+          echo "Workflow Name: Dependency Review" > dependency_review/dependency_review.txt
+          echo "Artifact ID: ${{ inputs.artifact_id }}" >> dependency_review/.txt
+
+          # Fetch output from Dependency Review Action
+          if [ -f "$GITHUB_STEP_dependency_review" ]; then
+            echo "Dependency Review dependency_review:" >> dependency_review/dependency_review.txt
+            cat "$GITHUB_STEP_dependency_review" >> dependency_review/dependency_review.txt
+          else
+            echo "No dependency vulnerabilities detected or dependency_review not generated." >> dependency_review/dependency_review.txt
+          fi
+
+          # Fetch detailed report from API (optional for advanced insights)
+          echo "" >> dependency_review/dependency_review.txt
+          echo "Fetching detailed Dependency Review report..." >> dependency_review/dependency_review.txt
+          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+
+          VULNERABILITIES=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/dependency-graph/diff" | jq '.')
+
+          if [[ -n "$VULNERABILITIES" ]]; then
+            echo "Detailed Vulnerabilities (if any):" >> dependency_review/dependency_review.txt
+            echo "$VULNERABILITIES" | jq '.' >> dependency_review/dependency_review.txt
+          else
+            echo "No detailed vulnerability data available." >> dependency_review/dependency_review.txt
+          fi
+
+      - name: Upload Dependency Review Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ inputs.artifact_id }}
