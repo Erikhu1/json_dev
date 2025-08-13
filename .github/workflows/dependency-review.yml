@@ -46,12 +46,10 @@ jobs:
           # Create the directory for the artifact
           mkdir -p dependency_review
 
-          # General artifact info
-          echo "Workflow Name: Dependency Review" > dependency_review/dependency_review.txt
-          echo "Artifact ID: ${{ inputs.artifact_id }}" >> dependency_review/dependency_review.txt
-          echo "comment-content:"
           echo "${{ steps.dependency-review.outputs.comment-content }}" >> dependency_review/dependency_review.html
-          echo "dependency-changes:"
+          sed -i 's/:green_circle:/🟢/g' dependency_review/dependency_review.html
+          sed -i 's/:warning:/⚠️/g' dependency_review/dependency_review.html
+
           echo "${{ steps.dependency-review.outputs.dependency-changes }}" >> dependency_review/dependency_review.json
 
       - name: Upload Dependency Review Artifact
