@@ -25,7 +25,7 @@ jobs:
         SOURCE_REPO="nlohmann/json"
 
         # Dynamically determine the current repository (target repository)
-        TARGET_REPO=$(gh repo view --json nameWithOwner -q '.nameWithOwner')
+        TARGET_REPO="erikhu1/json_dev"
 
         echo "Cloning labels from $SOURCE_REPO to $TARGET_REPO..."
 
