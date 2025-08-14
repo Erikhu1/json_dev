@@ -133,9 +133,8 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ${{ github.workspace }}/build/json.info.filtered.noexcept
-        env: 
-          global:
-            - COVERALLS_NOISY=true
+          debug: true
+          fail-on-error: false
 
   ci_test_compilers_gcc_old:
     runs-on: ubuntu-latest
