@@ -64,7 +64,7 @@ The contribution to the score of a parent item by a suspiciously linked child is
 | [JLS-03](JLS.md#jls-03) |  Automated tests are reviewed by a Subject Matter Expert to verify they test the properties they claim to. | 0.00 |
 | [JLS-04](JLS.md#jls-04) |  The project runs dependabot on all code entering the main branch, blocking merges until all warnings are resolved. (https://github.com/score-json/json/blob/main/nlohmann_json/.github/dependabot.yml) | 0.00 |
 | [JLS-05](JLS.md#jls-05) |  The OSS nlohmann_json is widely used, actively maintained and uses github issues to track bugs and misbehaviours. | 0.00 |
-| [JLS-06](JLS.md#jls-06) |  Changes to the code (main branch) are applied only after code review and passing of all pipelines. | 0.00 |
+| [JLS-06](JLS.md#jls-06) |  Changes to the code (main branch) are applied only after code review and passing of all pipelines. | 0.83 |
 | [JLS-07](JLS.md#jls-07) |  Main branch is protected, i.e. no direct commits are possible. | 0.00 |
 | [JLS-08](JLS.md#jls-08) |  Each statement is scored based on SME reviews or automatic validation functions. (TODO) | 0.00 |
 | [JLS-09](JLS.md#jls-09) |  Scores are reasonably, systematically and repeatably accumulated. (TODO) | 0.00 |
@@ -300,6 +300,6 @@ The contribution to the score of a parent item by a suspiciously linked child is
 _Generated for: Software_
 
 * _Repository root: /home/runner/work/json_dev/json_dev_
-* _Commit SHA: d5fa5e2d1dc980f83c348941efef524e258e88a1_
-* _Commit date/time: Mon Aug 18 16:30:32 2025_
-* _Commit tag: d5fa5e2_
+* _Commit SHA: a522c489293d281423a8b6494bc0bd1bc32c4b4e_
+* _Commit date/time: Tue Aug 19 08:32:52 2025_
+* _Commit tag: a522c48_
