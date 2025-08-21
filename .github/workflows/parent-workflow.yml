@@ -122,7 +122,7 @@ jobs:
 
   publish_documentation_pr:
     permissions:
-      contents: read
+      contents: write
       pages: write
       pull-requests: write
       id-token: write
@@ -136,7 +136,7 @@ jobs:
 
   publish_documentation_non_pr:
     permissions:
-      contents: read
+      contents: write
       pages: write
       pull-requests: write
       id-token: write
