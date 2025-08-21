@@ -122,11 +122,11 @@ jobs:
 
   publish_documentation_pr:
     permissions:
-      contents: write
+      contents: read
       pages: write
       pull-requests: write
       id-token: write
-      security-events: write
+      security-events: read
     name: Run publish_documentation Workflow pr
     if: github.event_name == 'pull_request'
     needs: [collect_artifacts_pr]
@@ -136,11 +136,11 @@ jobs:
 
   publish_documentation_non_pr:
     permissions:
-      contents: write
+      contents: read
       pages: write
       pull-requests: write
       id-token: write
-      security-events: write
+      security-events: read
     name: Run publish_documentation Workflow non pr
     if: github.event_name != 'pull_request'
     needs: [collect_artifacts_non_pr]

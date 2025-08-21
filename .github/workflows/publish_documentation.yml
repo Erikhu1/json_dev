@@ -28,7 +28,7 @@ jobs:
   run-trudag:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
       pages: write
       pull-requests: write
       id-token: write
@@ -69,7 +69,7 @@ jobs:
     # the eclipse-score/cicd-workflow docs.yml is adjusted to download the trudag report artifact before building the documentation
     uses: ./.github/workflows/docs.yml
     permissions:
-      contents: write
+      contents: read
       pages: write
       pull-requests: write
       id-token: write
