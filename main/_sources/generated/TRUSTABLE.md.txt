@@ -27,3 +27,14 @@ _None_
 **Fallacies:**
 
 _None_
+
+**Graph:**
+
+![No Image](figs/TRUSTABLE-SOFTWARE.svg)
+
+??? example "Graph Data as Table"
+    |date-time|TRUSTABLE-SOFTWARE|TT-CHANGES|TT-CONFIDENCE|TT-CONSTRUCTION|TT-EXPECTATIONS|TT-PROVENANCE|TT-RESULTS|
+    |-|-|-|-|-|-|-|-|
+    |2025-08-27 15:36:47|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|
+    |2025-08-27 16:26:25.330665|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|
+
