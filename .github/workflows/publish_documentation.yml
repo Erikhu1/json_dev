@@ -32,7 +32,7 @@ jobs:
     steps:
       - name: Get current branch name
         id: get_branch
-        run: echo "::set-output name=branch::${{ github.event.pull_request.head.ref }}"
+        run: echo "${{ github.event.pull_request.head.ref }} >> $GITHUB_OUTPUT"
   
   run-trudag:
     needs: get-branch
