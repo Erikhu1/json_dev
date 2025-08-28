@@ -52,7 +52,7 @@ jobs:
         id: get_branch
         run: |
           branch_name=$(echo "${GITHUB_REF#refs/heads/}")
-          echo "branch_name='${branch_name}'" >> $GITHUB_ENV
+          echo "branch_name=${branch_name}' >> $GITHUB_ENV
 
       - name: Fetch data storage branch
         run: |
