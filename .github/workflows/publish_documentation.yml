@@ -25,7 +25,17 @@ permissions:
   contents: read
 
 jobs:
+  get-branch:
+    runs-on: ubuntu-latest
+    outputs:
+      branch_name: ${{ steps.get_branch.outputs.branch_name }}
+    steps:
+      - name: Get current branch name
+        id: get_branch
+        run: echo "::set-output name=branch::${{ github.event.pull_request.head.ref }}"
+  
   run-trudag:
+    needs: get-branch
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -47,12 +57,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y graphviz
           pip install git+https://gitlab.com/CodethinkLabs/trustable/trustable@cc6b72753e1202951d382f60ff08320f5a957c7b
-      
-      - name: Get current branch name
-        id: get_branch
-        run: |
-          branch_name=$(echo "${GITHUB_REF#refs/heads/}")
-          echo "branch_name=${branch_name}' >> $GITHUB_ENV
 
       - name: Fetch data storage branch
         run: |
@@ -70,7 +74,7 @@ jobs:
             git commit -m "Initialise persistent data storage"
             git push origin save_historical_data
           fi
-          git checkout $branch_name
+          git checkout ${{ needs.get-branch.outputs.branch_name }}
           git checkout save_historical_data -- TSF/TrustableScoring.db
 
       - name: Generate trudag report
@@ -96,7 +100,7 @@ jobs:
       
       - name: Recover stash
         run: |
-          git checkout $branch_name
+          git checkout $${{ needs.get-branch.outputs.branch_name }}
           git stash apply
 
       - name: Upload trudag artifact
