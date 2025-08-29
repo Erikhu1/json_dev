@@ -475,6 +475,21 @@
 <span class="w">    </span><span class="nt">with</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;test_trudag_extensions-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
 
+<span class="w">  </span><span class="nt">codeql</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">      </span><span class="nt">security-events</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Codeql analysis Workflow</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/codeql-analysis.yml</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;codeql-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
+<span class="w">  </span><span class="nt">ubuntu</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Ubuntu Workflow</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">codeql</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># Error if CodeQL and Ubuntu triggered at the same time due to conflicting priorities</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/ubuntu.yml</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ubuntu-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
 
 <span class="w">  </span><span class="nt">dependency_review</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run dependency_review Workflow</span>
@@ -486,11 +501,11 @@
 <span class="w">  </span><span class="nt">collect_artifacts_pr</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Collect</span><span class="nv"> </span><span class="s">Results</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">Deploy</span><span class="nv"> </span><span class="s">(PR)&quot;</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;pull_request&#39;</span>
-<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
 
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
@@ -519,11 +534,11 @@
 <span class="w">  </span><span class="nt">collect_artifacts_non_pr</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Collect</span><span class="nv"> </span><span class="s">Results</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">Deploy</span><span class="nv"> </span><span class="s">(Non-PR)&quot;</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name != &#39;pull_request&#39;</span>
-<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># no check_amalgamation or dependency_review if non PR</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># no check_amalgamation or dependency_review if non PR</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
 
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
