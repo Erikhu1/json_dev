@@ -57,6 +57,7 @@ jobs:
     with:
       artifact_id: "test_trudag_extensions-${{ github.sha }}"
 
+
   dependency_review:
     name: Run dependency_review Workflow
     if: ${{ github.event_name == 'pull_request' }}  # only run dependency_review for PRs
@@ -67,7 +68,7 @@ jobs:
   collect_artifacts_pr:
     name: "Collect Results & Deploy (PR)"
     if: github.event_name == 'pull_request'
-    needs: [labeler, check_amalgamation, test_trudag_extensions, dependency_review ]
+    needs: [labeler, check_amalgamation, test_trudag_extensions, dependency_review]
     runs-on: ubuntu-latest
     strategy:
       matrix:

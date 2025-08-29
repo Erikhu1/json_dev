@@ -475,6 +475,7 @@
 <span class="w">    </span><span class="nt">with</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;test_trudag_extensions-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
 
+
 <span class="w">  </span><span class="nt">dependency_review</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run dependency_review Workflow</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;pull_request&#39; }}</span><span class="w">  </span><span class="c1"># only run dependency_review for PRs</span>
@@ -485,7 +486,7 @@
 <span class="w">  </span><span class="nt">collect_artifacts_pr</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Collect</span><span class="nv"> </span><span class="s">Results</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">Deploy</span><span class="nv"> </span><span class="s">(PR)&quot;</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;pull_request&#39;</span>
-<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
