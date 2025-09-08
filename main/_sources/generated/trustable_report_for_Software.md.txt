@@ -25,8 +25,8 @@ The contribution to the score of a parent item by a suspiciously linked child is
 
 | Item   | Summary | Score |
 |--------|---------|-------|
-| [AOU-01](AOU.md#aou-01) |  Problems with nlohmann_json's implementation identified during testing are reported to the upstream nlohmann_json project. | 0.00 |
-| [AOU-02](AOU.md#aou-02) |  The build environment used for nlohmann_json in an integrating system is supplied with consistent dependencies. | 0.00 |
+| [AOU-01](AOU.md#aou-01) |  Problems with nlohmann/json's implementation identified during testing are reported to the upstream nlohmann/json project. | 0.00 |
+| [AOU-02](AOU.md#aou-02) |  The build environment used for nlohmann/json in an integrating system is supplied with consistent dependencies. | 0.00 |
 | [AOU-03](AOU.md#aou-03) |  The integrator has integrator-controlled mirrors of the dependencies. | 0.00 |
 | [AOU-04](AOU.md#aou-04) |  Exceptions are properly handled or turned off. | 0.00 |
 | [AOU-05](AOU.md#aou-05) |  Input is encoded as UTF-8 (as required by RFC8259) and in case other string formats are used, it is expected that the parse or dump function may throw an exception. | 0.00 |
@@ -38,10 +38,10 @@ The contribution to the score of a parent item by a suspiciously linked child is
 | [AOU-11](AOU.md#aou-11) |  The integrator is required to evaluate the provided evidence for TA-METHODOLOGIES and supplement it where necessary. | 0.00 |
 | [AOU-12](AOU.md#aou-12) |  The integrator is required to evaluate the provided evidence for TA-CONFIDENCE and supplement it where necessary. | 0.00 |
 | [AOU-13](AOU.md#aou-13) |  The integrator is required to evaluate the provided evidence for TA-INPUTS and supplement it where necessary. | 0.00 |
-| [AOU-14](AOU.md#aou-14) |  The JSON-library is built with tools from the provided matrix specification. (not yet provided) | 0.00 |
+| [AOU-14](AOU.md#aou-14) |  The nlohmann/json library is built with tools from the provided matrix specification. (not yet provided) | 0.00 |
 | [AOU-15](AOU.md#aou-15) |  The integrator maintains mirrors for all code and tools utilized in testing. | 0.00 |
 | [AOU-16](AOU.md#aou-16) |  The integrator uses C++ versions and compilers that are tested in the CI pipeline. | 0.00 |
-| [AOU-17](AOU.md#aou-17) |  The integrator is responsible for identifying additional misbehaviours for the JSON library, defining appropriate mitigations, and ensuring that these mitigations are thoroughly validated. | 0.00 |
+| [AOU-17](AOU.md#aou-17) |  The integrator is responsible for identifying additional misbehaviours for the nlohmann/json, defining appropriate mitigations, and ensuring that these mitigations are thoroughly validated. | 0.00 |
 | [AOU-18](AOU.md#aou-18) |  The integrator ensures monitoring data from deployed software is accurately captured, securely stored, and well-documented for analysis. | 0.00 |
 | [AOU-19](AOU.md#aou-19) |  The integrator ensures that monitoring data is systematically analyzed to detect trends and identify issues. | 0.00 |
 | [AOU-20](AOU.md#aou-20) |  The keys within each object are unique. | 0.00 |
@@ -50,7 +50,6 @@ The contribution to the score of a parent item by a suspiciously linked child is
 | [AOU-23](AOU.md#aou-23) |  The input is complete and error-free. | 0.00 |
 | [AOU-24](AOU.md#aou-24) |  The input does not change during reading. | 0.00 |
 | [AOU-25](AOU.md#aou-25) |  The standard library is trustable. | 0.00 |
-| [AOU-26](AOU.md#aou-26) |  No random faults occur. | 0.00 |
 | [AOU-27](AOU.md#aou-27) |  If a change of the local mirror of nlohmann/json changes the trustability, then this change is noted in ChangeLog.md. | 0.00 |
 
 ## Compliance for JLEX
@@ -64,11 +63,11 @@ The contribution to the score of a parent item by a suspiciously linked child is
 
 | Item   | Summary | Score |
 |--------|---------|-------|
-| [JLS-01](JLS.md#jls-01) |  The JSON-library project CI executes on each pull request (opened, reopened, synchronized) the integration test suite, and failures in these runs are investigated by contributors. | 0.00 |
+| [JLS-01](JLS.md#jls-01) |  The nlohmann/json library project CI executes on each pull request (opened, reopened, synchronized) the integration test suite, and failures in these runs are investigated by contributors. | 0.00 |
 | [JLS-02](JLS.md#jls-02) |  Fuzz testing is used in the original nlohmann/json repository (https://github.com/nlohmann/json) to uncover edge cases and failure modes throughout development. (https://github.com/nlohmann/json/blob/develop/tests/fuzzing.md) | 0.00 |
 | [JLS-03](JLS.md#jls-03) |  Automated tests are reviewed by a Subject Matter Expert to verify they test the properties they claim to. | 0.00 |
 | [JLS-04](JLS.md#jls-04) |  The project runs dependabot on all code entering the main branch, blocking merges until all warnings are resolved. (https://github.com/score-json/json/blob/main/nlohmann_json/.github/dependabot.yml) | 0.00 |
-| [JLS-05](JLS.md#jls-05) |  The OSS nlohmann_json is widely used, actively maintained and uses github issues to track bugs and misbehaviours. | 0.00 |
+| [JLS-05](JLS.md#jls-05) |  The OSS nlohmann/json is widely used, actively maintained and uses github issues to track bugs and misbehaviours. | 0.00 |
 | [JLS-06](JLS.md#jls-06) |  Changes to the code (main branch) are applied only after code review and passing of all pipelines. | 0.00 |
 | [JLS-07](JLS.md#jls-07) |  Main branch is protected, i.e. no direct commits are possible. | 0.00 |
 | [JLS-08](JLS.md#jls-08) |  Each statement is scored based on SME reviews or automatic validation functions. (TODO) | 0.00 |
@@ -85,10 +84,10 @@ The contribution to the score of a parent item by a suspiciously linked child is
 | [JLS-20](JLS.md#jls-20) |  A github workflow saves the history of scores in the trustable graph to derive trends. (TODO) | 0.00 |
 | [JLS-21](JLS.md#jls-21) |  A score is calculated based on the number of mirrored and unmirrored things. (TODO) | 0.00 |
 | [JLS-22](JLS.md#jls-22) |  The github workflow executes the unit tests daily and saves the results as time-series data. (TODO) | 0.00 |
-| [JLS-23](JLS.md#jls-23) |  The eclipse s-core organization mirrors the nlohmann_json library in a fork. | 0.00 |
-| [JLS-24](JLS.md#jls-24) |  The JSON library recognizes malformed JSON and returns an exception. | 0.00 |
+| [JLS-23](JLS.md#jls-23) |  The Eclipse S-CORE organization mirrors the nlohmann/json project in a github fork. | 0.00 |
+| [JLS-24](JLS.md#jls-24) |  The nlohmann/json library recognizes malformed JSON and returns an exception. | 0.00 |
 | [JLS-25](JLS.md#jls-25) |  Malicious code changes are mitigated by code reviews, adhering to Eclipse S-core contribution procedures and vigilance from the open-source community. | 0.00 |
-| [JLS-26](JLS.md#jls-26) |  Pipeline execution results are analyzed in the fork and the original nlohmann_json repository. | 0.00 |
+| [JLS-26](JLS.md#jls-26) |  Pipeline execution results are analyzed in the fork and the original nlohmann/json repository. | 0.00 |
 
 ## Compliance for NJF
 
@@ -101,7 +100,7 @@ The contribution to the score of a parent item by a suspiciously linked child is
 | [NJF-05](NJF.md#njf-05) |  The service accepts and rejects arrays according to RFC8259 §5. | 0.00 |
 | [NJF-05.1](NJF.md#njf-05.1) |  The service accepts the empty array. | 0.00 |
 | [NJF-05.2](NJF.md#njf-05.2) |  The service accepts the non-empty arrays. | 0.00 |
-| [NJF-05.3](NJF.md#njf-05.3) |  If the service accepts every value candidate of a properly bounded array is accepted as singleton, then the service accepts the array. | 0.00 |
+| [NJF-05.3](NJF.md#njf-05.3) |  If every value candidate of a properly bounded array is accepted as singleton, then the service accepts the array. | 0.00 |
 | [NJF-05.4](NJF.md#njf-05.4) |  The service does not accept any improperly bounded arrays. | 0.00 |
 | [NJF-05.5](NJF.md#njf-05.5) |  The service does not accept arrays with improper values. | 0.00 |
 | [NJF-05.6](NJF.md#njf-05.6) |  The service accepts nested arrays. | 0.00 |
@@ -121,7 +120,7 @@ The contribution to the score of a parent item by a suspiciously linked child is
 | [NJF-06.5.1](NJF.md#njf-06.5.1) |  If the service does not accept any name candidate as singleton, then the service does not accept the object candidate. | 0.00 |
 | [NJF-06.5.2](NJF.md#njf-06.5.2) |  If the service does not accept any value candidate as singleton, then the service does not accept the object candidate. | 0.00 |
 | [NJF-06.6](NJF.md#njf-06.6) |  The service accept the nested objects. | 0.00 |
-| [NJF-06.6.0](NJF.md#njf-06.6.0) |  The acceptance of nested arrays does not depend on the depth of nesting | 0.00 |
+| [NJF-06.6.0](NJF.md#njf-06.6.0) |  The acceptance of nested objects does not depend on the depth of nesting. | 0.00 |
 | [NJF-06.7](NJF.md#njf-06.7) |  The service does only accept comma as member separator. | 0.00 |
 | [NJF-06.7.1](NJF.md#njf-06.7.1) |  The service accepts comma as member separator. | 0.00 |
 | [NJF-06.7.2](NJF.md#njf-06.7.2) |  The service does not accept any other member separator. | 0.00 |
@@ -148,12 +147,12 @@ The contribution to the score of a parent item by a suspiciously linked child is
 | [NJF-12](NJF.md#njf-12) |  The service decodes UTF-8 data. | 0.00 |
 | [NJF-12.1](NJF.md#njf-12.1) |  The service rejects malformed UTF-8 data. | 0.00 |
 | [NJF-12.2](NJF.md#njf-12.2) |  The service rejects "overlong sequences". | 0.00 |
-| [NJF-12.3](NJF.md#njf-12.3) |  The service rejects single escaped and unescaped, and paired unescaped utf-16 surrogates;well-formed. | 0.00 |
+| [NJF-12.3](NJF.md#njf-12.3) |  The service rejects single escaped and unescaped, and paired unescaped utf-16 surrogates. | 0.00 |
 | [NJF-12.5](NJF.md#njf-12.5) |  The service accepts Non-Characters. | 0.00 |
 | [NJF-12.6](NJF.md#njf-12.6) |  The service accepts well-formed UTF-8 data. | 0.00 |
 | [NJF-13](NJF.md#njf-13) |  The service accepts JSON data consisting of combinations of the data types. | 0.00 |
 | [NJF-14](NJF.md#njf-14) |  The service accepts a single complete UTF-8 byte order mark at the beginning of the input only. | 0.00 |
-| [NJF-14.1](NJF.md#njf-14.1) |  The service accepts a single UTF-8 byte order mark in the first three characters of the input. | 0.00 |
+| [NJF-14.1](NJF.md#njf-14.1) |  If the service accepts an input containing no BOM, then it accepts a single UTF-8 byte order mark followed by that input. | 0.00 |
 | [NJF-14.2](NJF.md#njf-14.2) |  The service does not accept multiple UTF-8 byte order marks. | 0.00 |
 | [NJF-14.3](NJF.md#njf-14.3) |  The service does not accept incomplete or perturbed UTF-8 byte order marks within the first three characters of the input. | 0.00 |
 | [NJF-14.4](NJF.md#njf-14.4) |  The service does not accept UTF-16 and UTF-32 byte order marks instead of the UTF-8 byte order mark. | 0.00 |
@@ -222,20 +221,20 @@ The contribution to the score of a parent item by a suspiciously linked child is
 | Item   | Summary | Score |
 |--------|---------|-------|
 | [TA-ANALYSIS](TA.md#ta-analysis) |  Collected data from tests and monitoring of deployed software is analysed according to specified objectives. | 0.00 |
-| [TA-BEHAVIOURS](TA.md#ta-behaviours) |  Expected or required behaviours for JSON-Library are identified, specified, verified and validated based on analysis. | 0.00 |
-| [TA-CONFIDENCE](TA.md#ta-confidence) |  Confidence in JSON-Library is measured based on results of analysis. | 0.00 |
-| [TA-CONSTRAINTS](TA.md#ta-constraints) |  Constraints on adaptation and deployment of JSON-Library are specified. | 0.00 |
+| [TA-BEHAVIOURS](TA.md#ta-behaviours) |  Expected or required behaviours for nlohmann/json library are identified, specified, verified and validated based on analysis. | 0.00 |
+| [TA-CONFIDENCE](TA.md#ta-confidence) |  Confidence in nlohmann/json library is measured based on results of analysis. | 0.00 |
+| [TA-CONSTRAINTS](TA.md#ta-constraints) |  Constraints on adaptation and deployment of nlohmann/json library are specified. | 0.00 |
 | [TA-DATA](TA.md#ta-data) |  Data is collected from tests, and from monitoring of deployed software, according to specified objectives. | 0.00 |
 | [TA-FIXES](TA.md#ta-fixes) |  Known bugs or misbehaviours are analysed and triaged, and critical fixes or mitigations are implemented or applied. | 0.00 |
 | [TA-INDICATORS](TA.md#ta-indicators) |  Advanced warning indicators for misbehaviours are identified, and monitoring mechanisms are specified, verified and validated based on analysis. | 0.00 |
-| [TA-INPUTS](TA.md#ta-inputs) |  All inputs to JSON-Library are assessed, to identify potential risks and issues. | 0.00 |
-| [TA-ITERATIONS](TA.md#ta-iterations) |  All constructed iterations of JSON-Library include source code, build instructions, tests, results and attestations. | 0.00 |
-| [TA-METHODOLOGIES](TA.md#ta-methodologies) |  Manual methodologies applied for JSON-Library by contributors, and their results, are managed according to specified objectives. | 0.00 |
-| [TA-MISBEHAVIOURS](TA.md#ta-misbehaviours) |  Prohibited misbehaviours for JSON-Library are identified, and mitigations are specified, verified and validated based on analysis. | 0.00 |
-| [TA-RELEASES](TA.md#ta-releases) |  Construction of JSON-Library releases is fully repeatable and the results are fully reproducible, with any exceptions documented and justified. | 0.00 |
-| [TA-SUPPLY_CHAIN](TA.md#ta-supply_chain) |  All sources for JSON-Library and tools are mirrored in our controlled environment. | 0.00 |
-| [TA-TESTS](TA.md#ta-tests) |  All tests for JSON-Library, and its build and test environments, are constructed from controlled/mirrored sources and are reproducible, with any exceptions documented. | 0.00 |
-| [TA-UPDATES](TA.md#ta-updates) |  JSON-Library components, configurations and tools are updated under specified change and configuration management controls. | 0.00 |
+| [TA-INPUTS](TA.md#ta-inputs) |  All inputs to nlohmann/json library are assessed, to identify potential risks and issues. | 0.00 |
+| [TA-ITERATIONS](TA.md#ta-iterations) |  All constructed iterations of nlohmann/json library include source code, build instructions, tests, results and attestations. | 0.00 |
+| [TA-METHODOLOGIES](TA.md#ta-methodologies) |  Manual methodologies applied for nlohmann/json library by contributors, and their results, are managed according to specified objectives. | 0.00 |
+| [TA-MISBEHAVIOURS](TA.md#ta-misbehaviours) |  Prohibited misbehaviours for nlohmann/json library are identified, and mitigations are specified, verified and validated based on analysis. | 0.00 |
+| [TA-RELEASES](TA.md#ta-releases) |  Construction of nlohmann/json library releases is fully repeatable and the results are fully reproducible, with any exceptions documented and justified. | 0.00 |
+| [TA-SUPPLY_CHAIN](TA.md#ta-supply_chain) |  All sources for nlohmann/json library and tools are mirrored in our controlled environment. | 0.00 |
+| [TA-TESTS](TA.md#ta-tests) |  All tests for nlohmann/json library, and its build and test environments, are constructed from controlled/mirrored sources and are reproducible, with any exceptions documented. | 0.00 |
+| [TA-UPDATES](TA.md#ta-updates) |  nlohmann/json library components, configurations and tools are updated under specified change and configuration management controls. | 0.00 |
 | [TA-VALIDATION](TA.md#ta-validation) |  All specified tests are executed repeatedly, under defined conditions in controlled environments, according to specified objectives. | 0.00 |
 
 ## Compliance for TIJ
@@ -273,18 +272,18 @@ The contribution to the score of a parent item by a suspiciously linked child is
 
 | Item   | Summary | Score |
 |--------|---------|-------|
-| [TRUSTABLE-SOFTWARE](TRUSTABLE.md#trustable-software) |  This release of JSON-Library is Trustable. | 0.00 |
+| [TRUSTABLE-SOFTWARE](TRUSTABLE.md#trustable-software) |  This release of JSON-Library also reffered in the documentation as nlohmann/json library is Trustable. | 0.00 |
 
 ## Compliance for TT
 
 | Item   | Summary | Score |
 |--------|---------|-------|
-| [TT-CHANGES](TT.md#tt-changes) |  JSON-Library is actively maintained, with regular updates to dependencies, and changes are verified to prevent regressions. | 0.00 |
-| [TT-CONFIDENCE](TT.md#tt-confidence) |  Confidence in JSON-Library is achieved by measuring and analysing behaviour and evidence over time. | 0.00 |
-| [TT-CONSTRUCTION](TT.md#tt-construction) |  Tools are provided to build JSON-Library from trusted sources (also provided) with full reproducibility. | 0.00 |
-| [TT-EXPECTATIONS](TT.md#tt-expectations) |  Documentation is provided, specifying what JSON-Library is expected to do, and what it must not do, and how this is verified. | 0.00 |
-| [TT-PROVENANCE](TT.md#tt-provenance) |  All inputs (and attestations for claims) for JSON-Library are provided with known provenance. | 0.00 |
-| [TT-RESULTS](TT.md#tt-results) |  Evidence is provided to demonstrate that JSON-Library does what it is supposed to do, and does not do what it must not do. | 0.00 |
+| [TT-CHANGES](TT.md#tt-changes) |  nlohmann/json library is actively maintained, with regular updates to dependencies, and changes are verified to prevent regressions. | 0.00 |
+| [TT-CONFIDENCE](TT.md#tt-confidence) |  Confidence in nlohmann/json library is achieved by measuring and analysing behaviour and evidence over time. | 0.00 |
+| [TT-CONSTRUCTION](TT.md#tt-construction) |  Tools are provided to build nlohmann/json library from trusted sources (also provided) with full reproducibility. | 0.00 |
+| [TT-EXPECTATIONS](TT.md#tt-expectations) |  Documentation is provided, specifying what nlohmann/json library is expected to do, and what it must not do, and how this is verified. | 0.00 |
+| [TT-PROVENANCE](TT.md#tt-provenance) |  All inputs (and attestations for claims) for nlohmann/json library are provided with known provenance. | 0.00 |
+| [TT-RESULTS](TT.md#tt-results) |  Evidence is provided to demonstrate that nlohmann/json library does what it is supposed to do, and does not do what it must not do. | 0.00 |
 
 ## Compliance for WFJ
 
@@ -305,6 +304,6 @@ The contribution to the score of a parent item by a suspiciously linked child is
 _Generated for: Software_
 
 * _Repository root: /home/runner/work/json_dev/json_dev_
-* _Commit SHA: e8169d81_
-* _Commit date/time: Fri Aug 29 11:48:02 2025_
-* _Commit tag: e8169d8124331c0431fb7dc6753c9eff1b45f613_
+* _Commit SHA: 416dfd34_
+* _Commit date/time: Mon Sep  8 17:33:36 2025_
+* _Commit tag: 416dfd3401a8e4c569c89dbf8080144f1507f0a4_
