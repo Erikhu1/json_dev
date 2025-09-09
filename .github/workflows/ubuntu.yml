@@ -477,10 +477,12 @@ jobs:
         id: get_branch
         run: |
           if [[ "${{ startsWith(github.event_name, 'pull_request') }}" == "true" ]]; then
-            current_branch="${{ github.event.pull_request.head.ref }}"
-            echo "branch_name=\"$current_branch\"" >> $GITHUB_ENV
+            raw_branch="${{ github.event.pull_request.head.ref }}"
+            sanitized_branch=$(echo "$raw_branch" | grep -E '^[a-zA-Z0-9/_-]+$' || echo "invalid-branch-name")
+            echo "branch_name=$sanitized_branch" >> $GITHUB_ENV
           else
-            current_branch=${GITHUB_REF#refs/heads/}
+            raw_branch=${GITHUB_REF#refs/heads/}
+            sanitized_branch=$(echo "$raw_branch" | grep -E '^[a-zA-Z0-9/_-]+$' || echo "invalid-branch-name")
             echo "branch_name=$current_branch" >> $GITHUB_ENV
           fi
 
