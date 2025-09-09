@@ -28,7 +28,7 @@ jobs:
       - name: Build
         run: cmake --build build --target ci_test_gcc
       - name: Upload test report 
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ci_test_gcc_artefact
           path: build/my_logs/
@@ -65,7 +65,7 @@ jobs:
         run: cmake --build build --target ${{ matrix.target }}
       - name: Upload test report 
         if: ${{ matrix.target != 'ci_reuse_compliance' && matrix.target != 'ci_cpplint' && matrix.target != 'ci_test_amalgamation' && matrix.target != 'ci_cppcheck' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ci_static_analysis_ubuntu_artefact_${{ matrix.target }}
           path: build/my_logs/
@@ -89,7 +89,7 @@ jobs:
         run: cmake --build build --target ${{ matrix.target }}
       - name: Upload test report 
         if: ${{ matrix.target != 'ci_clang_analyze' && matrix.target != 'ci_single_binaries' && matrix.target != 'ci_clang_tidy' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ci_static_analysis_clang_artefact_${{ matrix.target }}
           path: build/my_logs/
@@ -112,7 +112,7 @@ jobs:
         run: cmake --build build --target ${{ matrix.target }}
       - name: Upload test report 
         if: ${{ matrix.target != 'ci_cmake_flags' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ci_cmake_options_artefact_${{ matrix.target }}
           path: build/my_logs/
@@ -149,7 +149,7 @@ jobs:
           path-to-lcov: ${{ github.workspace }}/build/json.info.filtered.noexcept
           fail-on-error: false # Do not fail the workflow if Coveralls fails
       - name: Upload test report 
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ci_test_coverage_artefact
           path: build/my_logs/
@@ -167,7 +167,7 @@ jobs:
       - name: Build
         run: cmake --build build --target ci_test_compiler_g++-${{ matrix.compiler }}
       - name: Upload test report 
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ci_test_compilers_gcc_old_artefact_${{ matrix.compiler }}
           path: build/my_logs/
@@ -188,7 +188,7 @@ jobs:
       - name: Build
         run: cmake --build build --target ci_test_compiler_default
       - name: Upload test report 
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ci_test_compilers_gcc_clang_artefact_${{ matrix.compiler }}
           path: build/my_logs/
@@ -213,7 +213,7 @@ jobs:
       - name: Build
         run: cmake --build build --target ci_test_compiler_default
       - name: Upload test report 
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ci_test_compilers_clang_artefact_${{ matrix.compiler }}
           path: build/my_logs/
@@ -233,7 +233,7 @@ jobs:
       - name: Build
         run: cmake --build build --target ci_test_gcc_cxx${{ matrix.standard }}
       - name: Upload test report 
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ci_test_standards_gcc_artefact_${{ matrix.standard }}
           path: build/my_logs/
@@ -260,7 +260,7 @@ jobs:
         run: cmake --build build --target ci_test_clang_cxx${{ matrix.standard }}
         if: ${{ matrix.stdlib == 'libstdcxx' }}
       - name: Upload test report 
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ci_test_standards_clang_artefact_${{ matrix.stdlib }}_${{ matrix.standard }}
           path: build/my_logs/
@@ -287,7 +287,7 @@ jobs:
           . /opt/intel/oneapi/setvars.sh
           cmake --build build --target ci_icpc
       - name: Upload test report 
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ci_icpc_artefact
           path: build/my_logs/
@@ -378,7 +378,7 @@ jobs:
           mv TestResults.db test_report/TestResults.db
 
       - name: Upload test report 
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: publish_data_artifact
           path: test_report/
@@ -453,7 +453,7 @@ jobs:
           mv TestResults.db test_report/TestResults.db
 
       - name: Upload test report 
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: publish_data_artifact
           path: test_report/
@@ -535,7 +535,7 @@ jobs:
           mv TestResults.db test_report/TestResults.db
 
       - name: Upload test report 
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: publish_data_artifact
           path: test_report/
@@ -563,7 +563,7 @@ jobs:
           echo "ubuntu processed for ${{ inputs.artifact_id }}" > ubuntu/ubuntu.txt
 
       - name: Upload ubuntu artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ${{ inputs.artifact_id }}
           path: ubuntu/
