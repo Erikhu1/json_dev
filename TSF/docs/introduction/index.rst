@@ -37,7 +37,7 @@ Baselibs Project Context
 
 The integration effort is situated within the baselibs project, aimed at qualifying library performance and compliance with internal standards. As part of this project, the TSF process has been embedded into the score repository to generate and analyze evidence regarding software trustability.
 
-Overview of Current Meeting Minutes
+Component classification strategy
 -----------------------------------
 
 - **Process Overview**: The baselibs project is upholding the TSF to define guidelines and generate reliable evidence of compliance, analyzing specific requirements such as MISRA and functionality consistency.
