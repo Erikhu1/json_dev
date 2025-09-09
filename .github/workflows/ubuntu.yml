@@ -477,8 +477,8 @@ jobs:
         id: get_branch
         run: |
           if [[ "${{ startsWith(github.event_name, 'pull_request') }}" == "true" ]]; then
-            current_branch=${{ github.event.pull_request.head.ref }}
-            echo "branch_name=$current_branch" >> $GITHUB_ENV
+            current_branch="${{ github.event.pull_request.head.ref }}"
+            echo "branch_name=\"$current_branch\"" >> $GITHUB_ENV
           else
             current_branch=${GITHUB_REF#refs/heads/}
             echo "branch_name=$current_branch" >> $GITHUB_ENV
