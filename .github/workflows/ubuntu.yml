@@ -319,7 +319,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
       - name: Download all workflow artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
         with:
           path: my_artifacts
 
@@ -394,7 +394,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
       - name: Download all workflow artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
         with:
           path: my_artifacts
 
@@ -469,7 +469,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
       - name: Download all workflow artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
         with:
           path: my_artifacts
 
@@ -547,7 +547,7 @@ jobs:
     if: ${{ always() && (needs.publish_test_data_success.result == 'success' || needs.publish_test_data_failure.result == 'success' || needs.publish_test_data_cancellation.result == 'success') }}
     steps:
       - name: Download test report
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
         with:
           name: publish_data_artifact
 
