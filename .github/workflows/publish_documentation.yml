@@ -109,6 +109,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y jq
+          sudo apt install gh -y
 
       
       - name: Checkout data storage branch
