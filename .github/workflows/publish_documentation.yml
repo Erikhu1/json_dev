@@ -100,18 +100,52 @@ jobs:
           TSF/scripts/generate_report.sh "https://${OWNER_NAME}.github.io/${REPO_NAME}/main"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fetch issues labelled as bug from nlohmann/json
+        id: fetch_issues
+        run: |
+          # Define variables
+          REPO="nlohmann/json" # Target repository
+          OUTPUT_FILE="TSF/misbehaviours.md"
+          START_DATE="2025-04-11"
+
+          # Fetch all issues with label "kind: bug", from nlohmann/json after date of pinned release
+          gh issue list --repo "$REPO" --state all --label "kind: bug" --json number,title,state,createdAt,url \
+            | jq -r --arg DATE "$START_DATE" '
+                map(select(.createdAt >= $DATE)) |
+                map("### [#\(.number)](\(.url))\n- **Title:** \(.title)\n- **State:** \(.state)\n- **Created At:** \(.createdAt)\n") |
+                .[]
+              ' > $OUTPUT_FILE
+
+          echo "Issues have been saved to $OUTPUT_FILE"
       
       - name: Checkout data storage branch
         run: |
           git stash push --include-untracked -- $(git status --porcelain | awk '{print $2}' | grep -v TSF/TrustableScoring.db)
           git checkout save_historical_data
 
+
       - name: Store persistent data
         run: |
           git add TSF/TrustableScoring.db
           git commit -m "Append data storage" || echo "Historical data already up to date."
           git push origin save_historical_data
-      
+
+      - name: Save Issues List to save_historical_data Branch
+        run: |
+          # Ensure folder exists
+          mkdir -p TSF
+
+          # Move the generated issues.md file to the TSF directory
+          mv TSF/misbehaviours.md TSF/misbehaviours.md
+
+          # Add changes to Git
+          git add TSF/misbehaviours.md
+
+          # Commit changes (if there's anything new) and push to origin
+          git commit -m "Updated issues list with label 'kind: bug'" || echo "No changes to commit"
+          git push origin save_historical_data
+
       - name: Recover stash
         run: |
           git checkout $branch_name
