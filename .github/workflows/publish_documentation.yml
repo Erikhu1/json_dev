@@ -126,11 +126,8 @@ jobs:
           REPO="nlohmann/json" # Target repository
           OUTPUT_FILE="TSF/misbehaviours.md"
 
-          #all nlohmann/json labels
-          gh label list --repo "$REPO"
-
           # Fetch all open issues with label "kind: bug" from the nlohmann/json repository
-          gh issue list --repo "$REPO" --state open --limit 10000 --label "confirmed" --json number,title,state,createdAt,url > raw_issues.json
+          gh issue list --repo "$REPO" --state open --limit 10000 --label "kind: bug		#fc2929" --json number,title,state,createdAt,url > raw_issues.json
 
           # Debug: Output raw issue data
           echo "Raw issue data fetched from GitHub:"
