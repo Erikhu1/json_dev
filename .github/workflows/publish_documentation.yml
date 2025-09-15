@@ -145,10 +145,16 @@ jobs:
           # Ensure folder exists
           mkdir -p TSF
 
-          # Move the generated issues.md file to the TSF directory
-          mv TSF/misbehaviours.md TSF/misbehaviours.md
+          # Confirm the generated file exists
+          if [ ! -f TSF/misbehaviours.md ]; then
+            echo "The misbehaviours.md file was not generated. Exiting."
+            exit 1
+          fi
 
-          # Add changes to Git
+          # Checkout the data storage branch
+          git checkout save_historical_data
+
+          # Add the file to Git
           git add TSF/misbehaviours.md
 
           # Commit changes (if there's anything new) and push to origin
