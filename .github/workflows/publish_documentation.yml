@@ -116,23 +116,34 @@ jobs:
           git stash push --include-untracked -- $(git status --porcelain | awk '{print $2}' | grep -v TSF/TrustableScoring.db)
           git checkout save_historical_data
 
-      - name: Fetch issues labelled as bug from nlohmann/json
+      - name: Fetch open issues labelled as bug from nlohmann/json
         id: fetch_issues
         run: |
           # Define variables
           REPO="nlohmann/json" # Target repository
           OUTPUT_FILE="TSF/misbehaviours.md"
-          START_DATE="2025-04-11"
 
-          # Fetch all issues with label "kind: bug", from nlohmann/json after date of pinned release
-          gh issue list --repo "$REPO" --state all --label "kind: bug" --json number,title,state,createdAt,url \
-            | jq -r --arg DATE "$START_DATE" '
-                map(select(.createdAt >= $DATE)) |
-                map("### [#\(.number)](\(.url))\n- **Title:** \(.title)\n- **State:** \(.state)\n- **Created At:** \(.createdAt)\n") |
-                .[]
-              ' > $OUTPUT_FILE
+          # Fetch all open issues with label "kind: bug" from the nlohmann/json repository
+          gh issue list --repo "$REPO" --state open --label "kind: bug" --json number,title,state,createdAt,url > raw_issues.json
 
-          echo "Issues have been saved to $OUTPUT_FILE"
+          # Debug: Output raw issue data
+          echo "Raw issue data fetched from GitHub:"
+          cat raw_issues.json
+
+          # Process raw issues and convert to a markdown file
+          jq -r '
+              map("### [#\(.number)](\(.url))\n- **Title:** \(.title)\n- **State:** \(.state)\n- **Created At:** \(.createdAt)\n") |
+              .[]
+            ' raw_issues.json > $OUTPUT_FILE
+
+          # Ensure the markdown file is created and not empty
+          if [ ! -s $OUTPUT_FILE ]; then
+            echo "# No open issues found with the label 'kind: bug'" > $OUTPUT_FILE
+          fi
+
+          # Debug: Output generated markdown file
+          echo "Markdown file content:"
+          cat $OUTPUT_FILE
 
           mkdir -p TSF
 
