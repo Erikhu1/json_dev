@@ -124,17 +124,7 @@ jobs:
           OUTPUT_FILE="TSF/misbehaviours.md"
 
           # Fetch all open issues with label "kind: bug" from the nlohmann/json repository
-          gh issue list --repo "$REPO" --state open --label "kind: bug" --json number,title,state,createdAt,url > raw_issues.json
-
-          # Debug: Output raw issue data
-          echo "Raw issue data fetched from GitHub:"
-          cat raw_issues.json
-
-          # Process raw issues and convert to a markdown file
-          jq -r '
-              map("### [#\(.number)](\(.url))\n- **Title:** \(.title)\n- **State:** \(.state)\n- **Created At:** \(.createdAt)\n") |
-              .[]
-            ' raw_issues.json > $OUTPUT_FILE
+          gh issue list --repo "$REPO" --state open --label "kind: bug" --json number,title,state,createdAt,url > $OUTPUT_FILE
 
           # Ensure the markdown file is created and not empty
           if [ ! -s $OUTPUT_FILE ]; then
