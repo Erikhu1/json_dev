@@ -137,10 +137,10 @@ jobs:
           mkdir -p TSF
 
           # Move the generated issues.md file to the TSF directory
-          mv TSF/issues.md TSF/issues.md
+          mv TSF/misbehaviours.md TSF/misbehaviours.md
 
           # Add changes to Git
-          git add TSF/issues.md
+          git add TSF/misbehaviours.md
 
           # Commit changes (if there's anything new) and push to origin
           git commit -m "Updated issues list with label 'kind: bug'" || echo "No changes to commit"
