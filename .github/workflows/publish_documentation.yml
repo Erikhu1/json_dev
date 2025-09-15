@@ -148,11 +148,11 @@ jobs:
               map(select(.createdAt > "2025-04-11T00:00:00Z")) |
               map("### [#\(.number)](\(.url))\n- **Title:** \(.title)\n- **State:** \(.state)\n- **Created At:** \(.createdAt)\n") |
               .[]
-            ' raw_closed_issues.json > $OUTPUT_FILE
+            ' raw_closed_issues.json >> $OUTPUT_FILE
 
           # Ensure the markdown file is created and not empty
           if [ ! -s $OUTPUT_FILE ]; then
-            echo "# No open issues found with the label 'kind: bug'" > $OUTPUT_FILE
+            echo "# No open issues found with labels containing 'bug'" > $OUTPUT_FILE
           fi
 
           # Debug: Output generated markdown file
@@ -167,7 +167,7 @@ jobs:
           git add TSF/misbehaviours.md
 
           # Commit changes (if there's anything new) and push to origin
-          git commit -m "Updated issues list with label 'kind: bug'" || echo "No changes to commit"
+          git commit -m "Updated issues list" || echo "No changes to commit"
           git push origin save_historical_data
 
       - name: Store persistent data
