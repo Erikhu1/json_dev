@@ -110,6 +110,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq
 
+      
+      - name: Checkout data storage branch
+        run: |
+          git stash push --include-untracked -- $(git status --porcelain | awk '{print $2}' | grep -v TSF/TrustableScoring.db)
+          git checkout save_historical_data
+
       - name: Fetch issues labelled as bug from nlohmann/json
         id: fetch_issues
         run: |
@@ -127,38 +133,22 @@ jobs:
               ' > $OUTPUT_FILE
 
           echo "Issues have been saved to $OUTPUT_FILE"
-      
-      - name: Checkout data storage branch
-        run: |
-          git stash push --include-untracked -- $(git status --porcelain | awk '{print $2}' | grep -v TSF/TrustableScoring.db)
-          git checkout save_historical_data
 
+          mkdir -p TSF
+
+          # Move the generated issues.md file to the TSF directory
+
+          # Add changes to Git
+          git add TSF/misbehaviours.md
+
+          # Commit changes (if there's anything new) and push to origin
+          git commit -m "Updated issues list with label 'kind: bug'" || echo "No changes to commit"
+          git push origin save_historical_data
 
       - name: Store persistent data
         run: |
           git add TSF/TrustableScoring.db
           git commit -m "Append data storage" || echo "Historical data already up to date."
-          git push origin save_historical_data
-
-      - name: Save Issues List to save_historical_data Branch
-        run: |
-          # Ensure folder exists
-          mkdir -p TSF
-
-          # Confirm the generated file exists
-          if [ ! -f TSF/misbehaviours.md ]; then
-            echo "The misbehaviours.md file was not generated. Exiting."
-            exit 1
-          fi
-
-          # Checkout the data storage branch
-          git checkout save_historical_data
-
-          # Add the file to Git
-          git add TSF/misbehaviours.md
-
-          # Commit changes (if there's anything new) and push to origin
-          git commit -m "Updated issues list with label 'kind: bug'" || echo "No changes to commit"
           git push origin save_historical_data
 
       - name: Recover stash
