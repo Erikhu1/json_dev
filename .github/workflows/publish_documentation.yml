@@ -101,16 +101,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Authenticate with GitHub CLI
-        run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
-
       - name: Install jq
         run: |
           sudo apt-get update
           sudo apt-get install -y jq
+          sudo apt install gh -y
 
-      
+      - name: Authenticate with GitHub CLI
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
       - name: Checkout data storage branch
         run: |
           git stash push --include-untracked -- $(git status --porcelain | awk '{print $2}' | grep -v TSF/TrustableScoring.db)
