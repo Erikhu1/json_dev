@@ -130,7 +130,7 @@ jobs:
           gh label list --repo "$REPO"
 
           # Fetch all open issues with label "kind: bug" from the nlohmann/json repository
-          gh issue list --repo "$REPO" --label "kind: bug" --limit 10000 --json number,title,state,createdAt,url > raw_issues.json
+          gh issue list --repo "nlohmann/json" --label "kind: bug" --limit 10000 --json number,title,state,createdAt,url > raw_issues.json
 
           # Debug: Output raw issue data
           echo "Raw issue data fetched from GitHub:"
