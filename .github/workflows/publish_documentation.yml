@@ -130,17 +130,25 @@ jobs:
           gh label list --repo "$REPO"
 
           # Fetch all open issues with label "kind: bug" from the nlohmann/json repository
-          gh issue list --repo "$REPO" --state open --label "kind: bug" --limit 10000 --json number,title,state,createdAt,url,labels > raw_issues.json
+          gh issue list --repo "$REPO" --state open --limit 10000 --json number,title,state,createdAt,url,labels > raw_open_issues.json
 
-          # Debug: Output raw issue data
-          echo "Raw issue data fetched from GitHub:"
-          cat raw_issues.json
+          # Fetch all closed issues with label "kind: bug" and createdAt after date of release in use from the nlohmann/json repository
+          gh issue list --repo "$REPO" --state closed --limit 10000 --json number,title,state,createdAt,url,labels > raw_closed_issues.json
 
           # Process raw issues and convert to a markdown file
           jq -r '
+              map(select(.labels[]?.name | test("bug"; "i"))) |
               map("### [#\(.number)](\(.url))\n- **Title:** \(.title)\n- **State:** \(.state)\n- **Created At:** \(.createdAt)\n") |
               .[]
-            ' raw_issues.json > $OUTPUT_FILE
+            ' raw_open_issues.json > $OUTPUT_FILE
+
+          # Process raw issues and convert to a markdown file
+          jq -r '
+              map(select(.labels[]?.name | test("bug"; "i"))) |
+              map(select(.createdAt > "2025-04-11T00:00:00Z")) |
+              map("### [#\(.number)](\(.url))\n- **Title:** \(.title)\n- **State:** \(.state)\n- **Created At:** \(.createdAt)\n") |
+              .[]
+            ' raw_closed_issues.json > $OUTPUT_FILE
 
           # Ensure the markdown file is created and not empty
           if [ ! -s $OUTPUT_FILE ]; then
