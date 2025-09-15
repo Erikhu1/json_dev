@@ -130,7 +130,7 @@ jobs:
           gh label list --repo "$REPO"
 
           # Fetch all open issues with label "kind: bug" from the nlohmann/json repository
-          gh issue list --repo "nlohmann/json" --label "kind: bug" --limit 10000 --json number,title,state,createdAt,url > raw_issues.json
+          gh issue list --repo "$REPO" --state open --limit 10000 --json number,title,state,createdAt,url > raw_issues.json
 
           # Debug: Output raw issue data
           echo "Raw issue data fetched from GitHub:"
@@ -138,6 +138,7 @@ jobs:
 
           # Process raw issues and convert to a markdown file
           jq -r '
+              map(select(.labels[]?.name | test("bug"; "i"))) |
               map("### [#\(.number)](\(.url))\n- **Title:** \(.title)\n- **State:** \(.state)\n- **Created At:** \(.createdAt)\n") |
               .[]
             ' raw_issues.json > $OUTPUT_FILE
