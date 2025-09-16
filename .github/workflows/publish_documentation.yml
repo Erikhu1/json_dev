@@ -123,7 +123,7 @@ jobs:
           echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
 
           # Define variables
-          REPO="nlohmann/json" # Target repository
+          REPO="erikhu1/json_dev" # Target repository
           OUTPUT_FILE="TSF/misbehaviours.md"
 
           #all nlohmann/json labels
