@@ -14,13 +14,11 @@
 
 .. _report:
 
-Report
-=================
-
+📈 Report
+##########
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Report
    :glob:
 
-   generated/trustable_graph.rst
-   generated/trustable_report_for_Software.md
+   trustable_report_for_software.rst
