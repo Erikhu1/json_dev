@@ -24,6 +24,26 @@ This presents the compliance for the Assumptions of Use (AOU) in tabular form.
 
 .. needtable::
    :types: aou_req
-   :columns: title as "Item";content as "Summary";id as "item link"
+   :columns: title as "Item";id as "Item link";content as "Summary"; Score
    :style: table
 
+Compliance for JLEX
+####################
+This presents the compliance for the JSON-Library Expectations (JLEX) in tabular form.
+
+.. needtable::
+   :types: TSF
+   :filter: "JLEX" in title
+   :columns: title as "Item";id as "Item link";content as "Summary"; Score
+   :style: table
+
+
+Compliance for WFJ
+####################
+This presents the compliance for the Well Formed JSON (WFJ) in tabular form.
+
+.. needtable::
+   :types: TSF
+   :filter: "WFJ" in title
+   :columns: title as "Item";id as "Item link";content as "Summary"; Score
+   :style: table
