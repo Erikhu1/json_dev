@@ -70,8 +70,9 @@ _None_
     |2025-09-15 17:55:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
     |2025-09-16 09:21:26|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
     |2025-09-16 09:43:30|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
-    |2025-09-16 09:46:19.900185|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
     |2025-09-16 10:35:21|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
+    |2025-09-18 15:22:23.784736|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
+    |2025-09-18 16:31:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
 
 
 
@@ -91,6 +92,9 @@ Expected or required behaviours for nlohmann/json library are identified, specif
 - [JLEX-01](JLEX.md#jlex-01)
 - [JLEX-02](JLEX.md#jlex-02)
 - [JLS-03](JLS.md#jls-03)
+- [AOU-23](AOU.md#aou-23)
+- [AOU-24](AOU.md#aou-24)
+- [AOU-25](AOU.md#aou-25)
 
 
 
@@ -111,14 +115,14 @@ _None_
 ??? example "Graph Data as Table"
     |date-time|TA-BEHAVIOURS|
     |-|-|
-    |2025-08-27 15:36:47|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
-    |2025-08-28 10:06:03|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
-    |2025-08-28 12:28:29|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
-    |2025-08-28 13:02:08|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
-    |2025-08-28 13:32:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
-    |2025-08-29 08:19:28|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
-    |2025-08-29 11:48:02|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
-    |2025-09-16 09:46:19.900185|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
+    |2025-08-27 15:36:47|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|
+    |2025-08-28 10:06:03|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|
+    |2025-08-28 12:28:29|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|
+    |2025-08-28 13:02:08|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|
+    |2025-08-28 13:32:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|
+    |2025-08-29 08:19:28|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|
+    |2025-08-29 11:48:02|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|
+    |2025-09-18 15:22:23.784736|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|
 
 
 
@@ -137,7 +141,7 @@ Confidence in nlohmann/json library is measured based on results of analysis.
 
 - [JLS-08](JLS.md#jls-08)
 - [JLS-09](JLS.md#jls-09)
-- [AOU-12](AOU.md#aou-12)
+- [AOU-10_COMBINED](AOU.md#aou-10_combined)
 - [JLS-20](JLS.md#jls-20)
 
 
@@ -166,7 +170,7 @@ _None_
     |2025-08-28 13:32:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|
     |2025-08-29 08:19:28|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|
     |2025-08-29 11:48:02|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|
-    |2025-09-16 09:46:19.900185|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|
+    |2025-09-18 15:22:23.784736|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|
 
 
 
@@ -218,7 +222,7 @@ _None_
     |2025-08-28 13:32:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
     |2025-08-29 08:19:28|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
     |2025-08-29 11:48:02|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-    |2025-09-16 09:46:19.900185|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+    |2025-09-18 15:22:23.784736|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
 
 
 
@@ -294,8 +298,9 @@ _None_
     |2025-09-15 17:55:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
     |2025-09-16 09:21:26|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
     |2025-09-16 09:43:30|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
-    |2025-09-16 09:46:19.900185|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
     |2025-09-16 10:35:21|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
+    |2025-09-18 15:22:23.784736|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
+    |2025-09-18 16:31:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
 
 
 
@@ -316,7 +321,7 @@ Known bugs or misbehaviours are analysed and triaged, and critical fixes or miti
 - [AOU-01](AOU.md#aou-01)
 - [JLS-04](JLS.md#jls-04)
 - [JLS-11](JLS.md#jls-11)
-- [AOU-10](AOU.md#aou-10)
+- [AOU-10_COMBINED](AOU.md#aou-10_combined)
 
 
 
@@ -374,8 +379,9 @@ _None_
     |2025-09-15 17:55:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|
     |2025-09-16 09:21:26|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|
     |2025-09-16 09:43:30|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|
-    |2025-09-16 09:46:19.900185|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|
     |2025-09-16 10:35:21|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|
+    |2025-09-18 15:22:23.784736|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|
+    |2025-09-18 16:31:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|
 
 
 
@@ -425,7 +431,7 @@ All inputs to nlohmann/json library are assessed, to identify potential risks an
 **Supporting Items:**
 
 - [JLS-04](JLS.md#jls-04)
-- [AOU-13](AOU.md#aou-13)
+- [AOU-10_COMBINED](AOU.md#aou-10_combined)
 
 
 
@@ -453,7 +459,7 @@ _None_
     |2025-08-28 13:32:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
     |2025-08-29 08:19:28|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
     |2025-08-29 11:48:02|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
-    |2025-09-16 09:46:19.900185|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
+    |2025-09-18 15:22:23.784736|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
 
 
 
@@ -499,7 +505,7 @@ _None_
     |2025-08-28 13:32:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
     |2025-08-29 08:19:28|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
     |2025-08-29 11:48:02|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
-    |2025-09-16 09:46:19.900185|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
+    |2025-09-18 15:22:23.784736|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
 
 
 
@@ -516,7 +522,7 @@ Manual methodologies applied for nlohmann/json library by contributors, and thei
 
 **Supporting Items:**
 
-- [AOU-11](AOU.md#aou-11)
+- [AOU-10_COMBINED](AOU.md#aou-10_combined)
 - [JLS-13](JLS.md#jls-13)
 
 
@@ -545,7 +551,7 @@ _None_
     |2025-08-28 13:32:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
     |2025-08-29 08:19:28|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
     |2025-08-29 11:48:02|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
-    |2025-09-16 09:46:19.900185|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
+    |2025-09-18 15:22:23.784736|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
 
 
 
@@ -566,6 +572,9 @@ Prohibited misbehaviours for nlohmann/json library are identified, and mitigatio
 - [JLS-24](JLS.md#jls-24)
 - [JLS-25](JLS.md#jls-25)
 - [AOU-17](AOU.md#aou-17)
+- [AOU-24](AOU.md#aou-24)
+- [AOU-23](AOU.md#aou-23)
+- [AOU-26](AOU.md#aou-26)
 
 
 
@@ -586,14 +595,14 @@ _None_
 ??? example "Graph Data as Table"
     |date-time|TA-MISBEHAVIOURS|
     |-|-|
-    |2025-08-27 15:36:47|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|
-    |2025-08-28 10:06:03|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|
-    |2025-08-28 12:28:29|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|
-    |2025-08-28 13:02:08|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|
-    |2025-08-28 13:32:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|
-    |2025-08-29 08:19:28|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|
-    |2025-08-29 11:48:02|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|
-    |2025-09-16 09:46:19.900185|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|
+    |2025-08-27 15:36:47|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+    |2025-08-28 10:06:03|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+    |2025-08-28 12:28:29|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+    |2025-08-28 13:02:08|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+    |2025-08-28 13:32:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+    |2025-08-29 08:19:28|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+    |2025-08-29 11:48:02|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+    |2025-09-18 15:22:23.784736|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
 
 
 
@@ -640,7 +649,7 @@ _None_
     |2025-08-28 13:32:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
     |2025-08-29 08:19:28|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
     |2025-08-29 11:48:02|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
-    |2025-09-16 09:46:19.900185|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
+    |2025-09-18 15:22:23.784736|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
 
 
 
@@ -687,7 +696,7 @@ _None_
     |2025-08-28 13:32:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
     |2025-08-29 08:19:28|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
     |2025-08-29 11:48:02|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
-    |2025-09-16 09:46:19.900185|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
+    |2025-09-18 15:22:23.784736|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
 
 
 
@@ -733,7 +742,7 @@ _None_
     |2025-08-28 13:32:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
     |2025-08-29 08:19:28|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
     |2025-08-29 11:48:02|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
-    |2025-09-16 09:46:19.900185|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
+    |2025-09-18 15:22:23.784736|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
 
 
 
@@ -780,7 +789,7 @@ _None_
     |2025-08-28 13:32:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
     |2025-08-29 08:19:28|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
     |2025-08-29 11:48:02|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
-    |2025-09-16 09:46:19.900185|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
+    |2025-09-18 15:22:23.784736|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|N/A|
 
 
 
@@ -856,6 +865,7 @@ _None_
     |2025-09-15 17:55:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
     |2025-09-16 09:21:26|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
     |2025-09-16 09:43:30|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
-    |2025-09-16 09:46:19.900185|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
     |2025-09-16 10:35:21|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
+    |2025-09-18 15:22:23.784736|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
+    |2025-09-18 16:31:25|0.00 {style="background-color:hsl(0.0, 100%, 65%)"}|N/A|N/A|
 
