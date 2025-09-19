@@ -14,6 +14,9 @@ references:
         - type: project_website
           url: "https://github.com/nlohmann/json/forks?include=active&page=1&period=&sort_by=last_updated"
           description: "lists all forks of nlohmann/json by last updated"
+        - type: project_website
+          url: "https://github.com/nlohmann/json/pulse"
+          description: "presents activity over the past week"
 evidence:
         type: https_response_time
         configuration:
@@ -21,9 +24,12 @@ evidence:
                 urls:
                     - "https://github.com/nlohmann/json/issues"
                     - "https://github.com/nlohmann/json/graphs/commit-activity"
+                    - "https://github.com/nlohmann/json/graphs/contributors"
                     - "https://github.com/nlohmann/json/forks?include=active&page=1&period=&sort_by=last_updated"
+                    - "https://github.com/nlohmann/json/pulse"
 score:
     Jonas-Kirchhoff: 1.0
+    Erikhu1: 1.0
 ---
 
-The OSS nlohmann_json is widely used, actively maintained and uses github issues to track bugs and misbehaviours.
+The OSS nlohmann/json is widely used, actively maintained and uses github issues to track bugs and misbehaviours.

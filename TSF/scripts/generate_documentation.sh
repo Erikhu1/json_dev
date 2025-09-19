@@ -1,14 +1,13 @@
 #!/bin/bash
 
-TRUDAG_REPORT_FOLDER="TSF/docs/generated"
-mkdir -p "$TRUDAG_REPORT_FOLDER"  # -p ensures no error if the folder already exists
+# generate TSF report
+TSF_SCRIPT_FOLDER=$(dirname "$(realpath $0)")
+# The first input for this script is the base_url used in plot_partial_graphs.py
+# for local testing, "http://localhost:8000" is recommended.
+$TSF_SCRIPT_FOLDER/generate_report.sh $1
 
-trudag publish --validate --output-dir "$TRUDAG_REPORT_FOLDER"
-
-trudag plot -o "$TRUDAG_REPORT_FOLDER/graph.svg"
-
-python3 TSF/scripts/clean_trudag_output.py
-
+# prepare docs
 bazel run //:docs
 
+# run http server
 python3 -m http.server --directory _build

@@ -4,6 +4,5 @@ python3 -m venv .venv
 source .venv/bin/activate
 
 # Install trustable
-pip install --upgrade pip
-pip install trustable --index-url https://gitlab.com/api/v4/projects/66600816/packages/pypi/simple
-pip install pytest
+pip install --require-hashes -r .devcontainer/S-CORE/requirements.txt
+pip install git+https://gitlab.com/CodethinkLabs/trustable/trustable@9957f12171cb898d83df5ae708fdba0a38fece2e

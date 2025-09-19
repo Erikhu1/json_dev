@@ -1,9 +1,10 @@
 import os
 import re
+import sys
 
 # The trudag report is not in standard markdown format, so we need to clean it up.
 # This script will remove specific patterns from the markdown files in the current directory and its subdirectories
-
+# It requires 1 command line argument which is the root folder we want to be processed
 
 # List of regex patterns to remove only the matched part, not the whole line
 replace_by_empty_string_patterns = [
@@ -50,6 +51,52 @@ def remove_invalid_markdown_start(lines: list[str]) -> list[str]:
             return lines[3:]
     return lines
 
+def insert_line(filepath):
+    """Insert a new line '### Compliance for Trustable Tenets' after '## Compliance for TT' in the file."""
+    with open(filepath, 'r', encoding='utf-8') as f:
+        lines = f.readlines()
+
+    modified = False
+    updated_lines = []
+    for line in lines:
+        updated_lines.append(line)
+        if line.strip() == '## Compliance for AOU':
+            updated_lines.append("This presents the compliance for the _Assumptions of Use_ (AOU) in tabular form.\n")
+            modified = True
+        if line.strip() == '## Compliance for JLEX':
+            updated_lines.append("This presents the compliance for the _JSON-Library Expectations_ (JLEX) in tabular form.\n")
+            modified = True
+        if line.strip() == '## Compliance for JLS':
+            updated_lines.append("This presents the compliance for the _JSON-Library Statements_ (JLS) in tabular form.\n")
+            modified = True
+        if line.strip() == '## Compliance for NJF':
+            updated_lines.append("This presents the compliance for the _No JSON Faults_ (NJF) in tabular form.\n")
+            modified = True
+        if line.strip() == '## Compliance for NPF':
+            updated_lines.append("This presents the compliance for the _No Parsing Faults_ (NPF) in tabular form.\n")
+            modified = True
+        if line.strip() == '## Compliance for PJD':
+            updated_lines.append("This presents the compliance for the _Parse JSON Data_ (PJD) in tabular form.\n")
+            modified = True
+        if line.strip() == '## Compliance for TA':
+            updated_lines.append("This presents the compliance for the _Trustable Assertions_ (TA) in tabular form.\n")
+            modified = True
+        if line.strip() == '## Compliance for TIJ':
+            updated_lines.append("This presents the compliance for the _Throw Ill-Formed JSON_ (TIJ) in tabular form.\n")
+            modified = True
+        if line.strip() == '## Compliance for TRUSTABLE':
+            updated_lines.append("This presents the ultimate trustability score for nlohmann/json.\n")
+            modified = True
+        if line.strip() == '## Compliance for TT':
+            updated_lines.append("This presents the compliance for the _Trustable Tenets_ (TT) in tabular form.\n")
+            modified = True
+        if line.strip() == '## Compliance for WFJ':
+            updated_lines.append("This presents the compliance for _Well Formed JSON_ (WFJ) in tabular form.\n")
+            modified = True
+    if modified:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.writelines(updated_lines)
+
 def clean_file(filepath):
     with open(filepath, 'r', encoding='utf-8') as f:
         lines = f.readlines()
@@ -63,10 +110,17 @@ def clean_file(filepath):
         print(f"Cleaned: {filepath}")
 
 def main():
-    for root, _, files in os.walk('.'):
+    input_path = '.'
+    if(len(sys.argv) != 2):
+       sys.exit('ERROR:' + sys.argv[0] + ' expects 1 command line argument which is the processing path. Instead ' + str(len(sys.argv) - 1) + ' arguments were passed.')
+    else:
+        input_path = sys.argv[1]
+
+    for root, _, files in os.walk(input_path):
         for file in files:
             if file.endswith('.md'):
                 clean_file(os.path.join(root, file))
+                insert_line(os.path.join(root, file))
 
 if __name__ == "__main__":
     main()
