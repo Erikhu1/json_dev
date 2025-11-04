@@ -69,7 +69,7 @@ This presents the compliance for the _JSON-Library Statements_ (JLS) in tabular 
 | [JLS-02](JLS.md#jls-02) |  Fuzz testing is used in the original nlohmann/json repository (https://github.com/nlohmann/json) to uncover edge cases and failure modes throughout development. (https://github.com/nlohmann/json/blob/develop/tests/fuzzing.md) | 0.00 |
 | [JLS-03](JLS.md#jls-03) |  Automated tests are reviewed by a Subject Matter Expert to verify they test the properties they claim to. | 0.00 |
 | [JLS-04](JLS.md#jls-04) |  External dependencies are checked for potential security vulnerabilities with each pull request to main. Merging is blocked until all warnings are resolved. | 0.00 |
-| [JLS-05](JLS.md#jls-05) |  The OSS nlohmann/json is widely used, actively maintained and uses github issues to track bugs and misbehaviours. | 0.00 |
+| [JLS-05](JLS.md#jls-05) |  The OSS nlohmann/json is widely used and actively maintained; bugs and misbehaviours are tracked publicly and transparently. | 0.00 |
 | [JLS-06](JLS.md#jls-06) |  Changes to the code (main branch) are applied only after code review and passing of all pipelines. | 0.00 |
 | [JLS-07](JLS.md#jls-07) |  Main branch is protected, i.e. no direct commits are possible. | 0.00 |
 | [JLS-08](JLS.md#jls-08) |  Each statement is scored based on SME reviews or automatic validation functions. (TODO) | 0.00 |
@@ -90,6 +90,7 @@ This presents the compliance for the _JSON-Library Statements_ (JLS) in tabular 
 | [JLS-24](JLS.md#jls-24) |  The nlohmann/json library recognizes malformed JSON and returns an exception. | 0.00 |
 | [JLS-25](JLS.md#jls-25) |  Malicious code changes are mitigated by code reviews, adhering to Eclipse S-core contribution procedures and vigilance from the open-source community. | 0.00 |
 | [JLS-26](JLS.md#jls-26) |  Pipeline execution results are analyzed in the fork and the original nlohmann/json repository. | 0.00 |
+| [JLS-27](JLS.md#jls-27) |  The test coverage for this version of nlohmann/json is monitored by coveralls and stays constant. | 0.00 |
 
 ## Compliance for NJF
 This presents the compliance for the _No JSON Faults_ (NJF) in tabular form.
@@ -313,6 +314,6 @@ This presents the compliance for _Well Formed JSON_ (WFJ) in tabular form.
 _Generated for: Software_
 
 * _Repository root: /home/runner/work/json_dev/json_dev_
-* _Commit SHA: e21fb92649b4a8d646a231723eb2726e47a11d90_
-* _Commit date/time: Tue Nov  4 09:01:33 2025_
-* _Commit tag: e21fb92_
+* _Commit SHA: 8700aba25333d72d14d5fa6337faba41c04792b6_
+* _Commit date/time: Tue Nov  4 15:49:21 2025_
+* _Commit tag: 8700aba_
