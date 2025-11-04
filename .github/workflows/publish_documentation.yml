@@ -98,7 +98,7 @@ jobs:
           if ! gh repo view "$REPO" --json name -q .name; then
             echo "Could not reach the target repository ($REPO). Aborting workflow."
             exit 1
-          fi
+          fi 
 
           # Fetch open issues from the nlohmann/json repository
           gh issue list --repo "$REPO" --state open --limit 10000 --json number,title,state,createdAt,url,labels > raw_open_issues.json
