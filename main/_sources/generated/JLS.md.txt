@@ -9515,7 +9515,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y graphviz
           pip install git+https://gitlab.com/CodethinkLabs/trustable/trustable@9957f12171cb898d83df5ae708fdba0a38fece2e
-
+ 
       - name: Install tools
         run: |
           sudo apt-get update
@@ -9564,7 +9564,7 @@ jobs:
           if ! gh repo view "$REPO" --json name -q .name; then
             echo "Could not reach the target repository ($REPO). Aborting workflow."
             exit 1
-          fi
+          fi 
 
           # Fetch open issues from the nlohmann/json repository
           gh issue list --repo "$REPO" --state open --limit 10000 --json number,title,state,createdAt,url,labels &gt; raw_open_issues.json
@@ -9572,47 +9572,8 @@ jobs:
           # Fetch closed issues from the nlohmann/json repository
           gh issue list --repo "$REPO" --state closed --limit 10000 --json number,title,state,createdAt,url,labels &gt; raw_closed_issues.json
 
-          # Add title to the output file
-          echo "# Misbehaviours Report" &gt; $OUTPUT_FILE
-          echo "" &gt;&gt; $OUTPUT_FILE
-          echo "This report lists known misbehaviours or bugs of v3.12.0 of the nlohmann/json repository. The misbehaviours are compiled from github issues of the nlohmann/json repository, and link to each corresponding issue." &gt;&gt; $OUTPUT_FILE
-          echo "" &gt;&gt; $OUTPUT_FILE
-          # Add subtitle for open issues
-          echo "## Open Issues" &gt;&gt; $OUTPUT_FILE
-          echo "" &gt;&gt; $OUTPUT_FILE
-          # Filter raw open issues for labels containing "bug" and convert to output .md file
-          jq -r '
-              map(select(.labels[]?.name | test("bug"; "i"))) |
-              map("### [#\(.number)](\(.url))\n- **Title:** \(.title)\n- **State:** \(.state)\n- **Created At:** \(.createdAt)\n") |
-              .[]
-            ' raw_open_issues.json &gt;&gt; $OUTPUT_FILE
-          jq -c '
-            .[]
-| select(.labels[]?; .name | test("bug"; "i"))
-| { n: .number
-              , md: "### [#\(.number)](\(.url))\n- **Title:** \(.title)\n- **State:** \(.state)\n- **Created At:** \(.createdAt)\n"
-              }
-          ' raw_open_issues.json |
-          while IFS= read -r rec; do
-            num=$(jq -r '.n' &lt;&lt;&lt; "$rec")
-            md=$(jq -r '.md' &lt;&lt;&lt; "$rec")
-            py_out=$(python3 ./TSF/scripts/identify_nlohmann_issue.py "$num")
-            {
-              printf "%s\n" "$md"
-              printf "%s\n" "$py_out"
-            } &gt;&gt; "$OUTPUT_FILE"
-          done
-          # Add subtitle for closed issues
-          echo "" &gt;&gt; $OUTPUT_FILE
-          echo "## Closed Issues (since v3.12.0)" &gt;&gt; $OUTPUT_FILE
-          echo "" &gt;&gt; $OUTPUT_FILE
-          # Filter raw closed issues for labels containing "bug", created after release date of nlohmann/json version in use, and convert to output .md file
-          jq -r '
-              map(select(.labels[]?.name | test("bug"; "i"))) |
-              map(select(.createdAt &gt; "2025-04-11T00:00:00Z")) |  # Adjust date as needed, 2025-04-11 corresponds to release v3.12.0 of nlohmann/json
-              map("### [#\(.number)](\(.url))\n- **Title:** \(.title)\n- **State:** \(.state)\n- **Created At:** \(.createdAt)\n") |
-              .[]
-            ' raw_closed_issues.json &gt;&gt; $OUTPUT_FILE
+          # print the list of misbehaviours 
+          python3 TSF/scripts/generate_list_of_misbehaviours.py &gt; $OUTPUT_FILE
 
           # Push misbehaviours file to save_historical_data branch
           git add TSF/misbehaviours.md

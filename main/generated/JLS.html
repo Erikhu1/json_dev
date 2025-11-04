@@ -9614,7 +9614,7 @@ All tests in this file were run in the following configurations:
 <span class="w">          </span><span class="no">sudo apt-get update</span>
 <span class="w">          </span><span class="no">sudo apt-get install -y graphviz</span>
 <span class="w">          </span><span class="no">pip install git+https://gitlab.com/CodethinkLabs/trustable/trustable@9957f12171cb898d83df5ae708fdba0a38fece2e</span>
-
+<span class="w"> </span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install tools</span>
 <span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
 <span class="w">          </span><span class="no">sudo apt-get update</span>
@@ -9663,7 +9663,7 @@ All tests in this file were run in the following configurations:
 <span class="w">          </span><span class="no">if ! gh repo view &quot;$REPO&quot; --json name -q .name; then</span>
 <span class="w">            </span><span class="no">echo &quot;Could not reach the target repository ($REPO). Aborting workflow.&quot;</span>
 <span class="w">            </span><span class="no">exit 1</span>
-<span class="w">          </span><span class="no">fi</span>
+<span class="w">          </span><span class="no">fi </span>
 
 <span class="w">          </span><span class="no"># Fetch open issues from the nlohmann/json repository</span>
 <span class="w">          </span><span class="no">gh issue list --repo &quot;$REPO&quot; --state open --limit 10000 --json number,title,state,createdAt,url,labels &amp;gt; raw_open_issues.json</span>
@@ -9671,55 +9671,16 @@ All tests in this file were run in the following configurations:
 <span class="w">          </span><span class="no"># Fetch closed issues from the nlohmann/json repository</span>
 <span class="w">          </span><span class="no">gh issue list --repo &quot;$REPO&quot; --state closed --limit 10000 --json number,title,state,createdAt,url,labels &amp;gt; raw_closed_issues.json</span>
 
-<span class="w">          </span><span class="no"># Add title to the output file</span>
-<span class="w">          </span><span class="no">echo &quot;# Misbehaviours Report&quot; &amp;gt; $OUTPUT_FILE</span>
-<span class="w">          </span><span class="no">echo &quot;&quot; &amp;gt;&amp;gt; $OUTPUT_FILE</span>
-<span class="w">          </span><span class="no">echo &quot;This report lists known misbehaviours or bugs of v3.12.0 of the nlohmann/json repository. The misbehaviours are compiled from github issues of the nlohmann/json repository, and link to each corresponding issue.&quot; &amp;gt;&amp;gt; $OUTPUT_FILE</span>
-<span class="w">          </span><span class="no">echo &quot;&quot; &amp;gt;&amp;gt; $OUTPUT_FILE</span>
-<span class="w">          </span><span class="no"># Add subtitle for open issues</span>
-<span class="w">          </span><span class="no">echo &quot;## Open Issues&quot; &amp;gt;&amp;gt; $OUTPUT_FILE</span>
-<span class="w">          </span><span class="no">echo &quot;&quot; &amp;gt;&amp;gt; $OUTPUT_FILE</span>
-<span class="w">          </span><span class="no"># Filter raw open issues for labels containing &quot;bug&quot; and convert to output .md file</span>
-<span class="w">          </span><span class="no">jq -r &#39;</span>
-<span class="w">              </span><span class="no">map(select(.labels[]?.name | test(&quot;bug&quot;; &quot;i&quot;))) |</span>
-<span class="w">              </span><span class="no">map(&quot;### [#\(.number)](\(.url))\n- **Title:** \(.title)\n- **State:** \(.state)\n- **Created At:** \(.createdAt)\n&quot;) |</span>
-<span class="w">              </span><span class="no">.[]</span>
-<span class="w">            </span><span class="no">&#39; raw_open_issues.json &amp;gt;&amp;gt; $OUTPUT_FILE</span>
-<span class="w">          </span><span class="no">jq -c &#39;</span>
-<span class="w">            </span><span class="no">.[]</span>
-<span class="p p-Indicator">|</span><span class="err"> select(.labels[]?; .name | test(&quot;bug&quot;; &quot;i&quot;))</span>
-<span class="p p-Indicator">|</span><span class="err"> { n: .number</span>
-<span class="w">              </span><span class="no">, md: &quot;### [#\(.number)](\(.url))\n- **Title:** \(.title)\n- **State:** \(.state)\n- **Created At:** \(.createdAt)\n&quot;</span>
-<span class="w">              </span><span class="no">}</span>
-<span class="w">          </span><span class="s">&#39;</span><span class="nv"> </span><span class="s">raw_open_issues.json</span><span class="nv"> </span><span class="s">|</span>
-<span class="w">          </span><span class="s">while</span><span class="nv"> </span><span class="s">IFS=</span><span class="nv"> </span><span class="s">read</span><span class="nv"> </span><span class="s">-r</span><span class="nv"> </span><span class="s">rec;</span><span class="nv"> </span><span class="s">do</span>
-<span class="w">            </span><span class="s">num=$(jq</span><span class="nv"> </span><span class="s">-r</span><span class="nv"> </span><span class="s">&#39;</span><span class="l l-Scalar l-Scalar-Plain">.n&#39; &amp;lt;&amp;lt;&amp;lt; &quot;$rec&quot;)</span>
-<span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">md=$(jq -r &#39;.md&#39; &amp;lt;&amp;lt;&amp;lt; &quot;$rec&quot;)</span>
-<span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">py_out=$(python3 ./TSF/scripts/identify_nlohmann_issue.py &quot;$num&quot;)</span>
-<span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">{</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">printf &quot;%s\n&quot; &quot;$md&quot;</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">printf &quot;%s\n&quot; &quot;$py_out&quot;</span>
-<span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">} &amp;gt;&amp;gt; &quot;$OUTPUT_FILE&quot;</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">done</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain"># Add subtitle for closed issues</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;&quot; &amp;gt;&amp;gt; $OUTPUT_FILE</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;## Closed Issues (since v3.12.0)&quot; &amp;gt;&amp;gt; $OUTPUT_FILE</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;&quot; &amp;gt;&amp;gt; $OUTPUT_FILE</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain"># Filter raw closed issues for labels containing &quot;bug&quot;, created after release date of nlohmann/json version in use, and convert to output .md file</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">jq -r &#39;</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">map(select(.labels[]?.name | test(&quot;bug&quot;; &quot;i&quot;))) |</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">map(select(.createdAt &amp;gt; &quot;2025-04-11T00:00:00Z&quot;)) |</span><span class="w">  </span><span class="c1"># Adjust date as needed, 2025-04-11 corresponds to release v3.12.0 of nlohmann/json</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">map(&quot;### [#\(.number)](\(.url))\n- **Title:** \(.title)\n- **State:** \(.state)\n- **Created At:** \(.createdAt)\n&quot;) |</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">.[]</span>
-<span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">&#39; raw_closed_issues.json &amp;gt;&amp;gt; $OUTPUT_FILE</span>
+<span class="w">          </span><span class="no"># print the list of misbehaviours </span>
+<span class="w">          </span><span class="no">python3 TSF/scripts/generate_list_of_misbehaviours.py &amp;gt; $OUTPUT_FILE</span>
 
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain"># Push misbehaviours file to save_historical_data branch</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">git add TSF/misbehaviours.md</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">git commit -m &quot;Updated issues list&quot; || echo &quot;No changes to commit&quot;</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">git push origin save_historical_data &amp;&amp; git pull</span>
+<span class="w">          </span><span class="no"># Push misbehaviours file to save_historical_data branch</span>
+<span class="w">          </span><span class="no">git add TSF/misbehaviours.md</span>
+<span class="w">          </span><span class="no">git commit -m &quot;Updated issues list&quot; || echo &quot;No changes to commit&quot;</span>
+<span class="w">          </span><span class="no">git push origin save_historical_data &amp;&amp; git pull</span>
 <span class="w">      </span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">- name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Load persistent data</span>
-<span class="w w-Error">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Load persistent data</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
 <span class="w">          </span><span class="no">if ! git ls-tree --name-only origin/save_historical_data TSF/TrustableScoring.db | grep TSF/TrustableScoring.db; then</span>
 <span class="w">            </span><span class="no">mkdir -p TSF</span>
 <span class="w">            </span><span class="no">touch TSF/TrustableScoring.db</span>
@@ -9730,7 +9691,7 @@ All tests in this file were run in the following configurations:
 <span class="w">          </span><span class="no">git checkout $branch_name</span>
 <span class="w">          </span><span class="no">git checkout save_historical_data -- TSF/TrustableScoring.db</span>
 
-<span class="w w-Error">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Generate trudag report</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Generate trudag report</span>
 <span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
 <span class="w">          </span><span class="no">REPO_FULL=&quot;${{ github.repository }}&quot;</span>
 <span class="w">          </span><span class="no">REPO_NAME=&quot;${REPO_FULL#*/}&quot;</span>
@@ -9763,7 +9724,7 @@ All tests in this file were run in the following configurations:
 <span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TSF/docs/generated/</span>
 <span class="w">          </span><span class="nt">if-no-files-found</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">error</span>
 <span class="w">          </span>
-<span class="w w-Error">  </span><span class="nt">build-docs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build-docs</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">run-trudag</span>
 <span class="w">    </span><span class="c1"># the eclipse-score/cicd-workflow docs.yml is adjusted to download the trudag report artifact before building the documentation</span>
 <span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/docs.yml</span>
