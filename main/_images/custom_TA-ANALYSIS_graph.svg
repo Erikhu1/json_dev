@@ -12,7 +12,7 @@
 <!-- TRUSTABLE&#45;SOFTWARE -->
 <g id="node1" class="node">
 <title>TRUSTABLE&#45;SOFTWARE</title>
-<g id="a_node1"><a xlink:href="https://score-json.github.io/json/main/_images/custom_TRUSTABLE-SOFTWARE_graph.svg" xlink:title="TRUSTABLE&#45;SOFTWARE: This\nrelease of JSON&#45;Library\nalso reffered in the\ndocumentation as nlohmann/json\nlibrary is Trustable.\n" target="_top">
+<g id="a_node1"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_TRUSTABLE-SOFTWARE_graph.svg" xlink:title="TRUSTABLE&#45;SOFTWARE: This\nrelease of JSON&#45;Library\nalso reffered in the\ndocumentation as nlohmann/json\nlibrary is Trustable.\n" target="_top">
 <polygon fill="none" stroke="black" points="487.5,-794 239.5,-794 239.5,-711 487.5,-711 487.5,-794"/>
 <text text-anchor="middle" x="363.5" y="-778.8" font-family="Open Sans" font-size="14.00">TRUSTABLE&#45;SOFTWARE: This</text>
 <text text-anchor="middle" x="363.5" y="-763.8" font-family="Open Sans" font-size="14.00">release of JSON&#45;Library</text>
@@ -25,7 +25,7 @@
 <!-- TT&#45;RESULTS -->
 <g id="node6" class="node">
 <title>TT&#45;RESULTS</title>
-<g id="a_node6"><a xlink:href="https://score-json.github.io/json/main/_images/custom_TT-RESULTS_graph.svg" xlink:title="TT&#45;RESULTS: Evidence\nis provided to demonstrate\nthat nlohmann/json library\ndoes what it is supposed\nto do, and does not do\nwhat it must not do.\n" target="_top">
+<g id="a_node6"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_TT-RESULTS_graph.svg" xlink:title="TT&#45;RESULTS: Evidence\nis provided to demonstrate\nthat nlohmann/json library\ndoes what it is supposed\nto do, and does not do\nwhat it must not do.\n" target="_top">
 <polygon fill="none" stroke="black" points="465.5,-567 261.5,-567 261.5,-469 465.5,-469 465.5,-567"/>
 <text text-anchor="middle" x="363.5" y="-551.8" font-family="Open Sans" font-size="14.00">TT&#45;RESULTS: Evidence</text>
 <text text-anchor="middle" x="363.5" y="-536.8" font-family="Open Sans" font-size="14.00">is provided to demonstrate</text>
@@ -45,7 +45,7 @@
 <!-- AOU&#45;19 -->
 <g id="node2" class="node">
 <title>AOU&#45;19</title>
-<g id="a_node2"><a xlink:href="https://score-json.github.io/json/main/generated/AOU.html#aou-19" xlink:title="AOU&#45;19: The integrator\nshall analyze monitoring\ndata systematically to\ndetect trends and identify\nissues, as long as nlohmann/json\nis actively used. " target="_top">
+<g id="a_node2"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/AOU.html#aou-19" xlink:title="AOU&#45;19: The integrator\nshall analyze monitoring\ndata systematically to\ndetect trends and identify\nissues, as long as nlohmann/json\nis actively used. " target="_top">
 <polygon fill="none" stroke="black" points="247,-98 0,-98 0,0 247,0 247,-98"/>
 <text text-anchor="middle" x="123.5" y="-82.8" font-family="Open Sans" font-size="14.00">AOU&#45;19: The integrator</text>
 <text text-anchor="middle" x="123.5" y="-67.8" font-family="Open Sans" font-size="14.00">shall analyze monitoring</text>
@@ -59,7 +59,7 @@
 <!-- JLS&#45;17 -->
 <g id="node3" class="node">
 <title>JLS&#45;17</title>
-<g id="a_node3"><a xlink:href="https://score-json.github.io/json/main/generated/JLS.html#jls-17" xlink:title="JLS&#45;17: A github workflow\ncalculates the fraction\nof expectations covered\nby tests (TODO). " target="_top">
+<g id="a_node3"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/JLS.html#jls-17" xlink:title="JLS&#45;17: A github workflow\ncalculates the fraction\nof expectations covered\nby tests (TODO). " target="_top">
 <polygon fill="none" stroke="black" points="461.5,-83 265.5,-83 265.5,-15 461.5,-15 461.5,-83"/>
 <text text-anchor="middle" x="363.5" y="-67.8" font-family="Open Sans" font-size="14.00">JLS&#45;17: A github workflow</text>
 <text text-anchor="middle" x="363.5" y="-52.8" font-family="Open Sans" font-size="14.00">calculates the fraction</text>
@@ -71,7 +71,7 @@
 <!-- JLS&#45;26 -->
 <g id="node4" class="node">
 <title>JLS&#45;26</title>
-<g id="a_node4"><a xlink:href="https://score-json.github.io/json/main/generated/JLS.html#jls-26" xlink:title="JLS&#45;26: Pipeline execution\nresults are analyzed\nin the fork and the original\nnlohmann/json repository.\n" target="_top">
+<g id="a_node4"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/JLS.html#jls-26" xlink:title="JLS&#45;26: Pipeline execution\nresults are analyzed\nin the fork and the original\nnlohmann/json repository.\n" target="_top">
 <polygon fill="none" stroke="black" points="682,-83 479,-83 479,-15 682,-15 682,-83"/>
 <text text-anchor="middle" x="580.5" y="-67.8" font-family="Open Sans" font-size="14.00">JLS&#45;26: Pipeline execution</text>
 <text text-anchor="middle" x="580.5" y="-52.8" font-family="Open Sans" font-size="14.00">results are analyzed</text>
@@ -83,7 +83,7 @@
 <!-- TA&#45;ANALYSIS -->
 <g id="node5" class="node">
 <title>TA&#45;ANALYSIS</title>
-<g id="a_node5"><a xlink:href="https://score-json.github.io/json/main/_images/custom_TA-ANALYSIS_graph.svg" xlink:title="TA&#45;ANALYSIS: Collected\ndata from tests and monitoring\nof deployed software\nis analysed according\nto specified objectives.\n" target="_top">
+<g id="a_node5"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_TA-ANALYSIS_graph.svg" xlink:title="TA&#45;ANALYSIS: Collected\ndata from tests and monitoring\nof deployed software\nis analysed according\nto specified objectives.\n" target="_top">
 <polygon fill="none" stroke="black" points="480,-325 247,-325 247,-242 480,-242 480,-325"/>
 <text text-anchor="middle" x="363.5" y="-309.8" font-family="Open Sans" font-size="14.00">TA&#45;ANALYSIS: Collected</text>
 <text text-anchor="middle" x="363.5" y="-294.8" font-family="Open Sans" font-size="14.00">data from tests and monitoring</text>

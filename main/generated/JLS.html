@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/JLS';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
-        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://score-json.github.io/json/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://Erikhu1.github.io/json_dev/versions.json';
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = '';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
@@ -450,7 +450,7 @@
 
 <span class="nt">permissions</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
-
+<span class="c1">##</span>
 <span class="nt">jobs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">labeler</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
@@ -461,6 +461,16 @@
 <span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/labeler.yml</span>
 <span class="w">    </span><span class="nt">with</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;labeler-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
+<span class="w">  </span><span class="nt">SME_review_checker</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">      </span><span class="nt">pull-requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run SME_review_checker Workflow</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;pull_request&#39; }}</span><span class="w"> </span><span class="c1"># only run SME_review_checker for PRs</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/SME_review_checker.yml</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SME_review_checker-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
 
 <span class="w">  </span><span class="nt">check_amalgamation</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Amalgamation Workflow</span>
@@ -503,11 +513,11 @@
 <span class="w">  </span><span class="nt">collect_artifacts_pr</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Collect</span><span class="nv"> </span><span class="s">Results</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">Deploy</span><span class="nv"> </span><span class="s">(PR)&quot;</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;pull_request&#39;</span>
-<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">SME_review_checker</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">SME_review_checker</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
 
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
@@ -9450,7 +9460,7 @@ All tests in this file were run in the following configurations:
 
 <span class="nt">permissions</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
-
+<span class="c1">##</span>
 <span class="nt">jobs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">labeler</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
@@ -9461,6 +9471,16 @@ All tests in this file were run in the following configurations:
 <span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/labeler.yml</span>
 <span class="w">    </span><span class="nt">with</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;labeler-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
+<span class="w">  </span><span class="nt">SME_review_checker</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">      </span><span class="nt">pull-requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run SME_review_checker Workflow</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;pull_request&#39; }}</span><span class="w"> </span><span class="c1"># only run SME_review_checker for PRs</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/SME_review_checker.yml</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SME_review_checker-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
 
 <span class="w">  </span><span class="nt">check_amalgamation</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Amalgamation Workflow</span>
@@ -9503,11 +9523,11 @@ All tests in this file were run in the following configurations:
 <span class="w">  </span><span class="nt">collect_artifacts_pr</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Collect</span><span class="nv"> </span><span class="s">Results</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">Deploy</span><span class="nv"> </span><span class="s">(PR)&quot;</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;pull_request&#39;</span>
-<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">SME_review_checker</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">SME_review_checker</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
 
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
@@ -9879,7 +9899,7 @@ All tests in this file were run in the following configurations:
 
 <span class="nt">permissions</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
-
+<span class="c1">##</span>
 <span class="nt">jobs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">labeler</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
@@ -9890,6 +9910,16 @@ All tests in this file were run in the following configurations:
 <span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/labeler.yml</span>
 <span class="w">    </span><span class="nt">with</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;labeler-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
+<span class="w">  </span><span class="nt">SME_review_checker</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">      </span><span class="nt">pull-requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run SME_review_checker Workflow</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;pull_request&#39; }}</span><span class="w"> </span><span class="c1"># only run SME_review_checker for PRs</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/SME_review_checker.yml</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SME_review_checker-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
 
 <span class="w">  </span><span class="nt">check_amalgamation</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Amalgamation Workflow</span>
@@ -9932,11 +9962,11 @@ All tests in this file were run in the following configurations:
 <span class="w">  </span><span class="nt">collect_artifacts_pr</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Collect</span><span class="nv"> </span><span class="s">Results</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">Deploy</span><span class="nv"> </span><span class="s">(PR)&quot;</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;pull_request&#39;</span>
-<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">SME_review_checker</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">SME_review_checker</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
 
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
@@ -11056,7 +11086,7 @@ All tests in this file were run in the following configurations:
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/score-json/json/edit/main/docs/generated/JLS.md">
+    <a href="https://github.com/Erikhu1/json_dev/edit/main/docs/generated/JLS.md">
       <i class="fa-solid fa-pencil"></i>
       
       

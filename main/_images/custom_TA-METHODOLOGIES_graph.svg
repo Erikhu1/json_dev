@@ -12,7 +12,7 @@
 <!-- TRUSTABLE&#45;SOFTWARE -->
 <g id="node1" class="node">
 <title>TRUSTABLE&#45;SOFTWARE</title>
-<g id="a_node1"><a xlink:href="https://score-json.github.io/json/main/_images/custom_TRUSTABLE-SOFTWARE_graph.svg" xlink:title="TRUSTABLE&#45;SOFTWARE: This\nrelease of JSON&#45;Library\nalso reffered in the\ndocumentation as nlohmann/json\nlibrary is Trustable.\n" target="_top">
+<g id="a_node1"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_TRUSTABLE-SOFTWARE_graph.svg" xlink:title="TRUSTABLE&#45;SOFTWARE: This\nrelease of JSON&#45;Library\nalso reffered in the\ndocumentation as nlohmann/json\nlibrary is Trustable.\n" target="_top">
 <polygon fill="none" stroke="black" points="364,-824 116,-824 116,-741 364,-741 364,-824"/>
 <text text-anchor="middle" x="240" y="-808.8" font-family="Open Sans" font-size="14.00">TRUSTABLE&#45;SOFTWARE: This</text>
 <text text-anchor="middle" x="240" y="-793.8" font-family="Open Sans" font-size="14.00">release of JSON&#45;Library</text>
@@ -25,7 +25,7 @@
 <!-- TT&#45;CONFIDENCE -->
 <g id="node5" class="node">
 <title>TT&#45;CONFIDENCE</title>
-<g id="a_node5"><a xlink:href="https://score-json.github.io/json/main/_images/custom_TT-CONFIDENCE_graph.svg" xlink:title="TT&#45;CONFIDENCE: Confidence\nin nlohmann/json library\nis achieved by measuring\nand analysing behaviour\nand evidence over time.\n" target="_top">
+<g id="a_node5"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_TT-CONFIDENCE_graph.svg" xlink:title="TT&#45;CONFIDENCE: Confidence\nin nlohmann/json library\nis achieved by measuring\nand analysing behaviour\nand evidence over time.\n" target="_top">
 <polygon fill="none" stroke="black" points="349,-597 131,-597 131,-514 349,-514 349,-597"/>
 <text text-anchor="middle" x="240" y="-581.8" font-family="Open Sans" font-size="14.00">TT&#45;CONFIDENCE: Confidence</text>
 <text text-anchor="middle" x="240" y="-566.8" font-family="Open Sans" font-size="14.00">in nlohmann/json library</text>
@@ -44,7 +44,7 @@
 <!-- AOU&#45;10_COMBINED -->
 <g id="node2" class="node">
 <title>AOU&#45;10_COMBINED</title>
-<g id="a_node2"><a xlink:href="https://score-json.github.io/json/main/generated/AOU.html#aou-10_combined" xlink:title="AOU&#45;10_COMBINED: The\nintegrator shall evaluate\nthe provided evidence\nand supplement it where\nnecessary, whenever the\ntrustability documentation\nof nlohmann/json is reviewed.\n" target="_top">
+<g id="a_node2"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/AOU.html#aou-10_combined" xlink:title="AOU&#45;10_COMBINED: The\nintegrator shall evaluate\nthe provided evidence\nand supplement it where\nnecessary, whenever the\ntrustability documentation\nof nlohmann/json is reviewed.\n" target="_top">
 <polygon fill="none" stroke="black" points="224,-113 0,-113 0,0 224,0 224,-113"/>
 <text text-anchor="middle" x="112" y="-97.8" font-family="Open Sans" font-size="14.00">AOU&#45;10_COMBINED: The</text>
 <text text-anchor="middle" x="112" y="-82.8" font-family="Open Sans" font-size="14.00">integrator shall evaluate</text>
@@ -59,7 +59,7 @@
 <!-- JLS&#45;13 -->
 <g id="node3" class="node">
 <title>JLS&#45;13</title>
-<g id="a_node3"><a xlink:href="https://score-json.github.io/json/main/generated/JLS.html#jls-13" xlink:title="JLS&#45;13: The S&#45;Core methodologies\nare followed. " target="_top">
+<g id="a_node3"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/JLS.html#jls-13" xlink:title="JLS&#45;13: The S&#45;Core methodologies\nare followed. " target="_top">
 <polygon fill="none" stroke="black" points="494,-75.5 242,-75.5 242,-37.5 494,-37.5 494,-75.5"/>
 <text text-anchor="middle" x="368" y="-60.3" font-family="Open Sans" font-size="14.00">JLS&#45;13: The S&#45;Core methodologies</text>
 <text text-anchor="middle" x="368" y="-45.3" font-family="Open Sans" font-size="14.00">are followed. </text>
@@ -69,7 +69,7 @@
 <!-- TA&#45;METHODOLOGIES -->
 <g id="node4" class="node">
 <title>TA&#45;METHODOLOGIES</title>
-<g id="a_node4"><a xlink:href="https://score-json.github.io/json/main/_images/custom_TA-METHODOLOGIES_graph.svg" xlink:title="TA&#45;METHODOLOGIES: Manual\nmethodologies applied\nfor nlohmann/json library\nby contributors, and\ntheir results, are managed\naccording to specified\nobjectives. " target="_top">
+<g id="a_node4"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_TA-METHODOLOGIES_graph.svg" xlink:title="TA&#45;METHODOLOGIES: Manual\nmethodologies applied\nfor nlohmann/json library\nby contributors, and\ntheir results, are managed\naccording to specified\nobjectives. " target="_top">
 <polygon fill="none" stroke="black" points="351,-370 129,-370 129,-257 351,-257 351,-370"/>
 <text text-anchor="middle" x="240" y="-354.8" font-family="Open Sans" font-size="14.00">TA&#45;METHODOLOGIES: Manual</text>
 <text text-anchor="middle" x="240" y="-339.8" font-family="Open Sans" font-size="14.00">methodologies applied</text>

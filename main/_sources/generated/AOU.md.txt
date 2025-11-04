@@ -6,7 +6,7 @@ The integrator shall report problems with nlohmann/json's implementation to the 
 
 **Supported Requests:**
 
-- [TA-FIXES](TA.md#ta-fixes)
+- [TA-CONSTRAINTS](TA.md#ta-constraints)
 
 **Supporting Items:**
 
@@ -38,6 +38,7 @@ The integrator shall ensure that the build environment used for nlohmann/json is
 
 **Supported Requests:**
 
+- [TA-CONSTRAINTS](TA.md#ta-constraints)
 - [TA-SUPPLY_CHAIN](TA.md#ta-supply_chain)
 
 **Supporting Items:**
@@ -70,6 +71,7 @@ The integrator shall ensure that integrator-controlled mirrors of the dependenci
 
 **Supported Requests:**
 
+- [TA-CONSTRAINTS](TA.md#ta-constraints)
 - [TA-SUPPLY_CHAIN](TA.md#ta-supply_chain)
 
 **Supporting Items:**
@@ -231,6 +233,7 @@ The integrator shall ensure that all necessary source files and built tools are 
 
 **Supported Requests:**
 
+- [TA-CONSTRAINTS](TA.md#ta-constraints)
 - [TA-RELEASES](TA.md#ta-releases)
 
 **Supporting Items:**
@@ -263,6 +266,7 @@ The integrator shall ensure that advanced warning indicators for misbehaviours a
 
 **Supported Requests:**
 
+- [TA-CONSTRAINTS](TA.md#ta-constraints)
 - [TA-INDICATORS](TA.md#ta-indicators)
 
 **Supporting Items:**
@@ -296,6 +300,7 @@ The integrator shall evaluate the provided evidence and supplement it where nece
 **Supported Requests:**
 
 - [TA-CONFIDENCE](TA.md#ta-confidence)
+- [TA-CONSTRAINTS](TA.md#ta-constraints)
 - [TA-FIXES](TA.md#ta-fixes)
 - [TA-INPUTS](TA.md#ta-inputs)
 - [TA-METHODOLOGIES](TA.md#ta-methodologies)
@@ -362,6 +367,7 @@ The integrator shall maintain mirrors for all code and tools utilized in testing
 
 **Supported Requests:**
 
+- [TA-CONSTRAINTS](TA.md#ta-constraints)
 - [TA-TESTS](TA.md#ta-tests)
 
 **Supporting Items:**
@@ -426,6 +432,7 @@ The integrator shall identify misbehaviours for nlohmann/json, define appropriat
 
 **Supported Requests:**
 
+- [TA-CONSTRAINTS](TA.md#ta-constraints)
 - [TA-MISBEHAVIOURS](TA.md#ta-misbehaviours)
 
 **Supporting Items:**
@@ -458,6 +465,7 @@ The integrator shall ensure that monitoring data from deployed software is accur
 
 **Supported Requests:**
 
+- [TA-CONSTRAINTS](TA.md#ta-constraints)
 - [TA-DATA](TA.md#ta-data)
 
 **Supporting Items:**
@@ -491,6 +499,7 @@ The integrator shall analyze monitoring data systematically to detect trends and
 **Supported Requests:**
 
 - [TA-ANALYSIS](TA.md#ta-analysis)
+- [TA-CONSTRAINTS](TA.md#ta-constraints)
 
 **Supporting Items:**
 
@@ -589,6 +598,7 @@ The integrator shall ensure that numbers are written in base 10, and that except
 **Supported Requests:**
 
 - [NPF-02](NPF.md#npf-02)
+- [TA-CONSTRAINTS](TA.md#ta-constraints)
 
 **Supporting Items:**
 
@@ -621,6 +631,7 @@ The integrator shall ensure that data are complete and error-free, whenever they
 **Supported Requests:**
 
 - [TA-BEHAVIOURS](TA.md#ta-behaviours)
+- [TA-CONSTRAINTS](TA.md#ta-constraints)
 - [TA-MISBEHAVIOURS](TA.md#ta-misbehaviours)
 
 **Supporting Items:**
@@ -654,6 +665,7 @@ The integrator shall ensure that the data do not change during reading, whenever
 **Supported Requests:**
 
 - [TA-BEHAVIOURS](TA.md#ta-behaviours)
+- [TA-CONSTRAINTS](TA.md#ta-constraints)
 - [TA-MISBEHAVIOURS](TA.md#ta-misbehaviours)
 
 **Supporting Items:**
@@ -687,6 +699,7 @@ The integrator shall convince themselves that the behaviour of the used C++ stan
 **Supported Requests:**
 
 - [TA-BEHAVIOURS](TA.md#ta-behaviours)
+- [TA-CONSTRAINTS](TA.md#ta-constraints)
 
 **Supporting Items:**
 
@@ -718,6 +731,7 @@ The integrator shall convince themselves that the misbehaviours of the C++ stand
 
 **Supported Requests:**
 
+- [TA-CONSTRAINTS](TA.md#ta-constraints)
 - [TA-MISBEHAVIOURS](TA.md#ta-misbehaviours)
 
 **Supporting Items:**
@@ -750,6 +764,7 @@ _No Historic Data Found_
 
 **Supported Requests:**
 
+- [TA-CONSTRAINTS](TA.md#ta-constraints)
 - [TA-UPDATES](TA.md#ta-updates)
 
 **Supporting Items:**
@@ -782,6 +797,7 @@ The integrator shall ensure that the known open bugs of nlohmann/json are regula
 
 **Supported Requests:**
 
+- [TA-CONSTRAINTS](TA.md#ta-constraints)
 - [TA-FIXES](TA.md#ta-fixes)
 
 **Supporting Items:**

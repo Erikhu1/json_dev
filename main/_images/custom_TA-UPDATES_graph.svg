@@ -12,7 +12,7 @@
 <!-- TRUSTABLE&#45;SOFTWARE -->
 <g id="node1" class="node">
 <title>TRUSTABLE&#45;SOFTWARE</title>
-<g id="a_node1"><a xlink:href="https://score-json.github.io/json/main/_images/custom_TRUSTABLE-SOFTWARE_graph.svg" xlink:title="TRUSTABLE&#45;SOFTWARE: This\nrelease of JSON&#45;Library\nalso reffered in the\ndocumentation as nlohmann/json\nlibrary is Trustable.\n" target="_top">
+<g id="a_node1"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_TRUSTABLE-SOFTWARE_graph.svg" xlink:title="TRUSTABLE&#45;SOFTWARE: This\nrelease of JSON&#45;Library\nalso reffered in the\ndocumentation as nlohmann/json\nlibrary is Trustable.\n" target="_top">
 <polygon fill="none" stroke="black" points="572,-794 324,-794 324,-711 572,-711 572,-794"/>
 <text text-anchor="middle" x="448" y="-778.8" font-family="Open Sans" font-size="14.00">TRUSTABLE&#45;SOFTWARE: This</text>
 <text text-anchor="middle" x="448" y="-763.8" font-family="Open Sans" font-size="14.00">release of JSON&#45;Library</text>
@@ -25,7 +25,7 @@
 <!-- TT&#45;CHANGES -->
 <g id="node7" class="node">
 <title>TT&#45;CHANGES</title>
-<g id="a_node7"><a xlink:href="https://score-json.github.io/json/main/_images/custom_TT-CHANGES_graph.svg" xlink:title="TT&#45;CHANGES: nlohmann/json\nlibrary is actively maintained,\nwith regular updates\nto dependencies, and\nchanges are verified\nto prevent regressions.\n" target="_top">
+<g id="a_node7"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_TT-CHANGES_graph.svg" xlink:title="TT&#45;CHANGES: nlohmann/json\nlibrary is actively maintained,\nwith regular updates\nto dependencies, and\nchanges are verified\nto prevent regressions.\n" target="_top">
 <polygon fill="none" stroke="black" points="559,-567 337,-567 337,-469 559,-469 559,-567"/>
 <text text-anchor="middle" x="448" y="-551.8" font-family="Open Sans" font-size="14.00">TT&#45;CHANGES: nlohmann/json</text>
 <text text-anchor="middle" x="448" y="-536.8" font-family="Open Sans" font-size="14.00">library is actively maintained,</text>
@@ -45,7 +45,7 @@
 <!-- AOU&#45;27 -->
 <g id="node2" class="node">
 <title>AOU&#45;27</title>
-<g id="a_node2"><a xlink:href="https://score-json.github.io/json/main/generated/AOU.html#aou-27" xlink:title="AOU&#45;27: The integrator\nshall ensure that ChangeLog.md\nis updated whenever the\nlocal mirror of nlohmann/json\nis updated. " target="_top">
+<g id="a_node2"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/AOU.html#aou-27" xlink:title="AOU&#45;27: The integrator\nshall ensure that ChangeLog.md\nis updated whenever the\nlocal mirror of nlohmann/json\nis updated. " target="_top">
 <polygon fill="none" stroke="black" points="242,-83 0,-83 0,0 242,0 242,-83"/>
 <text text-anchor="middle" x="121" y="-67.8" font-family="Open Sans" font-size="14.00">AOU&#45;27: The integrator</text>
 <text text-anchor="middle" x="121" y="-52.8" font-family="Open Sans" font-size="14.00">shall ensure that ChangeLog.md</text>
@@ -58,7 +58,7 @@
 <!-- JLS&#45;06 -->
 <g id="node3" class="node">
 <title>JLS&#45;06</title>
-<g id="a_node3"><a xlink:href="https://score-json.github.io/json/main/generated/JLS.html#jls-06" xlink:title="JLS&#45;06: Changes to the\ncode (main branch) are\napplied only after code\nreview and passing of\nall pipelines. " target="_top">
+<g id="a_node3"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/JLS.html#jls-06" xlink:title="JLS&#45;06: Changes to the\ncode (main branch) are\napplied only after code\nreview and passing of\nall pipelines. " target="_top">
 <polygon fill="none" stroke="black" points="439.5,-83 260.5,-83 260.5,0 439.5,0 439.5,-83"/>
 <text text-anchor="middle" x="350" y="-67.8" font-family="Open Sans" font-size="14.00">JLS&#45;06: Changes to the</text>
 <text text-anchor="middle" x="350" y="-52.8" font-family="Open Sans" font-size="14.00">code (main branch) are</text>
@@ -71,7 +71,7 @@
 <!-- JLS&#45;07 -->
 <g id="node4" class="node">
 <title>JLS&#45;07</title>
-<g id="a_node4"><a xlink:href="https://score-json.github.io/json/main/generated/JLS.html#jls-07" xlink:title="JLS&#45;07: Main branch is\nprotected, i.e. no direct\ncommits are possible.\n" target="_top">
+<g id="a_node4"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/JLS.html#jls-07" xlink:title="JLS&#45;07: Main branch is\nprotected, i.e. no direct\ncommits are possible.\n" target="_top">
 <polygon fill="none" stroke="black" points="636,-68 458,-68 458,-15 636,-15 636,-68"/>
 <text text-anchor="middle" x="547" y="-52.8" font-family="Open Sans" font-size="14.00">JLS&#45;07: Main branch is</text>
 <text text-anchor="middle" x="547" y="-37.8" font-family="Open Sans" font-size="14.00">protected, i.e. no direct</text>
@@ -82,7 +82,7 @@
 <!-- JLS&#45;12 -->
 <g id="node5" class="node">
 <title>JLS&#45;12</title>
-<g id="a_node5"><a xlink:href="https://score-json.github.io/json/main/generated/JLS.html#jls-12" xlink:title="JLS&#45;12: The S&#45;Core change\nprocess management is\nfollowed. " target="_top">
+<g id="a_node5"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/JLS.html#jls-12" xlink:title="JLS&#45;12: The S&#45;Core change\nprocess management is\nfollowed. " target="_top">
 <polygon fill="none" stroke="black" points="855.5,-68 654.5,-68 654.5,-15 855.5,-15 855.5,-68"/>
 <text text-anchor="middle" x="755" y="-52.8" font-family="Open Sans" font-size="14.00">JLS&#45;12: The S&#45;Core change</text>
 <text text-anchor="middle" x="755" y="-37.8" font-family="Open Sans" font-size="14.00">process management is</text>
@@ -93,7 +93,7 @@
 <!-- TA&#45;UPDATES -->
 <g id="node6" class="node">
 <title>TA&#45;UPDATES</title>
-<g id="a_node6"><a xlink:href="https://score-json.github.io/json/main/_images/custom_TA-UPDATES_graph.svg" xlink:title="TA&#45;UPDATES: nlohmann/json\nlibrary components, configurations\nand tools are updated\nunder specified change\nand configuration management\ncontrols. " target="_top">
+<g id="a_node6"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_TA-UPDATES_graph.svg" xlink:title="TA&#45;UPDATES: nlohmann/json\nlibrary components, configurations\nand tools are updated\nunder specified change\nand configuration management\ncontrols. " target="_top">
 <polygon fill="none" stroke="black" points="578,-325 318,-325 318,-227 578,-227 578,-325"/>
 <text text-anchor="middle" x="448" y="-309.8" font-family="Open Sans" font-size="14.00">TA&#45;UPDATES: nlohmann/json</text>
 <text text-anchor="middle" x="448" y="-294.8" font-family="Open Sans" font-size="14.00">library components, configurations</text>

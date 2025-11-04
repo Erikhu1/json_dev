@@ -12,7 +12,7 @@
 <!-- TRUSTABLE&#45;SOFTWARE -->
 <g id="node1" class="node">
 <title>TRUSTABLE&#45;SOFTWARE</title>
-<g id="a_node1"><a xlink:href="https://score-json.github.io/json/main/_images/custom_TRUSTABLE-SOFTWARE_graph.svg" xlink:title="TRUSTABLE&#45;SOFTWARE: This\nrelease of JSON&#45;Library\nalso reffered in the\ndocumentation as nlohmann/json\nlibrary is Trustable.\n" target="_top">
+<g id="a_node1"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_TRUSTABLE-SOFTWARE_graph.svg" xlink:title="TRUSTABLE&#45;SOFTWARE: This\nrelease of JSON&#45;Library\nalso reffered in the\ndocumentation as nlohmann/json\nlibrary is Trustable.\n" target="_top">
 <polygon fill="none" stroke="black" points="252.5,-854 4.5,-854 4.5,-771 252.5,-771 252.5,-854"/>
 <text text-anchor="middle" x="128.5" y="-838.8" font-family="Open Sans" font-size="14.00">TRUSTABLE&#45;SOFTWARE: This</text>
 <text text-anchor="middle" x="128.5" y="-823.8" font-family="Open Sans" font-size="14.00">release of JSON&#45;Library</text>
@@ -25,7 +25,7 @@
 <!-- TT&#45;EXPECTATIONS -->
 <g id="node4" class="node">
 <title>TT&#45;EXPECTATIONS</title>
-<g id="a_node4"><a xlink:href="https://score-json.github.io/json/main/_images/custom_TT-EXPECTATIONS_graph.svg" xlink:title="TT&#45;EXPECTATIONS: Documentation\nis provided, specifying\nwhat nlohmann/json library\nis expected to do, and\nwhat it must not do,\nand how this is verified.\n" target="_top">
+<g id="a_node4"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_TT-EXPECTATIONS_graph.svg" xlink:title="TT&#45;EXPECTATIONS: Documentation\nis provided, specifying\nwhat nlohmann/json library\nis expected to do, and\nwhat it must not do,\nand how this is verified.\n" target="_top">
 <polygon fill="none" stroke="black" points="257,-627 0,-627 0,-529 257,-529 257,-627"/>
 <text text-anchor="middle" x="128.5" y="-611.8" font-family="Open Sans" font-size="14.00">TT&#45;EXPECTATIONS: Documentation</text>
 <text text-anchor="middle" x="128.5" y="-596.8" font-family="Open Sans" font-size="14.00">is provided, specifying</text>
@@ -45,7 +45,7 @@
 <!-- AOU&#45;09 -->
 <g id="node2" class="node">
 <title>AOU&#45;09</title>
-<g id="a_node2"><a xlink:href="https://score-json.github.io/json/main/generated/AOU.html#aou-09" xlink:title="AOU&#45;09: The integrator\nshall ensure that advanced\nwarning indicators for\nmisbehaviours are identified,\nand monitoring mechanisms\nare specified, verified\nand validated based on\nanalysis. " target="_top">
+<g id="a_node2"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/AOU.html#aou-09" xlink:title="AOU&#45;09: The integrator\nshall ensure that advanced\nwarning indicators for\nmisbehaviours are identified,\nand monitoring mechanisms\nare specified, verified\nand validated based on\nanalysis. " target="_top">
 <polygon fill="none" stroke="black" points="238,-128 19,-128 19,0 238,0 238,-128"/>
 <text text-anchor="middle" x="128.5" y="-112.8" font-family="Open Sans" font-size="14.00">AOU&#45;09: The integrator</text>
 <text text-anchor="middle" x="128.5" y="-97.8" font-family="Open Sans" font-size="14.00">shall ensure that advanced</text>
@@ -61,7 +61,7 @@
 <!-- TA&#45;INDICATORS -->
 <g id="node3" class="node">
 <title>TA&#45;INDICATORS</title>
-<g id="a_node3"><a xlink:href="https://score-json.github.io/json/main/_images/custom_TA-INDICATORS_graph.svg" xlink:title="TA&#45;INDICATORS: Advanced\nwarning indicators for\nmisbehaviours are identified,\nand monitoring mechanisms\nare specified, verified\nand validated based on\nanalysis. " target="_top">
+<g id="a_node3"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_TA-INDICATORS_graph.svg" xlink:title="TA&#45;INDICATORS: Advanced\nwarning indicators for\nmisbehaviours are identified,\nand monitoring mechanisms\nare specified, verified\nand validated based on\nanalysis. " target="_top">
 <polygon fill="none" stroke="black" points="238,-385 19,-385 19,-272 238,-272 238,-385"/>
 <text text-anchor="middle" x="128.5" y="-369.8" font-family="Open Sans" font-size="14.00">TA&#45;INDICATORS: Advanced</text>
 <text text-anchor="middle" x="128.5" y="-354.8" font-family="Open Sans" font-size="14.00">warning indicators for</text>

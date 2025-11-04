@@ -12,7 +12,7 @@
 <!-- TRUSTABLE&#45;SOFTWARE -->
 <g id="node1" class="node">
 <title>TRUSTABLE&#45;SOFTWARE</title>
-<g id="a_node1"><a xlink:href="https://score-json.github.io/json/main/_images/custom_TRUSTABLE-SOFTWARE_graph.svg" xlink:title="TRUSTABLE&#45;SOFTWARE: This\nrelease of JSON&#45;Library\nalso reffered in the\ndocumentation as nlohmann/json\nlibrary is Trustable.\n" target="_top">
+<g id="a_node1"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_TRUSTABLE-SOFTWARE_graph.svg" xlink:title="TRUSTABLE&#45;SOFTWARE: This\nrelease of JSON&#45;Library\nalso reffered in the\ndocumentation as nlohmann/json\nlibrary is Trustable.\n" target="_top">
 <polygon fill="none" stroke="black" points="960,-839 712,-839 712,-756 960,-756 960,-839"/>
 <text text-anchor="middle" x="836" y="-823.8" font-family="Open Sans" font-size="14.00">TRUSTABLE&#45;SOFTWARE: This</text>
 <text text-anchor="middle" x="836" y="-808.8" font-family="Open Sans" font-size="14.00">release of JSON&#45;Library</text>
@@ -25,7 +25,7 @@
 <!-- TT&#45;EXPECTATIONS -->
 <g id="node10" class="node">
 <title>TT&#45;EXPECTATIONS</title>
-<g id="a_node10"><a xlink:href="https://score-json.github.io/json/main/_images/custom_TT-EXPECTATIONS_graph.svg" xlink:title="TT&#45;EXPECTATIONS: Documentation\nis provided, specifying\nwhat nlohmann/json library\nis expected to do, and\nwhat it must not do,\nand how this is verified.\n" target="_top">
+<g id="a_node10"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_TT-EXPECTATIONS_graph.svg" xlink:title="TT&#45;EXPECTATIONS: Documentation\nis provided, specifying\nwhat nlohmann/json library\nis expected to do, and\nwhat it must not do,\nand how this is verified.\n" target="_top">
 <polygon fill="none" stroke="black" points="964.5,-612 707.5,-612 707.5,-514 964.5,-514 964.5,-612"/>
 <text text-anchor="middle" x="836" y="-596.8" font-family="Open Sans" font-size="14.00">TT&#45;EXPECTATIONS: Documentation</text>
 <text text-anchor="middle" x="836" y="-581.8" font-family="Open Sans" font-size="14.00">is provided, specifying</text>
@@ -45,7 +45,7 @@
 <!-- AOU&#45;17 -->
 <g id="node2" class="node">
 <title>AOU&#45;17</title>
-<g id="a_node2"><a xlink:href="https://score-json.github.io/json/main/generated/AOU.html#aou-17" xlink:title="AOU&#45;17: The integrator\nshall identify misbehaviours\nfor nlohmann/json, define\nappropriate mitigations,\nand ensure that these\nmitigations are thoroughly\nvalidated, whenever using\nnlohmann/json. " target="_top">
+<g id="a_node2"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/AOU.html#aou-17" xlink:title="AOU&#45;17: The integrator\nshall identify misbehaviours\nfor nlohmann/json, define\nappropriate mitigations,\nand ensure that these\nmitigations are thoroughly\nvalidated, whenever using\nnlohmann/json. " target="_top">
 <polygon fill="none" stroke="black" points="212,-128 0,-128 0,0 212,0 212,-128"/>
 <text text-anchor="middle" x="106" y="-112.8" font-family="Open Sans" font-size="14.00">AOU&#45;17: The integrator</text>
 <text text-anchor="middle" x="106" y="-97.8" font-family="Open Sans" font-size="14.00">shall identify misbehaviours</text>
@@ -61,7 +61,7 @@
 <!-- AOU&#45;23 -->
 <g id="node3" class="node">
 <title>AOU&#45;23</title>
-<g id="a_node3"><a xlink:href="https://score-json.github.io/json/main/generated/AOU.html#aou-23" xlink:title="AOU&#45;23: The integrator\nshall ensure that data\nare complete and error&#45;free,\nwhenever they are transmitted\nto nlohmann/json. " target="_top">
+<g id="a_node3"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/AOU.html#aou-23" xlink:title="AOU&#45;23: The integrator\nshall ensure that data\nare complete and error&#45;free,\nwhenever they are transmitted\nto nlohmann/json. " target="_top">
 <polygon fill="none" stroke="black" points="462,-105.5 230,-105.5 230,-22.5 462,-22.5 462,-105.5"/>
 <text text-anchor="middle" x="346" y="-90.3" font-family="Open Sans" font-size="14.00">AOU&#45;23: The integrator</text>
 <text text-anchor="middle" x="346" y="-75.3" font-family="Open Sans" font-size="14.00">shall ensure that data</text>
@@ -74,7 +74,7 @@
 <!-- AOU&#45;24 -->
 <g id="node4" class="node">
 <title>AOU&#45;24</title>
-<g id="a_node4"><a xlink:href="https://score-json.github.io/json/main/generated/AOU.html#aou-24" xlink:title="AOU&#45;24: The integrator\nshall ensure that the\ndata do not change during\nreading, whenever transmitted\nto nlohmann/json. " target="_top">
+<g id="a_node4"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/AOU.html#aou-24" xlink:title="AOU&#45;24: The integrator\nshall ensure that the\ndata do not change during\nreading, whenever transmitted\nto nlohmann/json. " target="_top">
 <polygon fill="none" stroke="black" points="712,-105.5 480,-105.5 480,-22.5 712,-22.5 712,-105.5"/>
 <text text-anchor="middle" x="596" y="-90.3" font-family="Open Sans" font-size="14.00">AOU&#45;24: The integrator</text>
 <text text-anchor="middle" x="596" y="-75.3" font-family="Open Sans" font-size="14.00">shall ensure that the</text>
@@ -87,7 +87,7 @@
 <!-- AOU&#45;26 -->
 <g id="node5" class="node">
 <title>AOU&#45;26</title>
-<g id="a_node5"><a xlink:href="https://score-json.github.io/json/main/generated/AOU.html#aou-26" xlink:title="AOU&#45;26: The integrator\nshall convince themselves\nthat the misbehaviours\nof the C++ standard library\nand mitigations are known,\nverified and validated.\n" target="_top">
+<g id="a_node5"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/AOU.html#aou-26" xlink:title="AOU&#45;26: The integrator\nshall convince themselves\nthat the misbehaviours\nof the C++ standard library\nand mitigations are known,\nverified and validated.\n" target="_top">
 <polygon fill="none" stroke="black" points="941.5,-113 730.5,-113 730.5,-15 941.5,-15 941.5,-113"/>
 <text text-anchor="middle" x="836" y="-97.8" font-family="Open Sans" font-size="14.00">AOU&#45;26: The integrator</text>
 <text text-anchor="middle" x="836" y="-82.8" font-family="Open Sans" font-size="14.00">shall convince themselves</text>
@@ -101,7 +101,7 @@
 <!-- JLS&#45;02 -->
 <g id="node6" class="node">
 <title>JLS&#45;02</title>
-<g id="a_node6"><a xlink:href="https://score-json.github.io/json/main/generated/JLS.html#jls-02" xlink:title="JLS&#45;02: Fuzz testing\nis used in the original\nnlohmann/json repository\n(https://github.com/nlohmann/json)\nto uncover edge cases\nand failure modes throughout\ndevelopment. (https://github.com/nlohmann/json/blob/develop/tests/fuzzing.md)\n" target="_top">
+<g id="a_node6"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/JLS.html#jls-02" xlink:title="JLS&#45;02: Fuzz testing\nis used in the original\nnlohmann/json repository\n(https://github.com/nlohmann/json)\nto uncover edge cases\nand failure modes throughout\ndevelopment. (https://github.com/nlohmann/json/blob/develop/tests/fuzzing.md)\n" target="_top">
 <polygon fill="none" stroke="black" points="1536.5,-120.5 959.5,-120.5 959.5,-7.5 1536.5,-7.5 1536.5,-120.5"/>
 <text text-anchor="middle" x="1248" y="-105.3" font-family="Open Sans" font-size="14.00">JLS&#45;02: Fuzz testing</text>
 <text text-anchor="middle" x="1248" y="-90.3" font-family="Open Sans" font-size="14.00">is used in the original</text>
@@ -116,7 +116,7 @@
 <!-- JLS&#45;24 -->
 <g id="node7" class="node">
 <title>JLS&#45;24</title>
-<g id="a_node7"><a xlink:href="https://score-json.github.io/json/main/_images/custom_JLS-24_graph.svg" xlink:title="JLS&#45;24: The nlohmann/json\nlibrary recognizes malformed\nJSON and returns an exception.\n" target="_top">
+<g id="a_node7"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_JLS-24_graph.svg" xlink:title="JLS&#45;24: The nlohmann/json\nlibrary recognizes malformed\nJSON and returns an exception.\n" target="_top">
 <polygon fill="none" stroke="black" points="1789.5,-90.5 1554.5,-90.5 1554.5,-37.5 1789.5,-37.5 1789.5,-90.5"/>
 <text text-anchor="middle" x="1672" y="-75.3" font-family="Open Sans" font-size="14.00">JLS&#45;24: The nlohmann/json</text>
 <text text-anchor="middle" x="1672" y="-60.3" font-family="Open Sans" font-size="14.00">library recognizes malformed</text>
@@ -127,7 +127,7 @@
 <!-- JLS&#45;25 -->
 <g id="node8" class="node">
 <title>JLS&#45;25</title>
-<g id="a_node8"><a xlink:href="https://score-json.github.io/json/main/generated/JLS.html#jls-25" xlink:title="JLS&#45;25: Malicious code\nchanges are mitigated\nby code reviews, adhering\nto Eclipse S&#45;core contribution\nprocedures and vigilance\nfrom the open&#45;source\ncommunity. " target="_top">
+<g id="a_node8"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/JLS.html#jls-25" xlink:title="JLS&#45;25: Malicious code\nchanges are mitigated\nby code reviews, adhering\nto Eclipse S&#45;core contribution\nprocedures and vigilance\nfrom the open&#45;source\ncommunity. " target="_top">
 <polygon fill="none" stroke="black" points="2028,-120.5 1808,-120.5 1808,-7.5 2028,-7.5 2028,-120.5"/>
 <text text-anchor="middle" x="1918" y="-105.3" font-family="Open Sans" font-size="14.00">JLS&#45;25: Malicious code</text>
 <text text-anchor="middle" x="1918" y="-90.3" font-family="Open Sans" font-size="14.00">changes are mitigated</text>
@@ -142,7 +142,7 @@
 <!-- TA&#45;MISBEHAVIOURS -->
 <g id="node9" class="node">
 <title>TA&#45;MISBEHAVIOURS</title>
-<g id="a_node9"><a xlink:href="https://score-json.github.io/json/main/_images/custom_TA-MISBEHAVIOURS_graph.svg" xlink:title="TA&#45;MISBEHAVIOURS: Prohibited\nmisbehaviours for nlohmann/json\nlibrary are identified,\nand mitigations are specified,\nverified and validated\nbased on analysis. " target="_top">
+<g id="a_node9"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_TA-MISBEHAVIOURS_graph.svg" xlink:title="TA&#45;MISBEHAVIOURS: Prohibited\nmisbehaviours for nlohmann/json\nlibrary are identified,\nand mitigations are specified,\nverified and validated\nbased on analysis. " target="_top">
 <polygon fill="none" stroke="black" points="961,-370 711,-370 711,-272 961,-272 961,-370"/>
 <text text-anchor="middle" x="836" y="-354.8" font-family="Open Sans" font-size="14.00">TA&#45;MISBEHAVIOURS: Prohibited</text>
 <text text-anchor="middle" x="836" y="-339.8" font-family="Open Sans" font-size="14.00">misbehaviours for nlohmann/json</text>

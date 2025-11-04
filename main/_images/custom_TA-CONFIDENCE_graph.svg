@@ -12,7 +12,7 @@
 <!-- TRUSTABLE&#45;SOFTWARE -->
 <g id="node1" class="node">
 <title>TRUSTABLE&#45;SOFTWARE</title>
-<g id="a_node1"><a xlink:href="https://score-json.github.io/json/main/_images/custom_TRUSTABLE-SOFTWARE_graph.svg" xlink:title="TRUSTABLE&#45;SOFTWARE: This\nrelease of JSON&#45;Library\nalso reffered in the\ndocumentation as nlohmann/json\nlibrary is Trustable.\n" target="_top">
+<g id="a_node1"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_TRUSTABLE-SOFTWARE_graph.svg" xlink:title="TRUSTABLE&#45;SOFTWARE: This\nrelease of JSON&#45;Library\nalso reffered in the\ndocumentation as nlohmann/json\nlibrary is Trustable.\n" target="_top">
 <polygon fill="none" stroke="black" points="568,-779 320,-779 320,-696 568,-696 568,-779"/>
 <text text-anchor="middle" x="444" y="-763.8" font-family="Open Sans" font-size="14.00">TRUSTABLE&#45;SOFTWARE: This</text>
 <text text-anchor="middle" x="444" y="-748.8" font-family="Open Sans" font-size="14.00">release of JSON&#45;Library</text>
@@ -25,7 +25,7 @@
 <!-- TT&#45;CONFIDENCE -->
 <g id="node7" class="node">
 <title>TT&#45;CONFIDENCE</title>
-<g id="a_node7"><a xlink:href="https://score-json.github.io/json/main/_images/custom_TT-CONFIDENCE_graph.svg" xlink:title="TT&#45;CONFIDENCE: Confidence\nin nlohmann/json library\nis achieved by measuring\nand analysing behaviour\nand evidence over time.\n" target="_top">
+<g id="a_node7"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_TT-CONFIDENCE_graph.svg" xlink:title="TT&#45;CONFIDENCE: Confidence\nin nlohmann/json library\nis achieved by measuring\nand analysing behaviour\nand evidence over time.\n" target="_top">
 <polygon fill="none" stroke="black" points="553,-552 335,-552 335,-469 553,-469 553,-552"/>
 <text text-anchor="middle" x="444" y="-536.8" font-family="Open Sans" font-size="14.00">TT&#45;CONFIDENCE: Confidence</text>
 <text text-anchor="middle" x="444" y="-521.8" font-family="Open Sans" font-size="14.00">in nlohmann/json library</text>
@@ -44,7 +44,7 @@
 <!-- AOU&#45;10_COMBINED -->
 <g id="node2" class="node">
 <title>AOU&#45;10_COMBINED</title>
-<g id="a_node2"><a xlink:href="https://score-json.github.io/json/main/generated/AOU.html#aou-10_combined" xlink:title="AOU&#45;10_COMBINED: The\nintegrator shall evaluate\nthe provided evidence\nand supplement it where\nnecessary, whenever the\ntrustability documentation\nof nlohmann/json is reviewed.\n" target="_top">
+<g id="a_node2"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/AOU.html#aou-10_combined" xlink:title="AOU&#45;10_COMBINED: The\nintegrator shall evaluate\nthe provided evidence\nand supplement it where\nnecessary, whenever the\ntrustability documentation\nof nlohmann/json is reviewed.\n" target="_top">
 <polygon fill="none" stroke="black" points="224,-113 0,-113 0,0 224,0 224,-113"/>
 <text text-anchor="middle" x="112" y="-97.8" font-family="Open Sans" font-size="14.00">AOU&#45;10_COMBINED: The</text>
 <text text-anchor="middle" x="112" y="-82.8" font-family="Open Sans" font-size="14.00">integrator shall evaluate</text>
@@ -59,7 +59,7 @@
 <!-- JLS&#45;08 -->
 <g id="node3" class="node">
 <title>JLS&#45;08</title>
-<g id="a_node3"><a xlink:href="https://score-json.github.io/json/main/generated/JLS.html#jls-08" xlink:title="JLS&#45;08: Each statement\nis scored based on SME\nreviews or automatic\nvalidation functions.\n(TODO) " target="_top">
+<g id="a_node3"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/JLS.html#jls-08" xlink:title="JLS&#45;08: Each statement\nis scored based on SME\nreviews or automatic\nvalidation functions.\n(TODO) " target="_top">
 <polygon fill="none" stroke="black" points="423.5,-98 242.5,-98 242.5,-15 423.5,-15 423.5,-98"/>
 <text text-anchor="middle" x="333" y="-82.8" font-family="Open Sans" font-size="14.00">JLS&#45;08: Each statement</text>
 <text text-anchor="middle" x="333" y="-67.8" font-family="Open Sans" font-size="14.00">is scored based on SME</text>
@@ -72,7 +72,7 @@
 <!-- JLS&#45;09 -->
 <g id="node4" class="node">
 <title>JLS&#45;09</title>
-<g id="a_node4"><a xlink:href="https://score-json.github.io/json/main/generated/JLS.html#jls-09" xlink:title="JLS&#45;09: Scores are reasonably,\nsystematically and repeatably\naccumulated. (TODO) " target="_top">
+<g id="a_node4"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/JLS.html#jls-09" xlink:title="JLS&#45;09: Scores are reasonably,\nsystematically and repeatably\naccumulated. (TODO) " target="_top">
 <polygon fill="none" stroke="black" points="668.5,-83 441.5,-83 441.5,-30 668.5,-30 668.5,-83"/>
 <text text-anchor="middle" x="555" y="-67.8" font-family="Open Sans" font-size="14.00">JLS&#45;09: Scores are reasonably,</text>
 <text text-anchor="middle" x="555" y="-52.8" font-family="Open Sans" font-size="14.00">systematically and repeatably</text>
@@ -83,7 +83,7 @@
 <!-- JLS&#45;20 -->
 <g id="node5" class="node">
 <title>JLS&#45;20</title>
-<g id="a_node5"><a xlink:href="https://score-json.github.io/json/main/generated/JLS.html#jls-20" xlink:title="JLS&#45;20: A github workflow\nsaves the history of\nscores in the trustable\ngraph to derive trends.\n" target="_top">
+<g id="a_node5"><a xlink:href="https://Erikhu1.github.io/json_dev/main/generated/JLS.html#jls-20" xlink:title="JLS&#45;20: A github workflow\nsaves the history of\nscores in the trustable\ngraph to derive trends.\n" target="_top">
 <polygon fill="none" stroke="black" points="883,-90.5 687,-90.5 687,-22.5 883,-22.5 883,-90.5"/>
 <text text-anchor="middle" x="785" y="-75.3" font-family="Open Sans" font-size="14.00">JLS&#45;20: A github workflow</text>
 <text text-anchor="middle" x="785" y="-60.3" font-family="Open Sans" font-size="14.00">saves the history of</text>
@@ -95,7 +95,7 @@
 <!-- TA&#45;CONFIDENCE -->
 <g id="node6" class="node">
 <title>TA&#45;CONFIDENCE</title>
-<g id="a_node6"><a xlink:href="https://score-json.github.io/json/main/_images/custom_TA-CONFIDENCE_graph.svg" xlink:title="TA&#45;CONFIDENCE: Confidence\nin nlohmann/json library\nis measured based on\nresults of analysis.\n" target="_top">
+<g id="a_node6"><a xlink:href="https://Erikhu1.github.io/json_dev/main/_images/custom_TA-CONFIDENCE_graph.svg" xlink:title="TA&#45;CONFIDENCE: Confidence\nin nlohmann/json library\nis measured based on\nresults of analysis.\n" target="_top">
 <polygon fill="none" stroke="black" points="553,-325 335,-325 335,-257 553,-257 553,-325"/>
 <text text-anchor="middle" x="444" y="-309.8" font-family="Open Sans" font-size="14.00">TA&#45;CONFIDENCE: Confidence</text>
 <text text-anchor="middle" x="444" y="-294.8" font-family="Open Sans" font-size="14.00">in nlohmann/json library</text>
