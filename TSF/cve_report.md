@@ -1,18 +1,18 @@
 # CodeQL Security Issues Report
 
-This report lists the current CodeQL security vulnerabilities for the json_dev repository.
-The data is collected from GitHub's Code Scanning API and updated regularly.
+This report lists the currently open CodeQL security vulnerabilities in this repository.
+The data is collected from GitHub's Code Scanning API and updated with each push or merge to main.
 
-**Generated on:** 2025-11-05 14:16:52 UTC
+**Generated on:** 2025-11-05 14:33:28 UTC
 
 ## Summary
 
 | Alert Type | Count |
 |------------|-------|
-| CodeQL Alerts | 3 |
+| CodeQL Alerts | 2 |
 ## Analysis
 
-### CodeQL Alerts: 3
+### CodeQL Alerts: 2
 CodeQL alerts indicate potential security vulnerabilities found in the source code.
 These should be reviewed and addressed promptly to maintain code security.
 
