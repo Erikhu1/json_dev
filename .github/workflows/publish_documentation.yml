@@ -24,7 +24,6 @@ on:
 permissions:
   contents: read
   security-events: read
-  repository-advisories: read
 
 jobs:
   run-trudag:
@@ -35,7 +34,6 @@ jobs:
       pull-requests: write
       id-token: write
       security-events: read
-      repository-advisories: read
 
     steps:
       - name: Checkout repository
