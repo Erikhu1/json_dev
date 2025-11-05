@@ -9588,6 +9588,7 @@ All tests in this file were run in the following configurations:
 
 <span class="nt">permissions</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">  </span><span class="nt">security-events</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
 
 <span class="nt">jobs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">run-trudag</span><span class="p">:</span>
@@ -9597,6 +9598,7 @@ All tests in this file were run in the following configurations:
 <span class="w">      </span><span class="nt">pages</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
 <span class="w">      </span><span class="nt">pull-requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
 <span class="w">      </span><span class="nt">id-token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+<span class="w">      </span><span class="nt">security-events</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
 
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout repository</span>
@@ -9702,6 +9704,10 @@ All tests in this file were run in the following configurations:
 <span class="w">            </span><span class="no">echo &quot;Code scanning alerts found: $CODESCANNING_COUNT&quot;</span>
 <span class="w">          </span><span class="no">else</span>
 <span class="w">            </span><span class="no">echo &quot;Code scanning access failed with HTTP $CODESCANNING_HTTP_CODE&quot;</span>
+<span class="w">            </span><span class="no">echo &quot;Response body: $CODESCANNING_BODY&quot;</span>
+<span class="w">            </span><span class="no">if [ &quot;$CODESCANNING_HTTP_CODE&quot; = &quot;403&quot; ]; then</span>
+<span class="w">              </span><span class="no">echo &quot;Note: HTTP 403 usually means missing &#39;security-events: read&#39; permission&quot;</span>
+<span class="w">            </span><span class="no">fi</span>
 <span class="w">          </span><span class="no">fi</span>
 <span class="w">          </span>
 <span class="w">          </span><span class="no"># Get Dependabot alerts</span>
@@ -9719,6 +9725,10 @@ All tests in this file were run in the following configurations:
 <span class="w">            </span><span class="no">echo &quot;Dependabot alerts found: $DEPENDABOT_COUNT&quot;</span>
 <span class="w">          </span><span class="no">else</span>
 <span class="w">            </span><span class="no">echo &quot;Dependabot access failed with HTTP $DEPENDABOT_HTTP_CODE&quot;</span>
+<span class="w">            </span><span class="no">echo &quot;Response body: $DEPENDABOT_BODY&quot;</span>
+<span class="w">            </span><span class="no">if [ &quot;$DEPENDABOT_HTTP_CODE&quot; = &quot;403&quot; ]; then</span>
+<span class="w">              </span><span class="no">echo &quot;Note: HTTP 403 usually means missing &#39;security-events: read&#39; permission or Dependabot not enabled&quot;</span>
+<span class="w">            </span><span class="no">fi</span>
 <span class="w">          </span><span class="no">fi</span>
 <span class="w">          </span>
 <span class="w">          </span><span class="no"># Calculate totals</span>
