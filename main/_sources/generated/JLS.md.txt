@@ -9586,10 +9586,6 @@ jobs:
           # Define variables
           CVE_OUTPUT_FILE="TSF/cve_report.md"
           
-          # Initialize counters
-          CODESCANNING_COUNT=0
-          DEPENDABOT_COUNT=0
-          
           # Get code scanning alerts
           echo "Fetching code scanning alerts..."
           CODESCANNING_RESPONSE=$(curl -s -w "%{http_code}" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
@@ -9605,38 +9601,16 @@ jobs:
             echo "Code scanning alerts found: $CODESCANNING_COUNT"
           else
             echo "Code scanning access failed with HTTP $CODESCANNING_HTTP_CODE"
+            echo "Response body: $CODESCANNING_BODY"
+            CODESCANNING_COUNT=0
           fi
-          
-          # Get Dependabot alerts
-          echo "Fetching Dependabot alerts..."
-          DEPENDABOT_RESPONSE=$(curl -s -w "%{http_code}" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-                                    -H "Accept: application/vnd.github+json" \
-                                    -H "X-GitHub-Api-Version: 2022-11-28" \
-                                    "https://api.github.com/repos/${{ github.repository }}/dependabot/alerts?state=open")
-          
-          DEPENDABOT_HTTP_CODE="${DEPENDABOT_RESPONSE: -3}"
-          DEPENDABOT_BODY="${DEPENDABOT_RESPONSE%???}"
-          
-          if [ "$DEPENDABOT_HTTP_CODE" = "200" ]; then
-            DEPENDABOT_COUNT=$(echo "$DEPENDABOT_BODY" | jq -r 'length' 2&gt;/dev/null || echo "0")
-            echo "Dependabot alerts found: $DEPENDABOT_COUNT"
-          else
-            echo "Dependabot access failed with HTTP $DEPENDABOT_HTTP_CODE"
-          fi
-          
-          # Calculate totals
-          TOTAL_SECURITY_ISSUES=$((CODESCANNING_COUNT + DEPENDABOT_COUNT))
           
           echo "=== SECURITY SUMMARY ==="
           echo "Code Scanning Alerts (open): $CODESCANNING_COUNT"
-          echo "Dependabot Alerts (open): $DEPENDABOT_COUNT" 
-          echo "Total Open Security Issues: $TOTAL_SECURITY_ISSUES"
+          echo "Total Open Security Issues: $CODESCANNING_COUNT"
           
           # Generate the CVE report using the new script
-          python3 TSF/scripts/generate_cve_report.py \
-            $CODESCANNING_COUNT \
-            $DEPENDABOT_COUNT \
-            $TOTAL_SECURITY_ISSUES &gt; $CVE_OUTPUT_FILE
+          python3 TSF/scripts/generate_cve_report.py $CODESCANNING_COUNT &gt; $CVE_OUTPUT_FILE
 
           # Push CVE report file to save_historical_data branch
           git add TSF/cve_report.md

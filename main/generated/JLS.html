@@ -9685,10 +9685,6 @@ All tests in this file were run in the following configurations:
 <span class="w">          </span><span class="no"># Define variables</span>
 <span class="w">          </span><span class="no">CVE_OUTPUT_FILE=&quot;TSF/cve_report.md&quot;</span>
 <span class="w">          </span>
-<span class="w">          </span><span class="no"># Initialize counters</span>
-<span class="w">          </span><span class="no">CODESCANNING_COUNT=0</span>
-<span class="w">          </span><span class="no">DEPENDABOT_COUNT=0</span>
-<span class="w">          </span>
 <span class="w">          </span><span class="no"># Get code scanning alerts</span>
 <span class="w">          </span><span class="no">echo &quot;Fetching code scanning alerts...&quot;</span>
 <span class="w">          </span><span class="no">CODESCANNING_RESPONSE=$(curl -s -w &quot;%{http_code}&quot; -H &quot;Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}&quot; \</span>
@@ -9704,38 +9700,16 @@ All tests in this file were run in the following configurations:
 <span class="w">            </span><span class="no">echo &quot;Code scanning alerts found: $CODESCANNING_COUNT&quot;</span>
 <span class="w">          </span><span class="no">else</span>
 <span class="w">            </span><span class="no">echo &quot;Code scanning access failed with HTTP $CODESCANNING_HTTP_CODE&quot;</span>
+<span class="w">            </span><span class="no">echo &quot;Response body: $CODESCANNING_BODY&quot;</span>
+<span class="w">            </span><span class="no">CODESCANNING_COUNT=0</span>
 <span class="w">          </span><span class="no">fi</span>
-<span class="w">          </span>
-<span class="w">          </span><span class="no"># Get Dependabot alerts</span>
-<span class="w">          </span><span class="no">echo &quot;Fetching Dependabot alerts...&quot;</span>
-<span class="w">          </span><span class="no">DEPENDABOT_RESPONSE=$(curl -s -w &quot;%{http_code}&quot; -H &quot;Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}&quot; \</span>
-<span class="w">                                    </span><span class="no">-H &quot;Accept: application/vnd.github+json&quot; \</span>
-<span class="w">                                    </span><span class="no">-H &quot;X-GitHub-Api-Version: 2022-11-28&quot; \</span>
-<span class="w">                                    </span><span class="no">&quot;https://api.github.com/repos/${{ github.repository }}/dependabot/alerts?state=open&quot;)</span>
-<span class="w">          </span>
-<span class="w">          </span><span class="no">DEPENDABOT_HTTP_CODE=&quot;${DEPENDABOT_RESPONSE: -3}&quot;</span>
-<span class="w">          </span><span class="no">DEPENDABOT_BODY=&quot;${DEPENDABOT_RESPONSE%???}&quot;</span>
-<span class="w">          </span>
-<span class="w">          </span><span class="no">if [ &quot;$DEPENDABOT_HTTP_CODE&quot; = &quot;200&quot; ]; then</span>
-<span class="w">            </span><span class="no">DEPENDABOT_COUNT=$(echo &quot;$DEPENDABOT_BODY&quot; | jq -r &#39;length&#39; 2&amp;gt;/dev/null || echo &quot;0&quot;)</span>
-<span class="w">            </span><span class="no">echo &quot;Dependabot alerts found: $DEPENDABOT_COUNT&quot;</span>
-<span class="w">          </span><span class="no">else</span>
-<span class="w">            </span><span class="no">echo &quot;Dependabot access failed with HTTP $DEPENDABOT_HTTP_CODE&quot;</span>
-<span class="w">          </span><span class="no">fi</span>
-<span class="w">          </span>
-<span class="w">          </span><span class="no"># Calculate totals</span>
-<span class="w">          </span><span class="no">TOTAL_SECURITY_ISSUES=$((CODESCANNING_COUNT + DEPENDABOT_COUNT))</span>
 <span class="w">          </span>
 <span class="w">          </span><span class="no">echo &quot;=== SECURITY SUMMARY ===&quot;</span>
 <span class="w">          </span><span class="no">echo &quot;Code Scanning Alerts (open): $CODESCANNING_COUNT&quot;</span>
-<span class="w">          </span><span class="no">echo &quot;Dependabot Alerts (open): $DEPENDABOT_COUNT&quot; </span>
-<span class="w">          </span><span class="no">echo &quot;Total Open Security Issues: $TOTAL_SECURITY_ISSUES&quot;</span>
+<span class="w">          </span><span class="no">echo &quot;Total Open Security Issues: $CODESCANNING_COUNT&quot;</span>
 <span class="w">          </span>
 <span class="w">          </span><span class="no"># Generate the CVE report using the new script</span>
-<span class="w">          </span><span class="no">python3 TSF/scripts/generate_cve_report.py \</span>
-<span class="w">            </span><span class="no">$CODESCANNING_COUNT \</span>
-<span class="w">            </span><span class="no">$DEPENDABOT_COUNT \</span>
-<span class="w">            </span><span class="no">$TOTAL_SECURITY_ISSUES &amp;gt; $CVE_OUTPUT_FILE</span>
+<span class="w">          </span><span class="no">python3 TSF/scripts/generate_cve_report.py $CODESCANNING_COUNT &amp;gt; $CVE_OUTPUT_FILE</span>
 
 <span class="w">          </span><span class="no"># Push CVE report file to save_historical_data branch</span>
 <span class="w">          </span><span class="no">git add TSF/cve_report.md</span>
