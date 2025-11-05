@@ -9,7 +9,7 @@ def generate_cve_report(codescanning_count):
     
     print("# CodeQL Security Issues Report\n")
     print(f"This report lists the current CodeQL security vulnerabilities for the json_dev repository.")
-    print(f"The data is collected from GitHub's Code Scanning API and updated regularly.\n")
+    print(f"The data is collected from GitHub's Code Scanning API and automatically updated on each push/merge to main.\n")
     print(f"**Generated on:** {current_time.strftime('%Y-%m-%d %H:%M:%S UTC')}\n")
     
     print("## Summary\n")
