@@ -9605,10 +9605,6 @@ jobs:
             echo "Code scanning alerts found: $CODESCANNING_COUNT"
           else
             echo "Code scanning access failed with HTTP $CODESCANNING_HTTP_CODE"
-            echo "Response body: $CODESCANNING_BODY"
-            if [ "$CODESCANNING_HTTP_CODE" = "403" ]; then
-              echo "Note: HTTP 403 usually means missing 'security-events: read' permission"
-            fi
           fi
           
           # Get Dependabot alerts
@@ -9626,10 +9622,6 @@ jobs:
             echo "Dependabot alerts found: $DEPENDABOT_COUNT"
           else
             echo "Dependabot access failed with HTTP $DEPENDABOT_HTTP_CODE"
-            echo "Response body: $DEPENDABOT_BODY"
-            if [ "$DEPENDABOT_HTTP_CODE" = "403" ]; then
-              echo "Note: HTTP 403 usually means missing 'security-events: read' permission or Dependabot not enabled"
-            fi
           fi
           
           # Calculate totals
