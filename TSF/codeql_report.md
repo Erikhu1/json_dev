@@ -3,7 +3,7 @@
 This report lists the currently open CodeQL security vulnerabilities in this repository.
 The data is collected from GitHub's Code Scanning API and updated with each push or merge to main.
 
-**Generated on:** 2025-11-06 08:22:40 UTC
+**Generated on:** 2025-11-07 16:28:36 UTC
 
 ## Summary
 
