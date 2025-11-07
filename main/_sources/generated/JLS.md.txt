@@ -44,6 +44,16 @@ jobs:
     with:
       artifact_id: "labeler-${{ github.sha }}"
 
+  SME_review_checker:
+    permissions:
+      contents: read
+      pull-requests: read
+    name: Run SME_review_checker Workflow
+    if: ${{ github.event_name == 'pull_request' }} # only run SME_review_checker for PRs
+    uses: ./.github/workflows/SME_review_checker.yml
+    with:
+      artifact_id: "SME_review_checker-${{ github.sha }}"
+
   check_amalgamation:
     name: Run Amalgamation Workflow
     if: ${{ github.event_name == 'pull_request' }} # only run check_amalgamation for PRs
@@ -9340,6 +9350,16 @@ jobs:
     with:
       artifact_id: "labeler-${{ github.sha }}"
 
+  SME_review_checker:
+    permissions:
+      contents: read
+      pull-requests: read
+    name: Run SME_review_checker Workflow
+    if: ${{ github.event_name == 'pull_request' }} # only run SME_review_checker for PRs
+    uses: ./.github/workflows/SME_review_checker.yml
+    with:
+      artifact_id: "SME_review_checker-${{ github.sha }}"
+
   check_amalgamation:
     name: Run Amalgamation Workflow
     if: ${{ github.event_name == 'pull_request' }} # only run check_amalgamation for PRs
@@ -9799,6 +9819,16 @@ jobs:
     uses: ./.github/workflows/labeler.yml
     with:
       artifact_id: "labeler-${{ github.sha }}"
+
+  SME_review_checker:
+    permissions:
+      contents: read
+      pull-requests: read
+    name: Run SME_review_checker Workflow
+    if: ${{ github.event_name == 'pull_request' }} # only run SME_review_checker for PRs
+    uses: ./.github/workflows/SME_review_checker.yml
+    with:
+      artifact_id: "SME_review_checker-${{ github.sha }}"
 
   check_amalgamation:
     name: Run Amalgamation Workflow
@@ -10954,7 +10984,7 @@ _None_
 - `failures on score-json/json`
 
 
-181 workflows failed on branch None of score-json/json
+174 workflows failed on branch None of score-json/json
 
 
 
@@ -10972,12 +11002,13 @@ _No Historic Data Found_
 
 ### JLS-27 
 
-The test coverage for this version of nlohmann/json is monitored by coveralls and stays constant.
+The nlohnmann/json library uses no external components besides the C++ standard components.
 
 
 **Supported Requests:**
 
 - [TA-BEHAVIOURS](TA.md#ta-behaviours)
+- [TA-FIXES](TA.md#ta-fixes)
 
 **Supporting Items:**
 
@@ -10987,7 +11018,213 @@ _None_
 
 **References:**
 
-_None_
+- `includes: (single_include/nlohmann/json.hpp)`
+
+
+	- Description: file containing all include occurrences of the score-project.
+
+
+	```cpp
+	#include &lt;algorithm&gt; // all_of, find, for_each
+	#include &lt;cstddef&gt; // nullptr_t, ptrdiff_t, size_t
+	#include &lt;functional&gt; // hash, less
+	#include &lt;initializer_list&gt; // initializer_list
+	    #include &lt;iosfwd&gt; // istream, ostream
+	#include &lt;iterator&gt; // random_access_iterator_tag
+	#include &lt;memory&gt; // unique_ptr
+	#include &lt;string&gt; // string, stoi, to_string
+	#include &lt;utility&gt; // declval, forward, move, pair, swap
+	#include &lt;vector&gt; // vector
+	#include &lt;utility&gt;
+	#include &lt;algorithm&gt; // transform
+	#include &lt;array&gt; // array
+	#include &lt;forward_list&gt; // forward_list
+	#include &lt;iterator&gt; // inserter, front_inserter, end
+	#include &lt;map&gt; // map
+	    #include &lt;optional&gt; // optional
+	#include &lt;string&gt; // string
+	#include &lt;tuple&gt; // tuple, make_tuple
+	#include &lt;type_traits&gt; // is_arithmetic, is_same, is_enum, underlying_type, is_convertible
+	#include &lt;unordered_map&gt; // unordered_map
+	#include &lt;utility&gt; // pair, declval
+	#include &lt;valarray&gt; // valarray
+	#include &lt;cstddef&gt; // nullptr_t
+	#include &lt;exception&gt; // exception
+	    #include &lt;numeric&gt; // accumulate
+	#include &lt;stdexcept&gt; // runtime_error
+	#include &lt;string&gt; // to_string
+	#include &lt;vector&gt; // vector
+	#include &lt;array&gt; // array
+	#include &lt;cstddef&gt; // size_t
+	#include &lt;cstdint&gt; // uint8_t
+	#include &lt;string&gt; // string
+	#include &lt;utility&gt; // declval, pair
+	#include &lt;type_traits&gt;
+	    #include &lt;stdint.h&gt;
+	    #include &lt;stdint.h&gt;
+	        #include &lt;version&gt;
+	    #include &lt;cstdlib&gt;
+	    #include &lt;cassert&gt; // assert
+	    #include &lt;compare&gt; // partial_ordering
+	#include &lt;cstddef&gt; // size_t
+	#include &lt;array&gt; // array
+	#include &lt;cstddef&gt; // size_t
+	#include &lt;type_traits&gt; // conditional, enable_if, false_type, integral_constant, is_constructible, is_integral, is_same, remove_cv, remove_reference, true_type
+	#include &lt;utility&gt; // index_sequence, make_index_sequence, index_sequence_for
+	#include &lt;limits&gt; // numeric_limits
+	#include &lt;string&gt; // char_traits
+	#include &lt;tuple&gt; // tuple
+	#include &lt;type_traits&gt; // false_type, is_constructible, is_integral, is_same, true_type
+	#include &lt;utility&gt; // declval
+	#include &lt;iterator&gt; // random_access_iterator_tag
+	    #include &lt;cstdint&gt; // int64_t, uint64_t
+	    #include &lt;map&gt; // map
+	    #include &lt;memory&gt; // allocator
+	    #include &lt;string&gt; // string
+	    #include &lt;vector&gt; // vector
+	#include &lt;cstring&gt; // strlen
+	#include &lt;string&gt; // string
+	#include &lt;utility&gt; // forward
+	#include &lt;experimental/filesystem&gt;
+	#include &lt;filesystem&gt; // NOLINT(build/c++17)
+	    #include &lt;optional&gt; // optional
+	#include &lt;algorithm&gt; // copy
+	#include &lt;iterator&gt; // begin, end
+	#include &lt;string&gt; // string
+	#include &lt;tuple&gt; // tuple, get
+	#include &lt;type_traits&gt; // is_same, is_constructible, is_floating_point, is_enum, underlying_type
+	#include &lt;utility&gt; // move, forward, declval, pair
+	#include &lt;valarray&gt; // valarray
+	#include &lt;vector&gt; // vector
+	#include &lt;cstddef&gt; // size_t
+	#include &lt;iterator&gt; // forward_iterator_tag
+	#include &lt;tuple&gt; // tuple_size, get, tuple_element
+	#include &lt;utility&gt; // move
+	    #include &lt;ranges&gt; // enable_borrowed_range
+	#include &lt;cstddef&gt; // size_t
+	#include &lt;string&gt; // string, to_string
+	#include &lt;cstdint&gt; // uint8_t, uint64_t
+	#include &lt;tuple&gt; // tie
+	#include &lt;utility&gt; // move
+	#include &lt;cstdint&gt; // uint8_t
+	#include &lt;cstddef&gt; // size_t
+	#include &lt;functional&gt; // hash
+	#include &lt;algorithm&gt; // generate_n
+	#include &lt;array&gt; // array
+	#include &lt;cmath&gt; // ldexp
+	#include &lt;cstddef&gt; // size_t
+	#include &lt;cstdint&gt; // uint8_t, uint16_t, uint32_t, uint64_t
+	#include &lt;cstdio&gt; // snprintf
+	#include &lt;cstring&gt; // memcpy
+	#include &lt;iterator&gt; // back_inserter
+	#include &lt;limits&gt; // numeric_limits
+	#include &lt;string&gt; // char_traits, string
+	#include &lt;utility&gt; // make_pair, move
+	#include &lt;vector&gt; // vector
+	    #include &lt;bit&gt;  //byteswap
+	#include &lt;array&gt; // array
+	#include &lt;cstddef&gt; // size_t
+	#include &lt;cstring&gt; // strlen
+	#include &lt;iterator&gt; // begin, end, iterator_traits, random_access_iterator_tag, distance, next
+	#include &lt;memory&gt; // shared_ptr, make_shared, addressof
+	#include &lt;numeric&gt; // accumulate
+	#include &lt;string&gt; // string, char_traits
+	#include &lt;type_traits&gt; // enable_if, is_base_of, is_pointer, is_integral, remove_pointer
+	#include &lt;utility&gt; // pair, declval
+	    #include &lt;cstdio&gt;   // FILE *
+	    #include &lt;istream&gt;  // istream
+	#include &lt;cstddef&gt;
+	#include &lt;string&gt; // string
+	#include &lt;type_traits&gt; // enable_if_t
+	#include &lt;utility&gt; // move
+	#include &lt;vector&gt; // vector
+	#include &lt;array&gt; // array
+	#include &lt;clocale&gt; // localeconv
+	#include &lt;cstddef&gt; // size_t
+	#include &lt;cstdio&gt; // snprintf
+	#include &lt;cstdlib&gt; // strtof, strtod, strtold, strtoll, strtoull
+	#include &lt;initializer_list&gt; // initializer_list
+	#include &lt;string&gt; // char_traits, string
+	#include &lt;utility&gt; // move
+	#include &lt;vector&gt; // vector
+	#include &lt;cstdint&gt; // size_t
+	#include &lt;utility&gt; // declval
+	#include &lt;string&gt; // string
+	#include &lt;cmath&gt; // isfinite
+	#include &lt;cstdint&gt; // uint8_t
+	#include &lt;functional&gt; // function
+	#include &lt;string&gt; // string
+	#include &lt;utility&gt; // move
+	#include &lt;vector&gt; // vector
+	#include &lt;cstddef&gt; // ptrdiff_t
+	#include &lt;limits&gt;  // numeric_limits
+	#include &lt;iterator&gt; // iterator, random_access_iterator_tag, bidirectional_iterator_tag, advance, next
+	#include &lt;type_traits&gt; // conditional, is_const, remove_const
+	#include &lt;cstddef&gt; // ptrdiff_t
+	#include &lt;iterator&gt; // reverse_iterator
+	#include &lt;utility&gt; // declval
+	#include &lt;type_traits&gt; // conditional, is_same
+	#include &lt;algorithm&gt; // all_of
+	#include &lt;cctype&gt; // isdigit
+	#include &lt;cerrno&gt; // errno, ERANGE
+	#include &lt;cstdlib&gt; // strtoull
+	    #include &lt;iosfwd&gt; // ostream
+	#include &lt;limits&gt; // max
+	#include &lt;numeric&gt; // accumulate
+	#include &lt;string&gt; // string
+	#include &lt;utility&gt; // move
+	#include &lt;vector&gt; // vector
+	#include &lt;initializer_list&gt;
+	#include &lt;utility&gt;
+	#include &lt;algorithm&gt; // reverse
+	#include &lt;array&gt; // array
+	#include &lt;map&gt; // map
+	#include &lt;cmath&gt; // isnan, isinf
+	#include &lt;cstdint&gt; // uint8_t, uint16_t, uint32_t, uint64_t
+	#include &lt;cstring&gt; // memcpy
+	#include &lt;limits&gt; // numeric_limits
+	#include &lt;string&gt; // string
+	#include &lt;utility&gt; // move
+	#include &lt;vector&gt; // vector
+	#include &lt;algorithm&gt; // copy
+	#include &lt;cstddef&gt; // size_t
+	#include &lt;iterator&gt; // back_inserter
+	#include &lt;memory&gt; // shared_ptr, make_shared
+	#include &lt;string&gt; // basic_string
+	#include &lt;vector&gt; // vector
+	    #include &lt;ios&gt;      // streamsize
+	    #include &lt;ostream&gt;  // basic_ostream
+	#include &lt;algorithm&gt; // reverse, remove, fill, find, none_of
+	#include &lt;array&gt; // array
+	#include &lt;clocale&gt; // localeconv, lconv
+	#include &lt;cmath&gt; // labs, isfinite, isnan, signbit
+	#include &lt;cstddef&gt; // size_t, ptrdiff_t
+	#include &lt;cstdint&gt; // uint8_t
+	#include &lt;cstdio&gt; // snprintf
+	#include &lt;limits&gt; // numeric_limits
+	#include &lt;string&gt; // string, char_traits
+	#include &lt;iomanip&gt; // setfill, setw
+	#include &lt;type_traits&gt; // is_same
+	#include &lt;utility&gt; // move
+	#include &lt;array&gt; // array
+	#include &lt;cmath&gt;   // signbit, isfinite
+	#include &lt;cstdint&gt; // intN_t, uintN_t
+	#include &lt;cstring&gt; // memcpy, memmove
+	#include &lt;limits&gt; // numeric_limits
+	#include &lt;type_traits&gt; // conditional
+	#include &lt;functional&gt; // equal_to, less
+	#include &lt;initializer_list&gt; // initializer_list
+	#include &lt;iterator&gt; // input_iterator_tag, iterator_traits
+	#include &lt;memory&gt; // allocator
+	#include &lt;stdexcept&gt; // for out_of_range
+	#include &lt;type_traits&gt; // enable_if, is_convertible
+	#include &lt;utility&gt; // pair
+	#include &lt;vector&gt; // vector
+	        #include &lt;any&gt;
+	    #include &lt;string_view&gt;
+	```
+	
+
 
 
 

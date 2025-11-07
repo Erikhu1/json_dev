@@ -462,6 +462,16 @@
 <span class="w">    </span><span class="nt">with</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;labeler-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
 
+<span class="w">  </span><span class="nt">SME_review_checker</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">      </span><span class="nt">pull-requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run SME_review_checker Workflow</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;pull_request&#39; }}</span><span class="w"> </span><span class="c1"># only run SME_review_checker for PRs</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/SME_review_checker.yml</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SME_review_checker-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
 <span class="w">  </span><span class="nt">check_amalgamation</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Amalgamation Workflow</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;pull_request&#39; }}</span><span class="w"> </span><span class="c1"># only run check_amalgamation for PRs</span>
@@ -9444,6 +9454,16 @@ All tests in this file were run in the following configurations:
 <span class="w">    </span><span class="nt">with</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;labeler-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
 
+<span class="w">  </span><span class="nt">SME_review_checker</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">      </span><span class="nt">pull-requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run SME_review_checker Workflow</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;pull_request&#39; }}</span><span class="w"> </span><span class="c1"># only run SME_review_checker for PRs</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/SME_review_checker.yml</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SME_review_checker-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
 <span class="w">  </span><span class="nt">check_amalgamation</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Amalgamation Workflow</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;pull_request&#39; }}</span><span class="w"> </span><span class="c1"># only run check_amalgamation for PRs</span>
@@ -9861,6 +9881,16 @@ All tests in this file were run in the following configurations:
 <span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/labeler.yml</span>
 <span class="w">    </span><span class="nt">with</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;labeler-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
+<span class="w">  </span><span class="nt">SME_review_checker</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">      </span><span class="nt">pull-requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run SME_review_checker Workflow</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;pull_request&#39; }}</span><span class="w"> </span><span class="c1"># only run SME_review_checker for PRs</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/SME_review_checker.yml</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SME_review_checker-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
 
 <span class="w">  </span><span class="nt">check_amalgamation</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Amalgamation Workflow</span>
@@ -10939,7 +10969,7 @@ All tests in this file were run in the following configurations:
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">failures</span> <span class="pre">on</span> <span class="pre">score-json/json</span></code></p></li>
 </ul>
-<p>181 workflows failed on branch None of score-json/json</p>
+<p>174 workflows failed on branch None of score-json/json</p>
 <p><strong>Fallacies:</strong></p>
 <p><em>None</em></p>
 <p><strong>Graph:</strong></p>
@@ -10948,15 +10978,221 @@ All tests in this file were run in the following configurations:
 <hr class="docutils" />
 <section id="jls-27">
 <h1>JLS-27<a class="headerlink" href="#jls-27" title="Link to this heading">#</a></h1>
-<p>The test coverage for this version of nlohmann/json is monitored by coveralls and stays constant.</p>
+<p>The nlohnmann/json library uses no external components besides the C++ standard components.</p>
 <p><strong>Supported Requests:</strong></p>
 <ul class="simple">
 <li><p><a class="reference internal" href="TA.html#ta-behaviours"><span class="std std-ref">TA-BEHAVIOURS</span></a></p></li>
+<li><p><a class="reference internal" href="TA.html#ta-fixes"><span class="std std-ref">TA-FIXES</span></a></p></li>
 </ul>
 <p><strong>Supporting Items:</strong></p>
 <p><em>None</em></p>
 <p><strong>References:</strong></p>
-<p><em>None</em></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">includes:</span> <span class="pre">(single_include/nlohmann/json.hpp)</span></code></p>
+<ul class="simple">
+<li><p>Description: file containing all include occurrences of the score-project.</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include &amp;lt;algorithm&amp;gt; </span><span class="c1">// all_of, find, for_each</span>
+<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// nullptr_t, ptrdiff_t, size_t</span>
+<span class="cp">#include &amp;lt;functional&amp;gt; </span><span class="c1">// hash, less</span>
+<span class="cp">#include &amp;lt;initializer_list&amp;gt; </span><span class="c1">// initializer_list</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;iosfwd&amp;gt; </span><span class="c1">// istream, ostream</span>
+<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// random_access_iterator_tag</span>
+<span class="cp">#include &amp;lt;memory&amp;gt; </span><span class="c1">// unique_ptr</span>
+<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string, stoi, to_string</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// declval, forward, move, pair, swap</span>
+<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
+<span class="cp">#include &amp;lt;utility&amp;gt;</span>
+<span class="cp">#include &amp;lt;algorithm&amp;gt; </span><span class="c1">// transform</span>
+<span class="cp">#include &amp;lt;array&amp;gt; </span><span class="c1">// array</span>
+<span class="cp">#include &amp;lt;forward_list&amp;gt; </span><span class="c1">// forward_list</span>
+<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// inserter, front_inserter, end</span>
+<span class="cp">#include &amp;lt;map&amp;gt; </span><span class="c1">// map</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;optional&amp;gt; </span><span class="c1">// optional</span>
+<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
+<span class="cp">#include &amp;lt;tuple&amp;gt; </span><span class="c1">// tuple, make_tuple</span>
+<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// is_arithmetic, is_same, is_enum, underlying_type, is_convertible</span>
+<span class="cp">#include &amp;lt;unordered_map&amp;gt; </span><span class="c1">// unordered_map</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// pair, declval</span>
+<span class="cp">#include &amp;lt;valarray&amp;gt; </span><span class="c1">// valarray</span>
+<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// nullptr_t</span>
+<span class="cp">#include &amp;lt;exception&amp;gt; </span><span class="c1">// exception</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;numeric&amp;gt; </span><span class="c1">// accumulate</span>
+<span class="cp">#include &amp;lt;stdexcept&amp;gt; </span><span class="c1">// runtime_error</span>
+<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// to_string</span>
+<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
+<span class="cp">#include &amp;lt;array&amp;gt; </span><span class="c1">// array</span>
+<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
+<span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// uint8_t</span>
+<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// declval, pair</span>
+<span class="cp">#include &amp;lt;type_traits&amp;gt;</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;stdint.h&amp;gt;</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;stdint.h&amp;gt;</span>
+<span class="w">        </span><span class="cp">#include &amp;lt;version&amp;gt;</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;cstdlib&amp;gt;</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;cassert&amp;gt; </span><span class="c1">// assert</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;compare&amp;gt; </span><span class="c1">// partial_ordering</span>
+<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
+<span class="cp">#include &amp;lt;array&amp;gt; </span><span class="c1">// array</span>
+<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
+<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// conditional, enable_if, false_type, integral_constant, is_constructible, is_integral, is_same, remove_cv, remove_reference, true_type</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// index_sequence, make_index_sequence, index_sequence_for</span>
+<span class="cp">#include &amp;lt;limits&amp;gt; </span><span class="c1">// numeric_limits</span>
+<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// char_traits</span>
+<span class="cp">#include &amp;lt;tuple&amp;gt; </span><span class="c1">// tuple</span>
+<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// false_type, is_constructible, is_integral, is_same, true_type</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// declval</span>
+<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// random_access_iterator_tag</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// int64_t, uint64_t</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;map&amp;gt; </span><span class="c1">// map</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;memory&amp;gt; </span><span class="c1">// allocator</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
+<span class="cp">#include &amp;lt;cstring&amp;gt; </span><span class="c1">// strlen</span>
+<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// forward</span>
+<span class="cp">#include &amp;lt;experimental/filesystem&amp;gt;</span>
+<span class="cp">#include &amp;lt;filesystem&amp;gt; </span><span class="c1">// NOLINT(build/c++17)</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;optional&amp;gt; </span><span class="c1">// optional</span>
+<span class="cp">#include &amp;lt;algorithm&amp;gt; </span><span class="c1">// copy</span>
+<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// begin, end</span>
+<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
+<span class="cp">#include &amp;lt;tuple&amp;gt; </span><span class="c1">// tuple, get</span>
+<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// is_same, is_constructible, is_floating_point, is_enum, underlying_type</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// move, forward, declval, pair</span>
+<span class="cp">#include &amp;lt;valarray&amp;gt; </span><span class="c1">// valarray</span>
+<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
+<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
+<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// forward_iterator_tag</span>
+<span class="cp">#include &amp;lt;tuple&amp;gt; </span><span class="c1">// tuple_size, get, tuple_element</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// move</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;ranges&amp;gt; </span><span class="c1">// enable_borrowed_range</span>
+<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
+<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string, to_string</span>
+<span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// uint8_t, uint64_t</span>
+<span class="cp">#include &amp;lt;tuple&amp;gt; </span><span class="c1">// tie</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// move</span>
+<span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// uint8_t</span>
+<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
+<span class="cp">#include &amp;lt;functional&amp;gt; </span><span class="c1">// hash</span>
+<span class="cp">#include &amp;lt;algorithm&amp;gt; </span><span class="c1">// generate_n</span>
+<span class="cp">#include &amp;lt;array&amp;gt; </span><span class="c1">// array</span>
+<span class="cp">#include &amp;lt;cmath&amp;gt; </span><span class="c1">// ldexp</span>
+<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
+<span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// uint8_t, uint16_t, uint32_t, uint64_t</span>
+<span class="cp">#include &amp;lt;cstdio&amp;gt; </span><span class="c1">// snprintf</span>
+<span class="cp">#include &amp;lt;cstring&amp;gt; </span><span class="c1">// memcpy</span>
+<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// back_inserter</span>
+<span class="cp">#include &amp;lt;limits&amp;gt; </span><span class="c1">// numeric_limits</span>
+<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// char_traits, string</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// make_pair, move</span>
+<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;bit&amp;gt;  </span><span class="c1">//byteswap</span>
+<span class="cp">#include &amp;lt;array&amp;gt; </span><span class="c1">// array</span>
+<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
+<span class="cp">#include &amp;lt;cstring&amp;gt; </span><span class="c1">// strlen</span>
+<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// begin, end, iterator_traits, random_access_iterator_tag, distance, next</span>
+<span class="cp">#include &amp;lt;memory&amp;gt; </span><span class="c1">// shared_ptr, make_shared, addressof</span>
+<span class="cp">#include &amp;lt;numeric&amp;gt; </span><span class="c1">// accumulate</span>
+<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string, char_traits</span>
+<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// enable_if, is_base_of, is_pointer, is_integral, remove_pointer</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// pair, declval</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;cstdio&amp;gt;   </span><span class="c1">// FILE *</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;istream&amp;gt;  </span><span class="c1">// istream</span>
+<span class="cp">#include &amp;lt;cstddef&amp;gt;</span>
+<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
+<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// enable_if_t</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// move</span>
+<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
+<span class="cp">#include &amp;lt;array&amp;gt; </span><span class="c1">// array</span>
+<span class="cp">#include &amp;lt;clocale&amp;gt; </span><span class="c1">// localeconv</span>
+<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
+<span class="cp">#include &amp;lt;cstdio&amp;gt; </span><span class="c1">// snprintf</span>
+<span class="cp">#include &amp;lt;cstdlib&amp;gt; </span><span class="c1">// strtof, strtod, strtold, strtoll, strtoull</span>
+<span class="cp">#include &amp;lt;initializer_list&amp;gt; </span><span class="c1">// initializer_list</span>
+<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// char_traits, string</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// move</span>
+<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
+<span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// size_t</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// declval</span>
+<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
+<span class="cp">#include &amp;lt;cmath&amp;gt; </span><span class="c1">// isfinite</span>
+<span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// uint8_t</span>
+<span class="cp">#include &amp;lt;functional&amp;gt; </span><span class="c1">// function</span>
+<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// move</span>
+<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
+<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// ptrdiff_t</span>
+<span class="cp">#include &amp;lt;limits&amp;gt;  </span><span class="c1">// numeric_limits</span>
+<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// iterator, random_access_iterator_tag, bidirectional_iterator_tag, advance, next</span>
+<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// conditional, is_const, remove_const</span>
+<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// ptrdiff_t</span>
+<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// reverse_iterator</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// declval</span>
+<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// conditional, is_same</span>
+<span class="cp">#include &amp;lt;algorithm&amp;gt; </span><span class="c1">// all_of</span>
+<span class="cp">#include &amp;lt;cctype&amp;gt; </span><span class="c1">// isdigit</span>
+<span class="cp">#include &amp;lt;cerrno&amp;gt; </span><span class="c1">// errno, ERANGE</span>
+<span class="cp">#include &amp;lt;cstdlib&amp;gt; </span><span class="c1">// strtoull</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;iosfwd&amp;gt; </span><span class="c1">// ostream</span>
+<span class="cp">#include &amp;lt;limits&amp;gt; </span><span class="c1">// max</span>
+<span class="cp">#include &amp;lt;numeric&amp;gt; </span><span class="c1">// accumulate</span>
+<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// move</span>
+<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
+<span class="cp">#include &amp;lt;initializer_list&amp;gt;</span>
+<span class="cp">#include &amp;lt;utility&amp;gt;</span>
+<span class="cp">#include &amp;lt;algorithm&amp;gt; </span><span class="c1">// reverse</span>
+<span class="cp">#include &amp;lt;array&amp;gt; </span><span class="c1">// array</span>
+<span class="cp">#include &amp;lt;map&amp;gt; </span><span class="c1">// map</span>
+<span class="cp">#include &amp;lt;cmath&amp;gt; </span><span class="c1">// isnan, isinf</span>
+<span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// uint8_t, uint16_t, uint32_t, uint64_t</span>
+<span class="cp">#include &amp;lt;cstring&amp;gt; </span><span class="c1">// memcpy</span>
+<span class="cp">#include &amp;lt;limits&amp;gt; </span><span class="c1">// numeric_limits</span>
+<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// move</span>
+<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
+<span class="cp">#include &amp;lt;algorithm&amp;gt; </span><span class="c1">// copy</span>
+<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
+<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// back_inserter</span>
+<span class="cp">#include &amp;lt;memory&amp;gt; </span><span class="c1">// shared_ptr, make_shared</span>
+<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// basic_string</span>
+<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;ios&amp;gt;      </span><span class="c1">// streamsize</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;ostream&amp;gt;  </span><span class="c1">// basic_ostream</span>
+<span class="cp">#include &amp;lt;algorithm&amp;gt; </span><span class="c1">// reverse, remove, fill, find, none_of</span>
+<span class="cp">#include &amp;lt;array&amp;gt; </span><span class="c1">// array</span>
+<span class="cp">#include &amp;lt;clocale&amp;gt; </span><span class="c1">// localeconv, lconv</span>
+<span class="cp">#include &amp;lt;cmath&amp;gt; </span><span class="c1">// labs, isfinite, isnan, signbit</span>
+<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t, ptrdiff_t</span>
+<span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// uint8_t</span>
+<span class="cp">#include &amp;lt;cstdio&amp;gt; </span><span class="c1">// snprintf</span>
+<span class="cp">#include &amp;lt;limits&amp;gt; </span><span class="c1">// numeric_limits</span>
+<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string, char_traits</span>
+<span class="cp">#include &amp;lt;iomanip&amp;gt; </span><span class="c1">// setfill, setw</span>
+<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// is_same</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// move</span>
+<span class="cp">#include &amp;lt;array&amp;gt; </span><span class="c1">// array</span>
+<span class="cp">#include &amp;lt;cmath&amp;gt;   </span><span class="c1">// signbit, isfinite</span>
+<span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// intN_t, uintN_t</span>
+<span class="cp">#include &amp;lt;cstring&amp;gt; </span><span class="c1">// memcpy, memmove</span>
+<span class="cp">#include &amp;lt;limits&amp;gt; </span><span class="c1">// numeric_limits</span>
+<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// conditional</span>
+<span class="cp">#include &amp;lt;functional&amp;gt; </span><span class="c1">// equal_to, less</span>
+<span class="cp">#include &amp;lt;initializer_list&amp;gt; </span><span class="c1">// initializer_list</span>
+<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// input_iterator_tag, iterator_traits</span>
+<span class="cp">#include &amp;lt;memory&amp;gt; </span><span class="c1">// allocator</span>
+<span class="cp">#include &amp;lt;stdexcept&amp;gt; </span><span class="c1">// for out_of_range</span>
+<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// enable_if, is_convertible</span>
+<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// pair</span>
+<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
+<span class="w">        </span><span class="cp">#include &amp;lt;any&amp;gt;</span>
+<span class="w">    </span><span class="cp">#include &amp;lt;string_view&amp;gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
 <p><strong>Fallacies:</strong></p>
 <p><em>None</em></p>
 <p><strong>Graph:</strong></p>

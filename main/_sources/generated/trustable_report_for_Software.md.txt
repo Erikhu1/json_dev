@@ -90,7 +90,7 @@ This presents the compliance for the _JSON-Library Statements_ (JLS) in tabular 
 | [JLS-24](JLS.md#jls-24) |  The nlohmann/json library recognizes malformed JSON and returns an exception. | 0.00 |
 | [JLS-25](JLS.md#jls-25) |  Malicious code changes are mitigated by code reviews, adhering to Eclipse S-core contribution procedures and vigilance from the open-source community. | 0.00 |
 | [JLS-26](JLS.md#jls-26) |  Pipeline execution results are analyzed in the fork and the original nlohmann/json repository. | 0.00 |
-| [JLS-27](JLS.md#jls-27) |  The test coverage for this version of nlohmann/json is monitored by coveralls and stays constant. | 0.00 |
+| [JLS-27](JLS.md#jls-27) |  The nlohnmann/json library uses no external components besides the C++ standard components. | 0.00 |
 
 ## Compliance for NJF
 This presents the compliance for the _No JSON Faults_ (NJF) in tabular form.
@@ -314,6 +314,6 @@ This presents the compliance for _Well Formed JSON_ (WFJ) in tabular form.
 _Generated for: Software_
 
 * _Repository root: /home/runner/work/json_dev/json_dev_
-* _Commit SHA: 89f469074d62146a70b059ff678d8ae6f87840f3_
-* _Commit date/time: Thu Nov  6 08:18:53 2025_
-* _Commit tag: 89f4690_
+* _Commit SHA: d973a890b5418dad80f94f22a9be8209a3b35411_
+* _Commit date/time: Fri Nov  7 17:26:03 2025_
+* _Commit tag: d973a89_
