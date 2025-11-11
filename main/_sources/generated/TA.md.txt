@@ -18,7 +18,7 @@ Collected data from tests and monitoring of deployed software is analysed accord
 
 **References:**
 
-- `TSF/trustable/assertions/TA-Analysis.md`
+- `TSF/trustable/assertions/TA-ANALYSIS-CHECKLIST.md`
 
 
 #### Checklist for TA-ANALYSIS from [Codethink](https://codethinklabs.gitlab.io/trustable/trustable/print_page.html)
@@ -127,7 +127,7 @@ _None_
 |2025-10-24 10:13:58|0.00 |N/A|N/A|N/A|
 |2025-10-27 12:37:56|0.00 |N/A|N/A|N/A|
 |2025-11-04 09:01:33|0.00 |N/A|N/A|N/A|
-|2025-11-07 16:29:24.250583|0.00 |N/A|N/A|N/A|
+|2025-11-11 11:34:28.252842|0.00 |N/A|N/A|N/A|
 
 
 
@@ -156,7 +156,7 @@ Expected or required behaviours for nlohmann/json library are identified, specif
 
 **References:**
 
-- `TSF/trustable/assertions/TA-Behaviours.md`
+- `TSF/trustable/assertions/TA-BEHAVIOURS-CHECKLIST.md`
 
 
 #### Checklist for TA-BEHAVIOURS from [Codethink](https://codethinklabs.gitlab.io/trustable/trustable/print_page.html)
@@ -232,7 +232,7 @@ _None_
 |2025-08-27 16:24:53|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
 |2025-08-28 17:29:59|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
 |2025-08-29 15:47:02|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-11-07 16:29:24.250583|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-11-11 11:34:28.252842|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
 
 
 
@@ -258,7 +258,7 @@ Confidence in nlohmann/json library is measured based on results of analysis.
 
 **References:**
 
-- `TSF/trustable/assertions/TA-Confidence.md`
+- `TSF/trustable/assertions/TA-CONFIDENCE-CHECKLIST.md`
 
 
 #### Checklist for TA-CONFIDENCE from [Codethink](https://codethinklabs.gitlab.io/trustable/trustable/print_page.html)
@@ -300,7 +300,7 @@ _None_
 |2025-08-27 16:24:53|0.00 |N/A|N/A|N/A|N/A|
 |2025-08-28 17:29:59|0.00 |N/A|N/A|N/A|N/A|
 |2025-08-29 15:47:02|0.00 |N/A|N/A|N/A|N/A|
-|2025-11-07 16:29:24.250583|0.00 |N/A|N/A|N/A|N/A|
+|2025-11-11 11:34:28.252842|0.00 |N/A|N/A|N/A|N/A|
 
 
 
@@ -325,29 +325,12 @@ Constraints on adaptation and deployment of nlohmann/json library are specified.
 - [AOU-16](AOU.md#aou-16)
 - [AOU-20](AOU.md#aou-20)
 - [AOU-21](AOU.md#aou-21)
-- [AOU-01](AOU.md#aou-01)
-- [AOU-02](AOU.md#aou-02)
-- [AOU-03](AOU.md#aou-03)
-- [AOU-08](AOU.md#aou-08)
-- [AOU-09](AOU.md#aou-09)
-- [AOU-15](AOU.md#aou-15)
-- [AOU-17](AOU.md#aou-17)
-- [AOU-18](AOU.md#aou-18)
-- [AOU-19](AOU.md#aou-19)
-- [AOU-22](AOU.md#aou-22)
-- [AOU-23](AOU.md#aou-23)
-- [AOU-24](AOU.md#aou-24)
-- [AOU-25](AOU.md#aou-25)
-- [AOU-26](AOU.md#aou-26)
-- [AOU-27](AOU.md#aou-27)
-- [AOU-28](AOU.md#aou-28)
-- [AOU-10_COMBINED](AOU.md#aou-10_combined)
 
 
 
 **References:**
 
-- `TSF/trustable/assertions/TA-Constraints.md`
+- `TSF/trustable/assertions/TA-CONSTRAINTS-CHECKLIST.md`
 
 
 #### Checklist for TA-CONSTRAINTS from [Codethink](https://codethinklabs.gitlab.io/trustable/trustable/print_page.html)
@@ -393,15 +376,15 @@ _None_
 
 |date-time|TA-CONSTRAINTS|
 |-|-|
-|2025-08-26 12:04:48|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-08-26 15:38:44|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-08-27 10:29:06|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-08-27 13:23:16|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-08-27 14:20:48|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-08-27 16:24:53|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-08-28 17:29:59|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-08-29 15:47:02|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-11-07 16:29:24.250583|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-08-26 12:04:48|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-08-26 15:38:44|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-08-27 10:29:06|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-08-27 13:23:16|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-08-27 14:20:48|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-08-27 16:24:53|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-08-28 17:29:59|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-08-29 15:47:02|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-11-11 11:34:28.252842|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|N/A|
 
 
 
@@ -425,7 +408,7 @@ Data is collected from tests, and from monitoring of deployed software, accordin
 
 **References:**
 
-- `TSF/trustable/assertions/TA-Data.md`
+- `TSF/trustable/assertions/TA-DATA-CHECKLIST.md`
 
 
 #### Checklist for TA-DATA from [Codethink](https://codethinklabs.gitlab.io/trustable/trustable/print_page.html)
@@ -510,7 +493,7 @@ _None_
 |2025-10-24 10:13:58|0.00 |N/A|N/A|
 |2025-10-27 12:37:56|0.00 |N/A|N/A|
 |2025-11-04 09:01:33|0.00 |N/A|N/A|
-|2025-11-07 16:29:24.250583|0.00 |N/A|N/A|
+|2025-11-11 11:34:28.252842|0.00 |N/A|N/A|
 
 
 
@@ -533,13 +516,12 @@ Known bugs or misbehaviours are analysed and triaged, and critical fixes or miti
 - [JLS-11](JLS.md#jls-11)
 - [AOU-10_COMBINED](AOU.md#aou-10_combined)
 - [AOU-28](AOU.md#aou-28)
-- [JLS-27](JLS.md#jls-27)
 
 
 
 **References:**
 
-- `TSF/trustable/assertions/TA-Fixes.md`
+- `TSF/trustable/assertions/TA-FIXES-CHECKLIST.md`
 
 
 #### Checklist for TA-FIXES from [Codethink](https://codethinklabs.gitlab.io/trustable/trustable/print_page.html)
@@ -618,34 +600,34 @@ _None_
 
 |date-time|TA-FIXES|
 |-|-|
-|2025-08-26 12:04:48|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-08-26 15:38:44|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-08-27 10:29:06|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-08-27 13:23:16|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-08-27 14:20:48|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-08-27 16:24:53|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-08-28 17:29:59|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-08-29 15:47:02|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-09-10 16:20:35|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-09-11 09:23:26|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-09-12 13:29:30|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-09-15 11:48:05|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-09-15 16:25:33|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-09-16 11:32:53|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-09-16 15:15:09|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-09-17 09:31:47|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-09-19 12:26:04|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-09-26 09:39:39|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-09-29 10:05:38|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-10-06 15:13:57|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-10-07 17:09:21|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-10-14 18:05:11|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-10-23 16:32:31|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-10-24 08:52:52|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-10-24 10:13:58|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-10-27 12:37:56|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-11-04 09:01:33|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-11-07 16:29:24.250583|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-08-26 12:04:48|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-08-26 15:38:44|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-08-27 10:29:06|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-08-27 13:23:16|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-08-27 14:20:48|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-08-27 16:24:53|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-08-28 17:29:59|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-08-29 15:47:02|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-09-10 16:20:35|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-09-11 09:23:26|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-09-12 13:29:30|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-09-15 11:48:05|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-09-15 16:25:33|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-09-16 11:32:53|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-09-16 15:15:09|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-09-17 09:31:47|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-09-19 12:26:04|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-09-26 09:39:39|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-09-29 10:05:38|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-10-06 15:13:57|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-10-07 17:09:21|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-10-14 18:05:11|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-10-23 16:32:31|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-10-24 08:52:52|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-10-24 10:13:58|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-10-27 12:37:56|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-11-04 09:01:33|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-11-11 11:34:28.252842|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|
 
 
 
@@ -668,7 +650,7 @@ Advanced warning indicators for misbehaviours are identified, and monitoring mec
 
 **References:**
 
-- `TSF/trustable/assertions/TA-Indicators.md`
+- `TSF/trustable/assertions/TA-INDICATORS-CHECKLIST.md`
 
 
 #### Checklist for TA-INDICATORS from [Codethink](https://codethinklabs.gitlab.io/trustable/trustable/print_page.html)
@@ -753,7 +735,7 @@ All inputs to nlohmann/json library are assessed, to identify potential risks an
 
 **References:**
 
-- `TSF/trustable/assertions/TA-Inputs.md`
+- `TSF/trustable/assertions/TA-INPUTS-CHECKLIST.md`
 
 
 #### Checklist for TA-INPUTS from [Codethink](https://codethinklabs.gitlab.io/trustable/trustable/print_page.html)
@@ -841,7 +823,7 @@ _None_
 |2025-08-27 16:24:53|0.00 |N/A|N/A|
 |2025-08-28 17:29:59|0.00 |N/A|N/A|
 |2025-08-29 15:47:02|0.00 |N/A|N/A|
-|2025-11-07 16:29:24.250583|0.00 |N/A|N/A|
+|2025-11-11 11:34:28.252842|0.00 |N/A|N/A|
 
 
 
@@ -865,7 +847,7 @@ All constructed iterations of nlohmann/json library include source code, build i
 
 **References:**
 
-- `TSF/trustable/assertions/TA-Iterations.md`
+- `TSF/trustable/assertions/TA-ITERATIONS-CHECKLIST.md`
 
 
 #### Checklist for TA-ITERATIONS from [Codethink](https://codethinklabs.gitlab.io/trustable/trustable/print_page.html)
@@ -911,7 +893,7 @@ _None_
 |2025-08-27 16:24:53|0.00 |N/A|N/A|
 |2025-08-28 17:29:59|0.00 |N/A|N/A|
 |2025-08-29 15:47:02|0.00 |N/A|N/A|
-|2025-11-07 16:29:24.250583|0.00 |N/A|N/A|
+|2025-11-11 11:34:28.252842|0.00 |N/A|N/A|
 
 
 
@@ -935,7 +917,7 @@ Manual methodologies applied for nlohmann/json library by contributors, and thei
 
 **References:**
 
-- `TSF/trustable/assertions/TA-Methodologies.md`
+- `TSF/trustable/assertions/TA-METHODOLOGIES-CHECKLIST.md`
 
 
 #### Checklist for TA-METHODOLOGIES from [Codethink](https://codethinklabs.gitlab.io/trustable/trustable/print_page.html)
@@ -1003,7 +985,7 @@ _None_
 |2025-08-27 16:24:53|0.00 |N/A|N/A|
 |2025-08-28 17:29:59|0.00 |N/A|N/A|
 |2025-08-29 15:47:02|0.00 |N/A|N/A|
-|2025-11-07 16:29:24.250583|0.00 |N/A|N/A|
+|2025-11-11 11:34:28.252842|0.00 |N/A|N/A|
 
 
 
@@ -1032,7 +1014,7 @@ Prohibited misbehaviours for nlohmann/json library are identified, and mitigatio
 
 **References:**
 
-- `TSF/trustable/assertions/TA-Misbehaviours.md`
+- `TSF/trustable/assertions/TA-MISBEHAVIOURS-CHECKLIST.md`
 
 
 #### Checklist for TA-MISBEHAVIOURS from [Codethink](https://codethinklabs.gitlab.io/trustable/trustable/print_page.html)
@@ -1106,7 +1088,7 @@ _None_
 |2025-08-27 16:24:53|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
 |2025-08-28 17:29:59|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
 |2025-08-29 15:47:02|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
-|2025-11-07 16:29:24.250583|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
+|2025-11-11 11:34:28.252842|0.00 |N/A|N/A|N/A|N/A|N/A|N/A|N/A|
 
 
 
@@ -1131,7 +1113,7 @@ Construction of nlohmann/json library releases is fully repeatable and the resul
 
 **References:**
 
-- `TSF/trustable/assertions/TA-Releases.md`
+- `TSF/trustable/assertions/TA-RELEASES-CHECKLIST.md`
 
 
 #### Checklist for TA-RELEASES from [Codethink](https://codethinklabs.gitlab.io/trustable/trustable/print_page.html)
@@ -1181,7 +1163,7 @@ _None_
 |2025-08-27 16:24:53|0.00 |N/A|N/A|N/A|
 |2025-08-28 17:29:59|0.00 |N/A|N/A|N/A|
 |2025-08-29 15:47:02|0.00 |N/A|N/A|N/A|
-|2025-11-07 16:29:24.250583|0.00 |N/A|N/A|N/A|
+|2025-11-11 11:34:28.252842|0.00 |N/A|N/A|N/A|
 
 
 
@@ -1206,7 +1188,7 @@ All sources for nlohmann/json library and tools are mirrored in our controlled e
 
 **References:**
 
-- `TSF/trustable/assertions/TA-Supply-Chain.md`
+- `TSF/trustable/assertions/TA-SUPPLY_CHAIN-CHECKLIST.md`
 
 
 #### Checklist for TA-SUPPLY_CHAIN from [Codethink](https://codethinklabs.gitlab.io/trustable/trustable/print_page.html)
@@ -1256,7 +1238,7 @@ _None_
 |2025-08-27 16:24:53|0.00 |N/A|N/A|N/A|
 |2025-08-28 17:29:59|0.00 |N/A|N/A|N/A|
 |2025-08-29 15:47:02|0.00 |N/A|N/A|N/A|
-|2025-11-07 16:29:24.250583|0.00 |N/A|N/A|N/A|
+|2025-11-11 11:34:28.252842|0.00 |N/A|N/A|N/A|
 
 
 
@@ -1280,7 +1262,7 @@ All tests for nlohmann/json library, and its build and test environments, are co
 
 **References:**
 
-- `TSF/trustable/assertions/TA-Tests.md`
+- `TSF/trustable/assertions/TA-TESTS-CHECKLIST.md`
 
 
 #### Checklist for TA-TESTS from [Codethink](https://codethinklabs.gitlab.io/trustable/trustable/print_page.html)
@@ -1330,7 +1312,7 @@ _None_
 |2025-08-27 16:24:53|0.00 |N/A|N/A|
 |2025-08-28 17:29:59|0.00 |N/A|N/A|
 |2025-08-29 15:47:02|0.00 |N/A|N/A|
-|2025-11-07 16:29:24.250583|0.00 |N/A|N/A|
+|2025-11-11 11:34:28.252842|0.00 |N/A|N/A|
 
 
 
@@ -1356,7 +1338,7 @@ nlohmann/json library components, configurations and tools are updated under spe
 
 **References:**
 
-- `TSF/trustable/assertions/TA-Updates.md`
+- `TSF/trustable/assertions/TA-UPDATES-CHECKLIST.md`
 
 
 #### Checklist for TA-UPDATES from [Codethink](https://codethinklabs.gitlab.io/trustable/trustable/print_page.html)
@@ -1406,7 +1388,7 @@ _None_
 |2025-08-27 16:24:53|0.00 |N/A|N/A|N/A|N/A|
 |2025-08-28 17:29:59|0.00 |N/A|N/A|N/A|N/A|
 |2025-08-29 15:47:02|0.00 |N/A|N/A|N/A|N/A|
-|2025-11-07 16:29:24.250583|0.00 |N/A|N/A|N/A|N/A|
+|2025-11-11 11:34:28.252842|0.00 |N/A|N/A|N/A|N/A|
 
 
 
@@ -1430,7 +1412,7 @@ All specified tests are executed repeatedly, under defined conditions in control
 
 **References:**
 
-- `TSF/trustable/assertions/TA-Validation.md`
+- `TSF/trustable/assertions/TA-VALIDATION-CHECKLIST.md`
 
 
 #### Checklist for TA-VALIDATION from [Codethink](https://codethinklabs.gitlab.io/trustable/trustable/print_page.html)
@@ -1529,5 +1511,5 @@ _None_
 |2025-10-24 10:13:58|0.00 |N/A|N/A|
 |2025-10-27 12:37:56|0.00 |N/A|N/A|
 |2025-11-04 09:01:33|0.00 |N/A|N/A|
-|2025-11-07 16:29:24.250583|0.00 |N/A|N/A|
+|2025-11-11 11:34:28.252842|0.00 |N/A|N/A|
 

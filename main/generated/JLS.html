@@ -462,16 +462,6 @@
 <span class="w">    </span><span class="nt">with</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;labeler-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
 
-<span class="w">  </span><span class="nt">SME_review_checker</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
-<span class="w">      </span><span class="nt">pull-requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run SME_review_checker Workflow</span>
-<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;pull_request&#39; }}</span><span class="w"> </span><span class="c1"># only run SME_review_checker for PRs</span>
-<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/SME_review_checker.yml</span>
-<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SME_review_checker-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
-
 <span class="w">  </span><span class="nt">check_amalgamation</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Amalgamation Workflow</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;pull_request&#39; }}</span><span class="w"> </span><span class="c1"># only run check_amalgamation for PRs</span>
@@ -485,6 +475,24 @@
 <span class="w">    </span><span class="nt">with</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;test_trudag_extensions-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
 
+<span class="w">  </span><span class="nt">codeql</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">      </span><span class="nt">security-events</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Codeql analysis Workflow</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/codeql-analysis.yml</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;codeql-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
+<span class="w">  </span><span class="nt">ubuntu</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Ubuntu Workflow</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">codeql</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># Error if CodeQL and Ubuntu triggered at the same time due to conflicting priorities</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/ubuntu.yml</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ubuntu-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
 <span class="w">  </span><span class="nt">dependency_review</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run dependency_review Workflow</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;pull_request&#39; }}</span><span class="w">  </span><span class="c1"># only run dependency_review for PRs</span>
@@ -495,11 +503,11 @@
 <span class="w">  </span><span class="nt">collect_artifacts_pr</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Collect</span><span class="nv"> </span><span class="s">Results</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">Deploy</span><span class="nv"> </span><span class="s">(PR)&quot;</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;pull_request&#39;</span>
-<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
 
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
@@ -528,11 +536,11 @@
 <span class="w">  </span><span class="nt">collect_artifacts_non_pr</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Collect</span><span class="nv"> </span><span class="s">Results</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">Deploy</span><span class="nv"> </span><span class="s">(Non-PR)&quot;</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name != &#39;pull_request&#39;</span>
-<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># no check_amalgamation or dependency_review if non PR</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># no check_amalgamation or dependency_review if non PR</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
 
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
@@ -715,7 +723,7 @@
 <hr class="docutils" />
 <section id="jls-05">
 <h1>JLS-05<a class="headerlink" href="#jls-05" title="Link to this heading">#</a></h1>
-<p>The OSS nlohmann/json is widely used and actively maintained; bugs and misbehaviours are tracked publicly and transparently.</p>
+<p>The OSS nlohmann/json is widely used, actively maintained and uses github issues to track bugs and misbehaviours.</p>
 <p><strong>Supported Requests:</strong></p>
 <ul class="simple">
 <li><p><a class="reference internal" href="TA.html#ta-fixes"><span class="std std-ref">TA-FIXES</span></a></p></li>
@@ -775,9 +783,9 @@
 <p><em>None</em></p>
 <p><strong>References:</strong></p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">failures</span> <span class="pre">on</span> <span class="pre">branch</span> <span class="pre">main</span> <span class="pre">of</span> <span class="pre">score-json/json</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">failures</span> <span class="pre">on</span> <span class="pre">branch</span> <span class="pre">master</span> <span class="pre">of</span> <span class="pre">nlohmann/json</span></code></p></li>
 </ul>
-<p>0 workflows failed on score-json/json</p>
+<p>0 workflows failed on branch master of nlohmann/json</p>
 <p><strong>Fallacies:</strong></p>
 <p><em>None</em></p>
 <p><strong>Graph:</strong></p>
@@ -9454,16 +9462,6 @@ All tests in this file were run in the following configurations:
 <span class="w">    </span><span class="nt">with</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;labeler-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
 
-<span class="w">  </span><span class="nt">SME_review_checker</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
-<span class="w">      </span><span class="nt">pull-requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run SME_review_checker Workflow</span>
-<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;pull_request&#39; }}</span><span class="w"> </span><span class="c1"># only run SME_review_checker for PRs</span>
-<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/SME_review_checker.yml</span>
-<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SME_review_checker-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
-
 <span class="w">  </span><span class="nt">check_amalgamation</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Amalgamation Workflow</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;pull_request&#39; }}</span><span class="w"> </span><span class="c1"># only run check_amalgamation for PRs</span>
@@ -9477,6 +9475,24 @@ All tests in this file were run in the following configurations:
 <span class="w">    </span><span class="nt">with</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;test_trudag_extensions-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
 
+<span class="w">  </span><span class="nt">codeql</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">      </span><span class="nt">security-events</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Codeql analysis Workflow</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/codeql-analysis.yml</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;codeql-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
+<span class="w">  </span><span class="nt">ubuntu</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Ubuntu Workflow</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">codeql</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># Error if CodeQL and Ubuntu triggered at the same time due to conflicting priorities</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/ubuntu.yml</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ubuntu-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
 <span class="w">  </span><span class="nt">dependency_review</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run dependency_review Workflow</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;pull_request&#39; }}</span><span class="w">  </span><span class="c1"># only run dependency_review for PRs</span>
@@ -9487,11 +9503,11 @@ All tests in this file were run in the following configurations:
 <span class="w">  </span><span class="nt">collect_artifacts_pr</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Collect</span><span class="nv"> </span><span class="s">Results</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">Deploy</span><span class="nv"> </span><span class="s">(PR)&quot;</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;pull_request&#39;</span>
-<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
 
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
@@ -9520,11 +9536,11 @@ All tests in this file were run in the following configurations:
 <span class="w">  </span><span class="nt">collect_artifacts_non_pr</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Collect</span><span class="nv"> </span><span class="s">Results</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">Deploy</span><span class="nv"> </span><span class="s">(Non-PR)&quot;</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name != &#39;pull_request&#39;</span>
-<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># no check_amalgamation or dependency_review if non PR</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># no check_amalgamation or dependency_review if non PR</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
 
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
@@ -9608,7 +9624,6 @@ All tests in this file were run in the following configurations:
 
 <span class="nt">permissions</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
-<span class="w">  </span><span class="nt">security-events</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
 
 <span class="nt">jobs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">run-trudag</span><span class="p">:</span>
@@ -9618,11 +9633,16 @@ All tests in this file were run in the following configurations:
 <span class="w">      </span><span class="nt">pages</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
 <span class="w">      </span><span class="nt">pull-requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
 <span class="w">      </span><span class="nt">id-token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
-<span class="w">      </span><span class="nt">security-events</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
 
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout repository</span>
 <span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683</span><span class="w"> </span><span class="c1"># v4.2.2</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Load ubuntu-artifact</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16</span><span class="w"> </span><span class="c1"># v4.1.8</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ inputs.artifact_id }}</span>
+<span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">artifacts/</span>
 
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python</span>
 <span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065</span><span class="w"> </span><span class="c1"># v5.6.0</span>
@@ -9635,7 +9655,7 @@ All tests in this file were run in the following configurations:
 <span class="w">          </span><span class="no">sudo apt-get update</span>
 <span class="w">          </span><span class="no">sudo apt-get install -y graphviz</span>
 <span class="w">          </span><span class="no">pip install git+https://gitlab.com/CodethinkLabs/trustable/trustable@9957f12171cb898d83df5ae708fdba0a38fece2e</span>
-<span class="w"> </span>
+
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install tools</span>
 <span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
 <span class="w">          </span><span class="no">sudo apt-get update</span>
@@ -9684,7 +9704,7 @@ All tests in this file were run in the following configurations:
 <span class="w">          </span><span class="no">if ! gh repo view &quot;$REPO&quot; --json name -q .name; then</span>
 <span class="w">            </span><span class="no">echo &quot;Could not reach the target repository ($REPO). Aborting workflow.&quot;</span>
 <span class="w">            </span><span class="no">exit 1</span>
-<span class="w">          </span><span class="no">fi </span>
+<span class="w">          </span><span class="no">fi</span>
 
 <span class="w">          </span><span class="no"># Fetch open issues from the nlohmann/json repository</span>
 <span class="w">          </span><span class="no">gh issue list --repo &quot;$REPO&quot; --state open --limit 10000 --json number,title,state,createdAt,url,labels &amp;gt; raw_open_issues.json</span>
@@ -9692,67 +9712,12 @@ All tests in this file were run in the following configurations:
 <span class="w">          </span><span class="no"># Fetch closed issues from the nlohmann/json repository</span>
 <span class="w">          </span><span class="no">gh issue list --repo &quot;$REPO&quot; --state closed --limit 10000 --json number,title,state,createdAt,url,labels &amp;gt; raw_closed_issues.json</span>
 
-<span class="w">          </span><span class="no"># print the list of misbehaviours </span>
+<span class="w">          </span><span class="no"># print the list of misbehaviours</span>
 <span class="w">          </span><span class="no">python3 TSF/scripts/generate_list_of_misbehaviours.py &amp;gt; $OUTPUT_FILE</span>
 
 <span class="w">          </span><span class="no"># Push misbehaviours file to save_historical_data branch</span>
 <span class="w">          </span><span class="no">git add TSF/misbehaviours.md</span>
 <span class="w">          </span><span class="no">git commit -m &quot;Updated issues list&quot; || echo &quot;No changes to commit&quot;</span>
-<span class="w">          </span><span class="no">git push origin save_historical_data &amp;&amp; git pull</span>
-
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Generate current CodeQL report</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">          </span><span class="no"># Define variables</span>
-<span class="w">          </span><span class="no">CODEQL_OUTPUT_FILE=&quot;TSF/codeql_report.md&quot;</span>
-<span class="w">          </span>
-<span class="w">          </span><span class="no"># Get code scanning alerts with pagination support</span>
-<span class="w">          </span><span class="no">echo &quot;Fetching code scanning alerts...&quot;</span>
-<span class="w">          </span><span class="no">CODESCANNING_COUNT=0</span>
-<span class="w">          </span><span class="no">PAGE=1</span>
-<span class="w">          </span><span class="no">PER_PAGE=100</span>
-<span class="w">          </span>
-<span class="w">          </span><span class="no">while true; do</span>
-<span class="w">            </span><span class="no">CODESCANNING_RESPONSE=$(curl -s -w &quot;%{http_code}&quot; -H &quot;Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}&quot; \</span>
-<span class="w">                                        </span><span class="no">-H &quot;Accept: application/vnd.github+json&quot; \</span>
-<span class="w">                                        </span><span class="no">-H &quot;X-GitHub-Api-Version: 2022-11-28&quot; \</span>
-<span class="w">                                        </span><span class="no">&quot;https://api.github.com/repos/${{ github.repository }}/code-scanning/alerts?state=open&amp;page=$PAGE&amp;per_page=$PER_PAGE&quot;)</span>
-<span class="w">          </span><span class="no">  </span>
-<span class="w">            </span><span class="no">CODESCANNING_HTTP_CODE=&quot;${CODESCANNING_RESPONSE: -3}&quot;</span>
-<span class="w">            </span><span class="no">CODESCANNING_BODY=&quot;${CODESCANNING_RESPONSE%???}&quot;</span>
-<span class="w">          </span><span class="no">  </span>
-<span class="w">            </span><span class="no">if [ &quot;$CODESCANNING_HTTP_CODE&quot; = &quot;200&quot; ]; then</span>
-<span class="w">              </span><span class="no">PAGE_COUNT=$(echo &quot;$CODESCANNING_BODY&quot; | jq -r &#39;length&#39; 2&amp;gt;/dev/null || echo &quot;0&quot;)</span>
-<span class="w">              </span><span class="no">echo &quot;Page $PAGE: found $PAGE_COUNT code scanning alerts&quot;</span>
-<span class="w">              </span><span class="no">CODESCANNING_COUNT=$((CODESCANNING_COUNT + PAGE_COUNT))</span>
-<span class="w">          </span><span class="no">    </span>
-<span class="w">              </span><span class="no"># If we got fewer results than per_page, we&#39;ve reached the end</span>
-<span class="w">              </span><span class="no">if [ &quot;$PAGE_COUNT&quot; -lt &quot;$PER_PAGE&quot; ]; then</span>
-<span class="w">                </span><span class="no">break</span>
-<span class="w">              </span><span class="no">fi</span>
-<span class="w">              </span><span class="no">PAGE=$((PAGE + 1))</span>
-<span class="w">            </span><span class="no">else</span>
-<span class="w">              </span><span class="no">echo &quot;Code scanning access failed with HTTP $CODESCANNING_HTTP_CODE on page $PAGE&quot;</span>
-<span class="w">              </span><span class="no">echo &quot;Response body: $CODESCANNING_BODY&quot;</span>
-<span class="w">              </span><span class="no"># If first page fails, set count to 0, otherwise keep what we have</span>
-<span class="w">              </span><span class="no">if [ &quot;$PAGE&quot; -eq 1 ]; then</span>
-<span class="w">                </span><span class="no">CODESCANNING_COUNT=0</span>
-<span class="w">              </span><span class="no">fi</span>
-<span class="w">              </span><span class="no">break</span>
-<span class="w">            </span><span class="no">fi</span>
-<span class="w">          </span><span class="no">done</span>
-<span class="w">          </span>
-<span class="w">          </span><span class="no">echo &quot;Total code scanning alerts found: $CODESCANNING_COUNT&quot;</span>
-<span class="w">          </span>
-<span class="w">          </span><span class="no">echo &quot;=== SECURITY SUMMARY ===&quot;</span>
-<span class="w">          </span><span class="no">echo &quot;Code Scanning Alerts (open): $CODESCANNING_COUNT&quot;</span>
-<span class="w">          </span><span class="no">echo &quot;Total Open Security Issues: $CODESCANNING_COUNT&quot;</span>
-<span class="w">          </span>
-<span class="w">          </span><span class="no"># Generate the CodeQL report</span>
-<span class="w">          </span><span class="no">python3 TSF/scripts/generate_codeql_report.py $CODESCANNING_COUNT &amp;gt; $CODEQL_OUTPUT_FILE</span>
-
-<span class="w">          </span><span class="no"># Push CodeQL report file to save_historical_data branch</span>
-<span class="w">          </span><span class="no">git add TSF/codeql_report.md</span>
-<span class="w">          </span><span class="no">git commit -m &quot;Updated CodeQL report&quot; || echo &quot;No changes to commit&quot;</span>
 <span class="w">          </span><span class="no">git push origin save_historical_data &amp;&amp; git pull</span>
 <span class="w">      </span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Load persistent data</span>
@@ -9882,16 +9847,6 @@ All tests in this file were run in the following configurations:
 <span class="w">    </span><span class="nt">with</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;labeler-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
 
-<span class="w">  </span><span class="nt">SME_review_checker</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
-<span class="w">      </span><span class="nt">pull-requests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run SME_review_checker Workflow</span>
-<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;pull_request&#39; }}</span><span class="w"> </span><span class="c1"># only run SME_review_checker for PRs</span>
-<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/SME_review_checker.yml</span>
-<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SME_review_checker-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
-
 <span class="w">  </span><span class="nt">check_amalgamation</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Amalgamation Workflow</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;pull_request&#39; }}</span><span class="w"> </span><span class="c1"># only run check_amalgamation for PRs</span>
@@ -9905,6 +9860,24 @@ All tests in this file were run in the following configurations:
 <span class="w">    </span><span class="nt">with</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;test_trudag_extensions-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
 
+<span class="w">  </span><span class="nt">codeql</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+<span class="w">      </span><span class="nt">security-events</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Codeql analysis Workflow</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/codeql-analysis.yml</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;codeql-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
+<span class="w">  </span><span class="nt">ubuntu</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Ubuntu Workflow</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">codeql</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># Error if CodeQL and Ubuntu triggered at the same time due to conflicting priorities</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/ubuntu.yml</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">artifact_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ubuntu-${{</span><span class="nv"> </span><span class="s">github.sha</span><span class="nv"> </span><span class="s">}}&quot;</span>
+
 <span class="w">  </span><span class="nt">dependency_review</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run dependency_review Workflow</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;pull_request&#39; }}</span><span class="w">  </span><span class="c1"># only run dependency_review for PRs</span>
@@ -9915,11 +9888,11 @@ All tests in this file were run in the following configurations:
 <span class="w">  </span><span class="nt">collect_artifacts_pr</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Collect</span><span class="nv"> </span><span class="s">Results</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">Deploy</span><span class="nv"> </span><span class="s">(PR)&quot;</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;pull_request&#39;</span>
-<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">check_amalgamation</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dependency_review</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
 
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
@@ -9948,11 +9921,11 @@ All tests in this file were run in the following configurations:
 <span class="w">  </span><span class="nt">collect_artifacts_non_pr</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Collect</span><span class="nv"> </span><span class="s">Results</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">Deploy</span><span class="nv"> </span><span class="s">(Non-PR)&quot;</span>
 <span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name != &#39;pull_request&#39;</span>
-<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># no check_amalgamation or dependency_review if non PR</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># no check_amalgamation or dependency_review if non PR</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 <span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">labeler</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">test_trudag_extensions</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">codeql</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">ubuntu</span><span class="p p-Indicator">]</span>
 
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
@@ -10958,7 +10931,7 @@ All tests in this file were run in the following configurations:
 <hr class="docutils" />
 <section id="jls-26">
 <h1>JLS-26<a class="headerlink" href="#jls-26" title="Link to this heading">#</a></h1>
-<p>Pipeline execution results are analyzed in the fork and the original nlohmann/json repository.</p>
+<p>Pipeline execution results are analyzed in nlohmann/json.</p>
 <p><strong>Supported Requests:</strong></p>
 <ul class="simple">
 <li><p><a class="reference internal" href="TA.html#ta-analysis"><span class="std std-ref">TA-ANALYSIS</span></a></p></li>
@@ -10967,9 +10940,9 @@ All tests in this file were run in the following configurations:
 <p><em>None</em></p>
 <p><strong>References:</strong></p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">failures</span> <span class="pre">on</span> <span class="pre">score-json/json</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">failures</span> <span class="pre">on</span> <span class="pre">branch</span> <span class="pre">master</span> <span class="pre">of</span> <span class="pre">nlohmann/json</span></code></p></li>
 </ul>
-<p>174 workflows failed on branch None of score-json/json</p>
+<p>0 workflows failed on branch master of nlohmann/json</p>
 <p><strong>Fallacies:</strong></p>
 <p><em>None</em></p>
 <p><strong>Graph:</strong></p>
@@ -10978,221 +10951,15 @@ All tests in this file were run in the following configurations:
 <hr class="docutils" />
 <section id="jls-27">
 <h1>JLS-27<a class="headerlink" href="#jls-27" title="Link to this heading">#</a></h1>
-<p>The nlohnmann/json library uses no external components besides the C++ standard components.</p>
+<p>The test coverage for this version of nlohmann/json is monitored using Coveralls and is not decreasing over time, unless reasonably justified.</p>
 <p><strong>Supported Requests:</strong></p>
 <ul class="simple">
 <li><p><a class="reference internal" href="TA.html#ta-behaviours"><span class="std std-ref">TA-BEHAVIOURS</span></a></p></li>
-<li><p><a class="reference internal" href="TA.html#ta-fixes"><span class="std std-ref">TA-FIXES</span></a></p></li>
 </ul>
 <p><strong>Supporting Items:</strong></p>
 <p><em>None</em></p>
 <p><strong>References:</strong></p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">includes:</span> <span class="pre">(single_include/nlohmann/json.hpp)</span></code></p>
-<ul class="simple">
-<li><p>Description: file containing all include occurrences of the score-project.</p></li>
-</ul>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include &amp;lt;algorithm&amp;gt; </span><span class="c1">// all_of, find, for_each</span>
-<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// nullptr_t, ptrdiff_t, size_t</span>
-<span class="cp">#include &amp;lt;functional&amp;gt; </span><span class="c1">// hash, less</span>
-<span class="cp">#include &amp;lt;initializer_list&amp;gt; </span><span class="c1">// initializer_list</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;iosfwd&amp;gt; </span><span class="c1">// istream, ostream</span>
-<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// random_access_iterator_tag</span>
-<span class="cp">#include &amp;lt;memory&amp;gt; </span><span class="c1">// unique_ptr</span>
-<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string, stoi, to_string</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// declval, forward, move, pair, swap</span>
-<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
-<span class="cp">#include &amp;lt;utility&amp;gt;</span>
-<span class="cp">#include &amp;lt;algorithm&amp;gt; </span><span class="c1">// transform</span>
-<span class="cp">#include &amp;lt;array&amp;gt; </span><span class="c1">// array</span>
-<span class="cp">#include &amp;lt;forward_list&amp;gt; </span><span class="c1">// forward_list</span>
-<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// inserter, front_inserter, end</span>
-<span class="cp">#include &amp;lt;map&amp;gt; </span><span class="c1">// map</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;optional&amp;gt; </span><span class="c1">// optional</span>
-<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
-<span class="cp">#include &amp;lt;tuple&amp;gt; </span><span class="c1">// tuple, make_tuple</span>
-<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// is_arithmetic, is_same, is_enum, underlying_type, is_convertible</span>
-<span class="cp">#include &amp;lt;unordered_map&amp;gt; </span><span class="c1">// unordered_map</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// pair, declval</span>
-<span class="cp">#include &amp;lt;valarray&amp;gt; </span><span class="c1">// valarray</span>
-<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// nullptr_t</span>
-<span class="cp">#include &amp;lt;exception&amp;gt; </span><span class="c1">// exception</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;numeric&amp;gt; </span><span class="c1">// accumulate</span>
-<span class="cp">#include &amp;lt;stdexcept&amp;gt; </span><span class="c1">// runtime_error</span>
-<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// to_string</span>
-<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
-<span class="cp">#include &amp;lt;array&amp;gt; </span><span class="c1">// array</span>
-<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
-<span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// uint8_t</span>
-<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// declval, pair</span>
-<span class="cp">#include &amp;lt;type_traits&amp;gt;</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;stdint.h&amp;gt;</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;stdint.h&amp;gt;</span>
-<span class="w">        </span><span class="cp">#include &amp;lt;version&amp;gt;</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;cstdlib&amp;gt;</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;cassert&amp;gt; </span><span class="c1">// assert</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;compare&amp;gt; </span><span class="c1">// partial_ordering</span>
-<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
-<span class="cp">#include &amp;lt;array&amp;gt; </span><span class="c1">// array</span>
-<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
-<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// conditional, enable_if, false_type, integral_constant, is_constructible, is_integral, is_same, remove_cv, remove_reference, true_type</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// index_sequence, make_index_sequence, index_sequence_for</span>
-<span class="cp">#include &amp;lt;limits&amp;gt; </span><span class="c1">// numeric_limits</span>
-<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// char_traits</span>
-<span class="cp">#include &amp;lt;tuple&amp;gt; </span><span class="c1">// tuple</span>
-<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// false_type, is_constructible, is_integral, is_same, true_type</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// declval</span>
-<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// random_access_iterator_tag</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// int64_t, uint64_t</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;map&amp;gt; </span><span class="c1">// map</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;memory&amp;gt; </span><span class="c1">// allocator</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
-<span class="cp">#include &amp;lt;cstring&amp;gt; </span><span class="c1">// strlen</span>
-<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// forward</span>
-<span class="cp">#include &amp;lt;experimental/filesystem&amp;gt;</span>
-<span class="cp">#include &amp;lt;filesystem&amp;gt; </span><span class="c1">// NOLINT(build/c++17)</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;optional&amp;gt; </span><span class="c1">// optional</span>
-<span class="cp">#include &amp;lt;algorithm&amp;gt; </span><span class="c1">// copy</span>
-<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// begin, end</span>
-<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
-<span class="cp">#include &amp;lt;tuple&amp;gt; </span><span class="c1">// tuple, get</span>
-<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// is_same, is_constructible, is_floating_point, is_enum, underlying_type</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// move, forward, declval, pair</span>
-<span class="cp">#include &amp;lt;valarray&amp;gt; </span><span class="c1">// valarray</span>
-<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
-<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
-<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// forward_iterator_tag</span>
-<span class="cp">#include &amp;lt;tuple&amp;gt; </span><span class="c1">// tuple_size, get, tuple_element</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// move</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;ranges&amp;gt; </span><span class="c1">// enable_borrowed_range</span>
-<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
-<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string, to_string</span>
-<span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// uint8_t, uint64_t</span>
-<span class="cp">#include &amp;lt;tuple&amp;gt; </span><span class="c1">// tie</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// move</span>
-<span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// uint8_t</span>
-<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
-<span class="cp">#include &amp;lt;functional&amp;gt; </span><span class="c1">// hash</span>
-<span class="cp">#include &amp;lt;algorithm&amp;gt; </span><span class="c1">// generate_n</span>
-<span class="cp">#include &amp;lt;array&amp;gt; </span><span class="c1">// array</span>
-<span class="cp">#include &amp;lt;cmath&amp;gt; </span><span class="c1">// ldexp</span>
-<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
-<span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// uint8_t, uint16_t, uint32_t, uint64_t</span>
-<span class="cp">#include &amp;lt;cstdio&amp;gt; </span><span class="c1">// snprintf</span>
-<span class="cp">#include &amp;lt;cstring&amp;gt; </span><span class="c1">// memcpy</span>
-<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// back_inserter</span>
-<span class="cp">#include &amp;lt;limits&amp;gt; </span><span class="c1">// numeric_limits</span>
-<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// char_traits, string</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// make_pair, move</span>
-<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;bit&amp;gt;  </span><span class="c1">//byteswap</span>
-<span class="cp">#include &amp;lt;array&amp;gt; </span><span class="c1">// array</span>
-<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
-<span class="cp">#include &amp;lt;cstring&amp;gt; </span><span class="c1">// strlen</span>
-<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// begin, end, iterator_traits, random_access_iterator_tag, distance, next</span>
-<span class="cp">#include &amp;lt;memory&amp;gt; </span><span class="c1">// shared_ptr, make_shared, addressof</span>
-<span class="cp">#include &amp;lt;numeric&amp;gt; </span><span class="c1">// accumulate</span>
-<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string, char_traits</span>
-<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// enable_if, is_base_of, is_pointer, is_integral, remove_pointer</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// pair, declval</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;cstdio&amp;gt;   </span><span class="c1">// FILE *</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;istream&amp;gt;  </span><span class="c1">// istream</span>
-<span class="cp">#include &amp;lt;cstddef&amp;gt;</span>
-<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
-<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// enable_if_t</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// move</span>
-<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
-<span class="cp">#include &amp;lt;array&amp;gt; </span><span class="c1">// array</span>
-<span class="cp">#include &amp;lt;clocale&amp;gt; </span><span class="c1">// localeconv</span>
-<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
-<span class="cp">#include &amp;lt;cstdio&amp;gt; </span><span class="c1">// snprintf</span>
-<span class="cp">#include &amp;lt;cstdlib&amp;gt; </span><span class="c1">// strtof, strtod, strtold, strtoll, strtoull</span>
-<span class="cp">#include &amp;lt;initializer_list&amp;gt; </span><span class="c1">// initializer_list</span>
-<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// char_traits, string</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// move</span>
-<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
-<span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// size_t</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// declval</span>
-<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
-<span class="cp">#include &amp;lt;cmath&amp;gt; </span><span class="c1">// isfinite</span>
-<span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// uint8_t</span>
-<span class="cp">#include &amp;lt;functional&amp;gt; </span><span class="c1">// function</span>
-<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// move</span>
-<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
-<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// ptrdiff_t</span>
-<span class="cp">#include &amp;lt;limits&amp;gt;  </span><span class="c1">// numeric_limits</span>
-<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// iterator, random_access_iterator_tag, bidirectional_iterator_tag, advance, next</span>
-<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// conditional, is_const, remove_const</span>
-<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// ptrdiff_t</span>
-<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// reverse_iterator</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// declval</span>
-<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// conditional, is_same</span>
-<span class="cp">#include &amp;lt;algorithm&amp;gt; </span><span class="c1">// all_of</span>
-<span class="cp">#include &amp;lt;cctype&amp;gt; </span><span class="c1">// isdigit</span>
-<span class="cp">#include &amp;lt;cerrno&amp;gt; </span><span class="c1">// errno, ERANGE</span>
-<span class="cp">#include &amp;lt;cstdlib&amp;gt; </span><span class="c1">// strtoull</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;iosfwd&amp;gt; </span><span class="c1">// ostream</span>
-<span class="cp">#include &amp;lt;limits&amp;gt; </span><span class="c1">// max</span>
-<span class="cp">#include &amp;lt;numeric&amp;gt; </span><span class="c1">// accumulate</span>
-<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// move</span>
-<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
-<span class="cp">#include &amp;lt;initializer_list&amp;gt;</span>
-<span class="cp">#include &amp;lt;utility&amp;gt;</span>
-<span class="cp">#include &amp;lt;algorithm&amp;gt; </span><span class="c1">// reverse</span>
-<span class="cp">#include &amp;lt;array&amp;gt; </span><span class="c1">// array</span>
-<span class="cp">#include &amp;lt;map&amp;gt; </span><span class="c1">// map</span>
-<span class="cp">#include &amp;lt;cmath&amp;gt; </span><span class="c1">// isnan, isinf</span>
-<span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// uint8_t, uint16_t, uint32_t, uint64_t</span>
-<span class="cp">#include &amp;lt;cstring&amp;gt; </span><span class="c1">// memcpy</span>
-<span class="cp">#include &amp;lt;limits&amp;gt; </span><span class="c1">// numeric_limits</span>
-<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// move</span>
-<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
-<span class="cp">#include &amp;lt;algorithm&amp;gt; </span><span class="c1">// copy</span>
-<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t</span>
-<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// back_inserter</span>
-<span class="cp">#include &amp;lt;memory&amp;gt; </span><span class="c1">// shared_ptr, make_shared</span>
-<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// basic_string</span>
-<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;ios&amp;gt;      </span><span class="c1">// streamsize</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;ostream&amp;gt;  </span><span class="c1">// basic_ostream</span>
-<span class="cp">#include &amp;lt;algorithm&amp;gt; </span><span class="c1">// reverse, remove, fill, find, none_of</span>
-<span class="cp">#include &amp;lt;array&amp;gt; </span><span class="c1">// array</span>
-<span class="cp">#include &amp;lt;clocale&amp;gt; </span><span class="c1">// localeconv, lconv</span>
-<span class="cp">#include &amp;lt;cmath&amp;gt; </span><span class="c1">// labs, isfinite, isnan, signbit</span>
-<span class="cp">#include &amp;lt;cstddef&amp;gt; </span><span class="c1">// size_t, ptrdiff_t</span>
-<span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// uint8_t</span>
-<span class="cp">#include &amp;lt;cstdio&amp;gt; </span><span class="c1">// snprintf</span>
-<span class="cp">#include &amp;lt;limits&amp;gt; </span><span class="c1">// numeric_limits</span>
-<span class="cp">#include &amp;lt;string&amp;gt; </span><span class="c1">// string, char_traits</span>
-<span class="cp">#include &amp;lt;iomanip&amp;gt; </span><span class="c1">// setfill, setw</span>
-<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// is_same</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// move</span>
-<span class="cp">#include &amp;lt;array&amp;gt; </span><span class="c1">// array</span>
-<span class="cp">#include &amp;lt;cmath&amp;gt;   </span><span class="c1">// signbit, isfinite</span>
-<span class="cp">#include &amp;lt;cstdint&amp;gt; </span><span class="c1">// intN_t, uintN_t</span>
-<span class="cp">#include &amp;lt;cstring&amp;gt; </span><span class="c1">// memcpy, memmove</span>
-<span class="cp">#include &amp;lt;limits&amp;gt; </span><span class="c1">// numeric_limits</span>
-<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// conditional</span>
-<span class="cp">#include &amp;lt;functional&amp;gt; </span><span class="c1">// equal_to, less</span>
-<span class="cp">#include &amp;lt;initializer_list&amp;gt; </span><span class="c1">// initializer_list</span>
-<span class="cp">#include &amp;lt;iterator&amp;gt; </span><span class="c1">// input_iterator_tag, iterator_traits</span>
-<span class="cp">#include &amp;lt;memory&amp;gt; </span><span class="c1">// allocator</span>
-<span class="cp">#include &amp;lt;stdexcept&amp;gt; </span><span class="c1">// for out_of_range</span>
-<span class="cp">#include &amp;lt;type_traits&amp;gt; </span><span class="c1">// enable_if, is_convertible</span>
-<span class="cp">#include &amp;lt;utility&amp;gt; </span><span class="c1">// pair</span>
-<span class="cp">#include &amp;lt;vector&amp;gt; </span><span class="c1">// vector</span>
-<span class="w">        </span><span class="cp">#include &amp;lt;any&amp;gt;</span>
-<span class="w">    </span><span class="cp">#include &amp;lt;string_view&amp;gt;</span>
-</pre></div>
-</div>
-</li>
-</ul>
+<p><em>None</em></p>
 <p><strong>Fallacies:</strong></p>
 <p><em>None</em></p>
 <p><strong>Graph:</strong></p>

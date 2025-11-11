@@ -44,16 +44,6 @@ jobs:
     with:
       artifact_id: "labeler-${{ github.sha }}"
 
-  SME_review_checker:
-    permissions:
-      contents: read
-      pull-requests: read
-    name: Run SME_review_checker Workflow
-    if: ${{ github.event_name == 'pull_request' }} # only run SME_review_checker for PRs
-    uses: ./.github/workflows/SME_review_checker.yml
-    with:
-      artifact_id: "SME_review_checker-${{ github.sha }}"
-
   check_amalgamation:
     name: Run Amalgamation Workflow
     if: ${{ github.event_name == 'pull_request' }} # only run check_amalgamation for PRs
@@ -67,6 +57,24 @@ jobs:
     with:
       artifact_id: "test_trudag_extensions-${{ github.sha }}"
 
+  codeql:
+    permissions:
+      contents: read
+      security-events: write
+    name: Run Codeql analysis Workflow
+    uses: ./.github/workflows/codeql-analysis.yml
+    with:
+      artifact_id: "codeql-${{ github.sha }}"
+
+  ubuntu:
+    name: Run Ubuntu Workflow
+    permissions:
+      contents: write
+    needs: [codeql] # Error if CodeQL and Ubuntu triggered at the same time due to conflicting priorities
+    uses: ./.github/workflows/ubuntu.yml
+    with:
+      artifact_id: "ubuntu-${{ github.sha }}"
+
   dependency_review:
     name: Run dependency_review Workflow
     if: ${{ github.event_name == 'pull_request' }}  # only run dependency_review for PRs
@@ -77,11 +85,11 @@ jobs:
   collect_artifacts_pr:
     name: "Collect Results & Deploy (PR)"
     if: github.event_name == 'pull_request'
-    needs: [labeler, check_amalgamation, test_trudag_extensions, dependency_review]
+    needs: [labeler, check_amalgamation, test_trudag_extensions, dependency_review, codeql, ubuntu]
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [labeler, check_amalgamation, test_trudag_extensions, dependency_review]
+        target: [labeler, check_amalgamation, test_trudag_extensions, dependency_review, codeql, ubuntu]
 
     steps:
       - name: Checkout code
@@ -110,11 +118,11 @@ jobs:
   collect_artifacts_non_pr:
     name: "Collect Results & Deploy (Non-PR)"
     if: github.event_name != 'pull_request'
-    needs: [labeler, test_trudag_extensions]  # no check_amalgamation or dependency_review if non PR
+    needs: [labeler, test_trudag_extensions, codeql, ubuntu]  # no check_amalgamation or dependency_review if non PR
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [labeler, test_trudag_extensions]
+        target: [labeler, test_trudag_extensions, codeql, ubuntu]
 
     steps:
       - name: Checkout code
@@ -361,7 +369,7 @@ _No Historic Data Found_
 
 ### JLS-05 
 
-The OSS nlohmann/json is widely used and actively maintained; bugs and misbehaviours are tracked publicly and transparently.
+The OSS nlohmann/json is widely used, actively maintained and uses github issues to track bugs and misbehaviours.
 
 
 **Supported Requests:**
@@ -456,10 +464,10 @@ _None_
 
 **References:**
 
-- `failures on branch main of score-json/json`
+- `failures on branch master of nlohmann/json`
 
 
-0 workflows failed on score-json/json
+0 workflows failed on branch master of nlohmann/json
 
 
 
@@ -9350,16 +9358,6 @@ jobs:
     with:
       artifact_id: "labeler-${{ github.sha }}"
 
-  SME_review_checker:
-    permissions:
-      contents: read
-      pull-requests: read
-    name: Run SME_review_checker Workflow
-    if: ${{ github.event_name == 'pull_request' }} # only run SME_review_checker for PRs
-    uses: ./.github/workflows/SME_review_checker.yml
-    with:
-      artifact_id: "SME_review_checker-${{ github.sha }}"
-
   check_amalgamation:
     name: Run Amalgamation Workflow
     if: ${{ github.event_name == 'pull_request' }} # only run check_amalgamation for PRs
@@ -9373,6 +9371,24 @@ jobs:
     with:
       artifact_id: "test_trudag_extensions-${{ github.sha }}"
 
+  codeql:
+    permissions:
+      contents: read
+      security-events: write
+    name: Run Codeql analysis Workflow
+    uses: ./.github/workflows/codeql-analysis.yml
+    with:
+      artifact_id: "codeql-${{ github.sha }}"
+
+  ubuntu:
+    name: Run Ubuntu Workflow
+    permissions:
+      contents: write
+    needs: [codeql] # Error if CodeQL and Ubuntu triggered at the same time due to conflicting priorities
+    uses: ./.github/workflows/ubuntu.yml
+    with:
+      artifact_id: "ubuntu-${{ github.sha }}"
+
   dependency_review:
     name: Run dependency_review Workflow
     if: ${{ github.event_name == 'pull_request' }}  # only run dependency_review for PRs
@@ -9383,11 +9399,11 @@ jobs:
   collect_artifacts_pr:
     name: "Collect Results & Deploy (PR)"
     if: github.event_name == 'pull_request'
-    needs: [labeler, check_amalgamation, test_trudag_extensions, dependency_review]
+    needs: [labeler, check_amalgamation, test_trudag_extensions, dependency_review, codeql, ubuntu]
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [labeler, check_amalgamation, test_trudag_extensions, dependency_review]
+        target: [labeler, check_amalgamation, test_trudag_extensions, dependency_review, codeql, ubuntu]
 
     steps:
       - name: Checkout code
@@ -9416,11 +9432,11 @@ jobs:
   collect_artifacts_non_pr:
     name: "Collect Results & Deploy (Non-PR)"
     if: github.event_name != 'pull_request'
-    needs: [labeler, test_trudag_extensions]  # no check_amalgamation or dependency_review if non PR
+    needs: [labeler, test_trudag_extensions, codeql, ubuntu]  # no check_amalgamation or dependency_review if non PR
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [labeler, test_trudag_extensions]
+        target: [labeler, test_trudag_extensions, codeql, ubuntu]
 
     steps:
       - name: Checkout code
@@ -9509,7 +9525,6 @@ on:
 
 permissions:
   contents: read
-  security-events: read
 
 jobs:
   run-trudag:
@@ -9519,11 +9534,16 @@ jobs:
       pages: write
       pull-requests: write
       id-token: write
-      security-events: read
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Load ubuntu-artifact
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
+        with:
+          name: ${{ inputs.artifact_id }}
+          path: artifacts/
 
       - name: Set up Python
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
@@ -9536,7 +9556,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y graphviz
           pip install git+https://gitlab.com/CodethinkLabs/trustable/trustable@9957f12171cb898d83df5ae708fdba0a38fece2e
- 
+
       - name: Install tools
         run: |
           sudo apt-get update
@@ -9585,7 +9605,7 @@ jobs:
           if ! gh repo view "$REPO" --json name -q .name; then
             echo "Could not reach the target repository ($REPO). Aborting workflow."
             exit 1
-          fi 
+          fi
 
           # Fetch open issues from the nlohmann/json repository
           gh issue list --repo "$REPO" --state open --limit 10000 --json number,title,state,createdAt,url,labels &gt; raw_open_issues.json
@@ -9593,67 +9613,12 @@ jobs:
           # Fetch closed issues from the nlohmann/json repository
           gh issue list --repo "$REPO" --state closed --limit 10000 --json number,title,state,createdAt,url,labels &gt; raw_closed_issues.json
 
-          # print the list of misbehaviours 
+          # print the list of misbehaviours
           python3 TSF/scripts/generate_list_of_misbehaviours.py &gt; $OUTPUT_FILE
 
           # Push misbehaviours file to save_historical_data branch
           git add TSF/misbehaviours.md
           git commit -m "Updated issues list" || echo "No changes to commit"
-          git push origin save_historical_data && git pull
-
-      - name: Generate current CodeQL report
-        run: |
-          # Define variables
-          CODEQL_OUTPUT_FILE="TSF/codeql_report.md"
-          
-          # Get code scanning alerts with pagination support
-          echo "Fetching code scanning alerts..."
-          CODESCANNING_COUNT=0
-          PAGE=1
-          PER_PAGE=100
-          
-          while true; do
-            CODESCANNING_RESPONSE=$(curl -s -w "%{http_code}" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-                                        -H "Accept: application/vnd.github+json" \
-                                        -H "X-GitHub-Api-Version: 2022-11-28" \
-                                        "https://api.github.com/repos/${{ github.repository }}/code-scanning/alerts?state=open&page=$PAGE&per_page=$PER_PAGE")
-            
-            CODESCANNING_HTTP_CODE="${CODESCANNING_RESPONSE: -3}"
-            CODESCANNING_BODY="${CODESCANNING_RESPONSE%???}"
-            
-            if [ "$CODESCANNING_HTTP_CODE" = "200" ]; then
-              PAGE_COUNT=$(echo "$CODESCANNING_BODY" | jq -r 'length' 2&gt;/dev/null || echo "0")
-              echo "Page $PAGE: found $PAGE_COUNT code scanning alerts"
-              CODESCANNING_COUNT=$((CODESCANNING_COUNT + PAGE_COUNT))
-              
-              # If we got fewer results than per_page, we've reached the end
-              if [ "$PAGE_COUNT" -lt "$PER_PAGE" ]; then
-                break
-              fi
-              PAGE=$((PAGE + 1))
-            else
-              echo "Code scanning access failed with HTTP $CODESCANNING_HTTP_CODE on page $PAGE"
-              echo "Response body: $CODESCANNING_BODY"
-              # If first page fails, set count to 0, otherwise keep what we have
-              if [ "$PAGE" -eq 1 ]; then
-                CODESCANNING_COUNT=0
-              fi
-              break
-            fi
-          done
-          
-          echo "Total code scanning alerts found: $CODESCANNING_COUNT"
-          
-          echo "=== SECURITY SUMMARY ==="
-          echo "Code Scanning Alerts (open): $CODESCANNING_COUNT"
-          echo "Total Open Security Issues: $CODESCANNING_COUNT"
-          
-          # Generate the CodeQL report
-          python3 TSF/scripts/generate_codeql_report.py $CODESCANNING_COUNT &gt; $CODEQL_OUTPUT_FILE
-
-          # Push CodeQL report file to save_historical_data branch
-          git add TSF/codeql_report.md
-          git commit -m "Updated CodeQL report" || echo "No changes to commit"
           git push origin save_historical_data && git pull
       
       - name: Load persistent data
@@ -9820,16 +9785,6 @@ jobs:
     with:
       artifact_id: "labeler-${{ github.sha }}"
 
-  SME_review_checker:
-    permissions:
-      contents: read
-      pull-requests: read
-    name: Run SME_review_checker Workflow
-    if: ${{ github.event_name == 'pull_request' }} # only run SME_review_checker for PRs
-    uses: ./.github/workflows/SME_review_checker.yml
-    with:
-      artifact_id: "SME_review_checker-${{ github.sha }}"
-
   check_amalgamation:
     name: Run Amalgamation Workflow
     if: ${{ github.event_name == 'pull_request' }} # only run check_amalgamation for PRs
@@ -9843,6 +9798,24 @@ jobs:
     with:
       artifact_id: "test_trudag_extensions-${{ github.sha }}"
 
+  codeql:
+    permissions:
+      contents: read
+      security-events: write
+    name: Run Codeql analysis Workflow
+    uses: ./.github/workflows/codeql-analysis.yml
+    with:
+      artifact_id: "codeql-${{ github.sha }}"
+
+  ubuntu:
+    name: Run Ubuntu Workflow
+    permissions:
+      contents: write
+    needs: [codeql] # Error if CodeQL and Ubuntu triggered at the same time due to conflicting priorities
+    uses: ./.github/workflows/ubuntu.yml
+    with:
+      artifact_id: "ubuntu-${{ github.sha }}"
+
   dependency_review:
     name: Run dependency_review Workflow
     if: ${{ github.event_name == 'pull_request' }}  # only run dependency_review for PRs
@@ -9853,11 +9826,11 @@ jobs:
   collect_artifacts_pr:
     name: "Collect Results & Deploy (PR)"
     if: github.event_name == 'pull_request'
-    needs: [labeler, check_amalgamation, test_trudag_extensions, dependency_review]
+    needs: [labeler, check_amalgamation, test_trudag_extensions, dependency_review, codeql, ubuntu]
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [labeler, check_amalgamation, test_trudag_extensions, dependency_review]
+        target: [labeler, check_amalgamation, test_trudag_extensions, dependency_review, codeql, ubuntu]
 
     steps:
       - name: Checkout code
@@ -9886,11 +9859,11 @@ jobs:
   collect_artifacts_non_pr:
     name: "Collect Results & Deploy (Non-PR)"
     if: github.event_name != 'pull_request'
-    needs: [labeler, test_trudag_extensions]  # no check_amalgamation or dependency_review if non PR
+    needs: [labeler, test_trudag_extensions, codeql, ubuntu]  # no check_amalgamation or dependency_review if non PR
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [labeler, test_trudag_extensions]
+        target: [labeler, test_trudag_extensions, codeql, ubuntu]
 
     steps:
       - name: Checkout code
@@ -10966,7 +10939,7 @@ _No Historic Data Found_
 
 ### JLS-26 
 
-Pipeline execution results are analyzed in the fork and the original nlohmann/json repository.
+Pipeline execution results are analyzed in nlohmann/json.
 
 
 **Supported Requests:**
@@ -10981,10 +10954,10 @@ _None_
 
 **References:**
 
-- `failures on score-json/json`
+- `failures on branch master of nlohmann/json`
 
 
-174 workflows failed on branch None of score-json/json
+0 workflows failed on branch master of nlohmann/json
 
 
 
@@ -11002,13 +10975,12 @@ _No Historic Data Found_
 
 ### JLS-27 
 
-The nlohnmann/json library uses no external components besides the C++ standard components.
+The test coverage for this version of nlohmann/json is monitored using Coveralls and is not decreasing over time, unless reasonably justified.
 
 
 **Supported Requests:**
 
 - [TA-BEHAVIOURS](TA.md#ta-behaviours)
-- [TA-FIXES](TA.md#ta-fixes)
 
 **Supporting Items:**
 
@@ -11018,213 +10990,7 @@ _None_
 
 **References:**
 
-- `includes: (single_include/nlohmann/json.hpp)`
-
-
-	- Description: file containing all include occurrences of the score-project.
-
-
-	```cpp
-	#include &lt;algorithm&gt; // all_of, find, for_each
-	#include &lt;cstddef&gt; // nullptr_t, ptrdiff_t, size_t
-	#include &lt;functional&gt; // hash, less
-	#include &lt;initializer_list&gt; // initializer_list
-	    #include &lt;iosfwd&gt; // istream, ostream
-	#include &lt;iterator&gt; // random_access_iterator_tag
-	#include &lt;memory&gt; // unique_ptr
-	#include &lt;string&gt; // string, stoi, to_string
-	#include &lt;utility&gt; // declval, forward, move, pair, swap
-	#include &lt;vector&gt; // vector
-	#include &lt;utility&gt;
-	#include &lt;algorithm&gt; // transform
-	#include &lt;array&gt; // array
-	#include &lt;forward_list&gt; // forward_list
-	#include &lt;iterator&gt; // inserter, front_inserter, end
-	#include &lt;map&gt; // map
-	    #include &lt;optional&gt; // optional
-	#include &lt;string&gt; // string
-	#include &lt;tuple&gt; // tuple, make_tuple
-	#include &lt;type_traits&gt; // is_arithmetic, is_same, is_enum, underlying_type, is_convertible
-	#include &lt;unordered_map&gt; // unordered_map
-	#include &lt;utility&gt; // pair, declval
-	#include &lt;valarray&gt; // valarray
-	#include &lt;cstddef&gt; // nullptr_t
-	#include &lt;exception&gt; // exception
-	    #include &lt;numeric&gt; // accumulate
-	#include &lt;stdexcept&gt; // runtime_error
-	#include &lt;string&gt; // to_string
-	#include &lt;vector&gt; // vector
-	#include &lt;array&gt; // array
-	#include &lt;cstddef&gt; // size_t
-	#include &lt;cstdint&gt; // uint8_t
-	#include &lt;string&gt; // string
-	#include &lt;utility&gt; // declval, pair
-	#include &lt;type_traits&gt;
-	    #include &lt;stdint.h&gt;
-	    #include &lt;stdint.h&gt;
-	        #include &lt;version&gt;
-	    #include &lt;cstdlib&gt;
-	    #include &lt;cassert&gt; // assert
-	    #include &lt;compare&gt; // partial_ordering
-	#include &lt;cstddef&gt; // size_t
-	#include &lt;array&gt; // array
-	#include &lt;cstddef&gt; // size_t
-	#include &lt;type_traits&gt; // conditional, enable_if, false_type, integral_constant, is_constructible, is_integral, is_same, remove_cv, remove_reference, true_type
-	#include &lt;utility&gt; // index_sequence, make_index_sequence, index_sequence_for
-	#include &lt;limits&gt; // numeric_limits
-	#include &lt;string&gt; // char_traits
-	#include &lt;tuple&gt; // tuple
-	#include &lt;type_traits&gt; // false_type, is_constructible, is_integral, is_same, true_type
-	#include &lt;utility&gt; // declval
-	#include &lt;iterator&gt; // random_access_iterator_tag
-	    #include &lt;cstdint&gt; // int64_t, uint64_t
-	    #include &lt;map&gt; // map
-	    #include &lt;memory&gt; // allocator
-	    #include &lt;string&gt; // string
-	    #include &lt;vector&gt; // vector
-	#include &lt;cstring&gt; // strlen
-	#include &lt;string&gt; // string
-	#include &lt;utility&gt; // forward
-	#include &lt;experimental/filesystem&gt;
-	#include &lt;filesystem&gt; // NOLINT(build/c++17)
-	    #include &lt;optional&gt; // optional
-	#include &lt;algorithm&gt; // copy
-	#include &lt;iterator&gt; // begin, end
-	#include &lt;string&gt; // string
-	#include &lt;tuple&gt; // tuple, get
-	#include &lt;type_traits&gt; // is_same, is_constructible, is_floating_point, is_enum, underlying_type
-	#include &lt;utility&gt; // move, forward, declval, pair
-	#include &lt;valarray&gt; // valarray
-	#include &lt;vector&gt; // vector
-	#include &lt;cstddef&gt; // size_t
-	#include &lt;iterator&gt; // forward_iterator_tag
-	#include &lt;tuple&gt; // tuple_size, get, tuple_element
-	#include &lt;utility&gt; // move
-	    #include &lt;ranges&gt; // enable_borrowed_range
-	#include &lt;cstddef&gt; // size_t
-	#include &lt;string&gt; // string, to_string
-	#include &lt;cstdint&gt; // uint8_t, uint64_t
-	#include &lt;tuple&gt; // tie
-	#include &lt;utility&gt; // move
-	#include &lt;cstdint&gt; // uint8_t
-	#include &lt;cstddef&gt; // size_t
-	#include &lt;functional&gt; // hash
-	#include &lt;algorithm&gt; // generate_n
-	#include &lt;array&gt; // array
-	#include &lt;cmath&gt; // ldexp
-	#include &lt;cstddef&gt; // size_t
-	#include &lt;cstdint&gt; // uint8_t, uint16_t, uint32_t, uint64_t
-	#include &lt;cstdio&gt; // snprintf
-	#include &lt;cstring&gt; // memcpy
-	#include &lt;iterator&gt; // back_inserter
-	#include &lt;limits&gt; // numeric_limits
-	#include &lt;string&gt; // char_traits, string
-	#include &lt;utility&gt; // make_pair, move
-	#include &lt;vector&gt; // vector
-	    #include &lt;bit&gt;  //byteswap
-	#include &lt;array&gt; // array
-	#include &lt;cstddef&gt; // size_t
-	#include &lt;cstring&gt; // strlen
-	#include &lt;iterator&gt; // begin, end, iterator_traits, random_access_iterator_tag, distance, next
-	#include &lt;memory&gt; // shared_ptr, make_shared, addressof
-	#include &lt;numeric&gt; // accumulate
-	#include &lt;string&gt; // string, char_traits
-	#include &lt;type_traits&gt; // enable_if, is_base_of, is_pointer, is_integral, remove_pointer
-	#include &lt;utility&gt; // pair, declval
-	    #include &lt;cstdio&gt;   // FILE *
-	    #include &lt;istream&gt;  // istream
-	#include &lt;cstddef&gt;
-	#include &lt;string&gt; // string
-	#include &lt;type_traits&gt; // enable_if_t
-	#include &lt;utility&gt; // move
-	#include &lt;vector&gt; // vector
-	#include &lt;array&gt; // array
-	#include &lt;clocale&gt; // localeconv
-	#include &lt;cstddef&gt; // size_t
-	#include &lt;cstdio&gt; // snprintf
-	#include &lt;cstdlib&gt; // strtof, strtod, strtold, strtoll, strtoull
-	#include &lt;initializer_list&gt; // initializer_list
-	#include &lt;string&gt; // char_traits, string
-	#include &lt;utility&gt; // move
-	#include &lt;vector&gt; // vector
-	#include &lt;cstdint&gt; // size_t
-	#include &lt;utility&gt; // declval
-	#include &lt;string&gt; // string
-	#include &lt;cmath&gt; // isfinite
-	#include &lt;cstdint&gt; // uint8_t
-	#include &lt;functional&gt; // function
-	#include &lt;string&gt; // string
-	#include &lt;utility&gt; // move
-	#include &lt;vector&gt; // vector
-	#include &lt;cstddef&gt; // ptrdiff_t
-	#include &lt;limits&gt;  // numeric_limits
-	#include &lt;iterator&gt; // iterator, random_access_iterator_tag, bidirectional_iterator_tag, advance, next
-	#include &lt;type_traits&gt; // conditional, is_const, remove_const
-	#include &lt;cstddef&gt; // ptrdiff_t
-	#include &lt;iterator&gt; // reverse_iterator
-	#include &lt;utility&gt; // declval
-	#include &lt;type_traits&gt; // conditional, is_same
-	#include &lt;algorithm&gt; // all_of
-	#include &lt;cctype&gt; // isdigit
-	#include &lt;cerrno&gt; // errno, ERANGE
-	#include &lt;cstdlib&gt; // strtoull
-	    #include &lt;iosfwd&gt; // ostream
-	#include &lt;limits&gt; // max
-	#include &lt;numeric&gt; // accumulate
-	#include &lt;string&gt; // string
-	#include &lt;utility&gt; // move
-	#include &lt;vector&gt; // vector
-	#include &lt;initializer_list&gt;
-	#include &lt;utility&gt;
-	#include &lt;algorithm&gt; // reverse
-	#include &lt;array&gt; // array
-	#include &lt;map&gt; // map
-	#include &lt;cmath&gt; // isnan, isinf
-	#include &lt;cstdint&gt; // uint8_t, uint16_t, uint32_t, uint64_t
-	#include &lt;cstring&gt; // memcpy
-	#include &lt;limits&gt; // numeric_limits
-	#include &lt;string&gt; // string
-	#include &lt;utility&gt; // move
-	#include &lt;vector&gt; // vector
-	#include &lt;algorithm&gt; // copy
-	#include &lt;cstddef&gt; // size_t
-	#include &lt;iterator&gt; // back_inserter
-	#include &lt;memory&gt; // shared_ptr, make_shared
-	#include &lt;string&gt; // basic_string
-	#include &lt;vector&gt; // vector
-	    #include &lt;ios&gt;      // streamsize
-	    #include &lt;ostream&gt;  // basic_ostream
-	#include &lt;algorithm&gt; // reverse, remove, fill, find, none_of
-	#include &lt;array&gt; // array
-	#include &lt;clocale&gt; // localeconv, lconv
-	#include &lt;cmath&gt; // labs, isfinite, isnan, signbit
-	#include &lt;cstddef&gt; // size_t, ptrdiff_t
-	#include &lt;cstdint&gt; // uint8_t
-	#include &lt;cstdio&gt; // snprintf
-	#include &lt;limits&gt; // numeric_limits
-	#include &lt;string&gt; // string, char_traits
-	#include &lt;iomanip&gt; // setfill, setw
-	#include &lt;type_traits&gt; // is_same
-	#include &lt;utility&gt; // move
-	#include &lt;array&gt; // array
-	#include &lt;cmath&gt;   // signbit, isfinite
-	#include &lt;cstdint&gt; // intN_t, uintN_t
-	#include &lt;cstring&gt; // memcpy, memmove
-	#include &lt;limits&gt; // numeric_limits
-	#include &lt;type_traits&gt; // conditional
-	#include &lt;functional&gt; // equal_to, less
-	#include &lt;initializer_list&gt; // initializer_list
-	#include &lt;iterator&gt; // input_iterator_tag, iterator_traits
-	#include &lt;memory&gt; // allocator
-	#include &lt;stdexcept&gt; // for out_of_range
-	#include &lt;type_traits&gt; // enable_if, is_convertible
-	#include &lt;utility&gt; // pair
-	#include &lt;vector&gt; // vector
-	        #include &lt;any&gt;
-	    #include &lt;string_view&gt;
-	```
-	
-
+_None_
 
 
 
