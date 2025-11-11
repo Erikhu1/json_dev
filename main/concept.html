@@ -444,13 +444,13 @@ In particular, scores are provided, either manually by subject-matter-experts (S
 Then, the scores are calculated recursively using the following scheme:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>normative</p></th>
-<th class="head"><p>review-status</p></th>
-<th class="head"><p>SME</p></th>
-<th class="head"><p>evidence</p></th>
-<th class="head"><p>reference</p></th>
-<th class="head"><p>unsuspect children</p></th>
-<th class="head"><p>score</p></th>
+<tr class="row-odd"><th class="head"><p><a class="reference external" href="https://codethinklabs.gitlab.io/trustable/trustable/reference/trudag/dotstop/core/item.html#trudag.dotstop.core.item.BaseItem.normative">normative</a></p></th>
+<th class="head"><p><a class="reference external" href="https://codethinklabs.gitlab.io/trustable/trustable/reference/trudag/dotstop/core/graph/trustable_graph.html#trudag.dotstop.core.graph.trustable_graph.TrustableGraph.set_link_status">review-status</a></p></th>
+<th class="head"><p><a class="reference external" href="https://codethinklabs.gitlab.io/trustable/trustable/reference/trudag/dotstop/core/item.html#trudag.dotstop.core.item.BaseItem.sme_scores">SME</a></p></th>
+<th class="head"><p><a class="reference external" href="https://codethinklabs.gitlab.io/trustable/trustable/trudag/usage.html#providing-evidence">evidence</a></p></th>
+<th class="head"><p><a class="reference external" href="https://codethinklabs.gitlab.io/trustable/trustable/reference/trudag/dotstop/core/item.html#trudag.dotstop.core.item.BaseItem.references">reference</a></p></th>
+<th class="head"><p><a class="reference external" href="https://codethinklabs.gitlab.io/trustable/trustable/reference/trudag/dotstop/core/graph/trustable_graph.html#trudag.dotstop.core.graph.trustable_graph.LinkStatus">link-status</a></p></th>
+<th class="head"><p><a class="reference external" href="https://codethinklabs.gitlab.io/trustable/trustable/trudag/scoring-roadmap.html">score</a></p></th>
 </tr>
 </thead>
 <tbody>
@@ -483,7 +483,7 @@ Then, the scores are calculated recursively using the following scheme:</p>
 <td><p><code class="docutils literal notranslate"><span class="pre">yes</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">no</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">yes</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">no</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">linked</span></code></p></td>
 <td><p>SME</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
@@ -491,7 +491,7 @@ Then, the scores are calculated recursively using the following scheme:</p>
 <td><p><code class="docutils literal notranslate"><span class="pre">yes</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">yes</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">no</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">linked</span></code></p></td>
 <td><p>SME × evidence</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
@@ -499,13 +499,27 @@ Then, the scores are calculated recursively using the following scheme:</p>
 <td><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">yes</span></code></p></td>
-<td><p>mean of unsuspect
-children-scores</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">suspect</span></code></p></td>
+<td><p>mean of child items with no suspect links</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<ul class="simple">
+<li><p><strong>normative</strong>: Indicates whether the statement is normative (<cite>true</cite>) or not (<cite>false</cite>). If a statement is not normative, it is considered optional or informational, and no evaluation or scoring is performed.</p></li>
+<li><p><strong>review-status</strong>: Shows the current review status of the statement. A <cite>false</cite> means no evaluation is available yet and the score is set to <cite>0.0</cite>.</p></li>
+<li><p><strong>SME</strong>: Indicates whether a subject matter expert has provided an assessment.</p></li>
+<li><p><strong>evidence</strong>: Indicates if supporting evidence exists for the statement’s assessment.</p></li>
+<li><p><strong>reference</strong>: Indicates whether sources are available that support or justify the statement.</p></li>
+<li><p><strong>link-status</strong>: Indicates whether there are any suspect links between child and parent items. If suspect links exist, the score is calculated based on child items without suspect links only.</p></li>
+<li><p><strong>score</strong>: Shows how the score is calculated.</p></li>
+</ul>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<p>This diagram illustrates an example of the scoring process in the Trustable Software Framework (TSF).
+Please note that the numbers shown in this graph are <strong>example values only</strong> and do not represent real assessments.</p>
+<img alt="Graph illustrating the scoring process in the Trustable Software Framework" class="align-center" src="_images/score_calculation_example.svg" />
+</section>
 </section>
 </section>
 
@@ -556,7 +570,10 @@ children-scores</p></td>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scoring">Scoring</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scoring">Scoring</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
