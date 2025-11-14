@@ -10997,7 +10997,27 @@ _None_
 
 **References:**
 
-_None_
+- `website: https://scorecard.dev/viewer/?uri=github.com%2Fnlohmann%2Fjson`
+
+
+`https://scorecard.dev/viewer/?uri=github.com%2Fnlohmann%2Fjson`
+	- OpenSSF Scorecard Report for nlohmann/json, where scores for 'Security-Policy' and 'Code-Review' reflect this statement.
+
+
+- `website: https://github.com/nlohmann/json/blob/develop/.github/CONTRIBUTING.md`
+
+
+`https://github.com/nlohmann/json/blob/develop/.github/CONTRIBUTING.md`
+	- Contribution Guidelines for nlohmann/json.
+
+
+- `website: https://github.com/nlohmann/json/blob/develop/.github/SECURITY.md`
+
+
+`https://github.com/nlohmann/json/blob/develop/.github/SECURITY.md`
+	- Security policy for nlohmann/json.
+
+
 
 
 

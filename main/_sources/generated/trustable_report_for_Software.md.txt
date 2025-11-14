@@ -323,6 +323,6 @@ This presents the compliance for _Well Formed JSON_ (WFJ) in tabular form.
 _Generated for: Software_
 
 * _Repository root: /home/runner/work/json_dev/json_dev_
-* _Commit SHA: f371a28170bd6c0149ca276e00102a65e416fb6a_
-* _Commit date/time: Tue Nov 11 16:23:51 2025_
-* _Commit tag: f371a28_
+* _Commit SHA: f39db793ccf0bb1cf2057bb600ac6d6e892975e2_
+* _Commit date/time: Fri Nov 14 15:48:23 2025_
+* _Commit tag: f39db79_
